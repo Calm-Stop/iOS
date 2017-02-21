@@ -1,0 +1,6 @@
+framework module Pods_CalmStopOfficer {
+  umbrella header "Pods-CalmStopOfficer-umbrella.h"
+
+  export *
+  module * { export * }
+}
