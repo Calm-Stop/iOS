@@ -15,10 +15,13 @@ class WelcomeViewController: UIViewController {
     
     @IBOutlet weak var requestInformation: UIButton!
     
+    @IBOutlet weak var locatingLabel: UILabel!
+    
     @IBAction func locateDriver(_ sender: UIButton) {
         
         activityIndicator.isHidden = false
         activityIndicator.hidesWhenStopped = true
+        locatingLabel.isHidden = false
         activityIndicator.startAnimating()
         
         self.perform(#selector(WelcomeViewController.hideActivityIndicator), with: nil, afterDelay: 3.0)
@@ -30,12 +33,14 @@ class WelcomeViewController: UIViewController {
     {
         activityIndicator.stopAnimating()
         requestInformation.isHidden = false
+        locatingLabel.text = "Stopalog phones were detected! Click the button for more information..."
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.isHidden = true
         requestInformation.isHidden = true
+        locatingLabel.isHidden = true
         // Do any additional setup after loading the view.
         
         checkIfUserIsLoggedIn()
@@ -61,6 +66,10 @@ class WelcomeViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .default
     }
     
 
