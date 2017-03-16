@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class RatingsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -30,8 +31,7 @@ class RatingsViewController: UIViewController, UITableViewDelegate, UITableViewD
         // Do any additional setup after loading the view.
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
-
-        
+        checkIfUserIsLoggedIn()
 
     }
     
@@ -49,6 +49,32 @@ class RatingsViewController: UIViewController, UITableViewDelegate, UITableViewD
         return (cell)
     }
     
+    
+    func checkIfUserIsLoggedIn(){
+        if FIRAuth.auth()?.currentUser?.uid == nil {
+            print("Not logged in!")
+        } else {
+            let uid = FIRAuth.auth()?.currentUser?.uid
+            FIRDatabase.database().reference().child("officer").child("14566").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let dictionary = snapshot.value as? [String: AnyObject]{
+                    let ratings = dictionary["ratings_average"] as? Float
+                    self.setRatings(ratings_average: ratings!)
+                }
+                
+                print (snapshot)
+            })
+        }
+    }
+    
+    func setRatings(ratings_average: Float){
+        
+        rating.text = String(format: "%.1f", ratings_average)
+        let widthValue = (176 * ratings_average)/5
+        
+        stars.frame = CGRect(x: 99 , y: 119 , width: Int(widthValue) , height: 40);
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

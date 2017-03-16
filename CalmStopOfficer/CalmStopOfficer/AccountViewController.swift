@@ -59,17 +59,33 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var alert = UIAlertView()
-        alert.delegate = self
-        alert.title = "Logout"
-        alert.message = "You've been Logged Out!"
-        alert.addButton(withTitle: "OK")
-        alert.show()
+
+        if indexPath.row == 0 {
+            performSegue(withIdentifier: "profileSegue", sender: nil)
+        }
         
-        if indexPath.row == 4{
-            
+        if indexPath.row == 1 {
+            performSegue(withIdentifier: "helpSegue", sender: nil)
+        }
+        
+        if indexPath.row == 2 {
+            performSegue(withIdentifier: "aboutUsSegue", sender: nil)
+        }
+        
+        if indexPath.row == 3 {
+            performSegue(withIdentifier: "settingsSegue", sender: nil)
+        }
+        
+        if indexPath.row == 4 {
             do{
                 try FIRAuth.auth()?.signOut()
+                
+                var alert = UIAlertView()
+                alert.delegate = self
+                alert.title = "Logout"
+                alert.message = "You've been Logged Out!"
+                alert.addButton(withTitle: "OK")
+                alert.show()
                 
             }catch let logoutError{
                 print (logoutError)
