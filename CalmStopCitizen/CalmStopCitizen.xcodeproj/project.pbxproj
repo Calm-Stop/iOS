@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19F624A2C2984A0CB8CCA501 /* Pods_CalmStopCitizen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F7EAF29965D174AECBB82A8 /* Pods_CalmStopCitizen.framework */; };
 		B03BD4371E8030800037E86A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD4361E8030800037E86A /* AppDelegate.swift */; };
 		B03BD4391E8030800037E86A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD4381E8030800037E86A /* ViewController.swift */; };
 		B03BD43C1E8030800037E86A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B03BD43A1E8030800037E86A /* Main.storyboard */; };
 		B03BD43E1E8030800037E86A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B03BD43D1E8030800037E86A /* Assets.xcassets */; };
 		B03BD4411E8030800037E86A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B03BD43F1E8030800037E86A /* LaunchScreen.storyboard */; };
 		B03BD44C1E8030800037E86A /* CalmStopCitizenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD44B1E8030800037E86A /* CalmStopCitizenTests.swift */; };
+		B057834C1E9C57A4001E8F08 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B057834B1E9C57A4001E8F08 /* GoogleService-Info.plist */; };
+		B057834D1E9C57A4001E8F08 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B057834B1E9C57A4001E8F08 /* GoogleService-Info.plist */; };
+		F952F4328A3F64B194A3A80C /* Pods_CalmStopCitizenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8169D5C418F6F287D67EB3 /* Pods_CalmStopCitizenTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +30,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0F7EAF29965D174AECBB82A8 /* Pods_CalmStopCitizen.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CalmStopCitizen.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C90C1EF4A77E46155EDB5AA /* Pods-CalmStopCitizenTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalmStopCitizenTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CalmStopCitizenTests/Pods-CalmStopCitizenTests.release.xcconfig"; sourceTree = "<group>"; };
+		342DF01CC4EAC5B2BEF6CA5C /* Pods-CalmStopCitizen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalmStopCitizen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CalmStopCitizen/Pods-CalmStopCitizen.debug.xcconfig"; sourceTree = "<group>"; };
+		3A8169D5C418F6F287D67EB3 /* Pods_CalmStopCitizenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CalmStopCitizenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BBC2D344B0E95E853D17063 /* Pods-CalmStopCitizenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalmStopCitizenTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CalmStopCitizenTests/Pods-CalmStopCitizenTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B03BD4331E8030800037E86A /* CalmStopCitizen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalmStopCitizen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B03BD4361E8030800037E86A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B03BD4381E8030800037E86A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +45,8 @@
 		B03BD4471E8030800037E86A /* CalmStopCitizenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalmStopCitizenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B03BD44B1E8030800037E86A /* CalmStopCitizenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalmStopCitizenTests.swift; sourceTree = "<group>"; };
 		B03BD44D1E8030800037E86A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B057834B1E9C57A4001E8F08 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F7D9879389710FD0992E54BD /* Pods-CalmStopCitizen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalmStopCitizen.release.xcconfig"; path = "Pods/Target Support Files/Pods-CalmStopCitizen/Pods-CalmStopCitizen.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19F624A2C2984A0CB8CCA501 /* Pods_CalmStopCitizen.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,18 +62,42 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F952F4328A3F64B194A3A80C /* Pods_CalmStopCitizenTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2D8F7EC48BECE9816D4095B8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B057834B1E9C57A4001E8F08 /* GoogleService-Info.plist */,
+				0F7EAF29965D174AECBB82A8 /* Pods_CalmStopCitizen.framework */,
+				3A8169D5C418F6F287D67EB3 /* Pods_CalmStopCitizenTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		452A2798F687FED63AA0964F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				342DF01CC4EAC5B2BEF6CA5C /* Pods-CalmStopCitizen.debug.xcconfig */,
+				F7D9879389710FD0992E54BD /* Pods-CalmStopCitizen.release.xcconfig */,
+				9BBC2D344B0E95E853D17063 /* Pods-CalmStopCitizenTests.debug.xcconfig */,
+				1C90C1EF4A77E46155EDB5AA /* Pods-CalmStopCitizenTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		B03BD42A1E8030800037E86A = {
 			isa = PBXGroup;
 			children = (
 				B03BD4351E8030800037E86A /* CalmStopCitizen */,
 				B03BD44A1E8030800037E86A /* CalmStopCitizenTests */,
 				B03BD4341E8030800037E86A /* Products */,
+				452A2798F687FED63AA0964F /* Pods */,
+				2D8F7EC48BECE9816D4095B8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,9 +139,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B03BD4501E8030800037E86A /* Build configuration list for PBXNativeTarget "CalmStopCitizen" */;
 			buildPhases = (
+				B6FAC235643756263923826F /* [CP] Check Pods Manifest.lock */,
 				B03BD42F1E8030800037E86A /* Sources */,
 				B03BD4301E8030800037E86A /* Frameworks */,
 				B03BD4311E8030800037E86A /* Resources */,
+				A0012E71D31EC81131DBE77D /* [CP] Embed Pods Frameworks */,
+				8BE253550707E56F0192B85F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -120,9 +159,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = B03BD4531E8030800037E86A /* Build configuration list for PBXNativeTarget "CalmStopCitizenTests" */;
 			buildPhases = (
+				C607F57C7956962319325873 /* [CP] Check Pods Manifest.lock */,
 				B03BD4431E8030800037E86A /* Sources */,
 				B03BD4441E8030800037E86A /* Frameworks */,
 				B03BD4451E8030800037E86A /* Resources */,
+				31F23CBB2A41D46FFAE11812 /* [CP] Embed Pods Frameworks */,
+				93D10D7D2D0398890B70776A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -146,6 +188,7 @@
 				TargetAttributes = {
 					B03BD4321E8030800037E86A = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = YJUP7QAXXH;
 						ProvisioningStyle = Automatic;
 					};
 					B03BD4461E8030800037E86A = {
@@ -180,6 +223,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B03BD4411E8030800037E86A /* LaunchScreen.storyboard in Resources */,
+				B057834C1E9C57A4001E8F08 /* GoogleService-Info.plist in Resources */,
 				B03BD43E1E8030800037E86A /* Assets.xcassets in Resources */,
 				B03BD43C1E8030800037E86A /* Main.storyboard in Resources */,
 			);
@@ -189,10 +233,104 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B057834D1E9C57A4001E8F08 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		31F23CBB2A41D46FFAE11812 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CalmStopCitizenTests/Pods-CalmStopCitizenTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8BE253550707E56F0192B85F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CalmStopCitizen/Pods-CalmStopCitizen-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		93D10D7D2D0398890B70776A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CalmStopCitizenTests/Pods-CalmStopCitizenTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A0012E71D31EC81131DBE77D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CalmStopCitizen/Pods-CalmStopCitizen-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B6FAC235643756263923826F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		C607F57C7956962319325873 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B03BD42F1E8030800037E86A /* Sources */ = {
@@ -337,11 +475,13 @@
 		};
 		B03BD4511E8030800037E86A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 342DF01CC4EAC5B2BEF6CA5C /* Pods-CalmStopCitizen.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = YJUP7QAXXH;
 				INFOPLIST_FILE = CalmStopCitizen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.CalmStopCitizen;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CalmStop.CalmStopCitizen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -349,11 +489,13 @@
 		};
 		B03BD4521E8030800037E86A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F7D9879389710FD0992E54BD /* Pods-CalmStopCitizen.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = YJUP7QAXXH;
 				INFOPLIST_FILE = CalmStopCitizen/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.CalmStopCitizen;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CalmStop.CalmStopCitizen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -361,6 +503,7 @@
 		};
 		B03BD4541E8030800037E86A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9BBC2D344B0E95E853D17063 /* Pods-CalmStopCitizenTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -375,6 +518,7 @@
 		};
 		B03BD4551E8030800037E86A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1C90C1EF4A77E46155EDB5AA /* Pods-CalmStopCitizenTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -406,6 +550,7 @@
 				B03BD4521E8030800037E86A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B03BD4531E8030800037E86A /* Build configuration list for PBXNativeTarget "CalmStopCitizenTests" */ = {
 			isa = XCConfigurationList;
@@ -414,6 +559,7 @@
 				B03BD4551E8030800037E86A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
