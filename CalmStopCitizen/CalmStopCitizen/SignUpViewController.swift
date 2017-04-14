@@ -22,9 +22,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     @IBOutlet weak var zipCodeInput: UITextField!
     @IBOutlet weak var genderInput: UITextField!
     @IBOutlet weak var languageInput: UITextField!
+    @IBOutlet weak var ethnicityInput: UITextField!
     
-    var genderPickerData = ["Male", "Female", "Prefer not to answer"]
-    var languagePickerData = ["English", "Spanish", "Arabic", "Chinese (Mandarin)", "French", "German", "Italian", "Portuguese", "Russian", "Spanish", "Swedish", "Vietnamese" ]
+    var genderPickerData = ["---", "Male", "Female", "Prefer not to answer"]
+    var languagePickerData = ["---", "English", "Spanish", "Arabic", "Chinese (Mandarin)", "French", "German", "Italian", "Portuguese", "Russian", "Spanish", "Swedish", "Vietnamese" ]
+    var ethnicityPickerData = ["---", "African American", "American Indian", "Asian", "Hispanic", "Pacific Islander", "White", "Two or more races", "Other ethnicity", "Prefer not to answer" ]
     
     
     override func viewDidLoad() {
@@ -83,12 +85,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         genderPickerView.delegate = self
         genderPickerView.tag = 1
         genderInput.inputView = genderPickerView
+        genderInput.inputAccessoryView = toolBar
         
         // Create language pickerView
         let languagePickerView = UIPickerView()
         languagePickerView.delegate = self
         languagePickerView.tag = 2
         languageInput.inputView = languagePickerView
+        languageInput.inputAccessoryView = toolBar
+
+        // Create ethnicity pickerView
+        let ethnicityPickerView = UIPickerView()
+        ethnicityPickerView.delegate = self
+        ethnicityPickerView.tag = 3
+        ethnicityInput.inputView = ethnicityPickerView
+        ethnicityInput.inputAccessoryView = toolBar
+
         }
     
     
@@ -122,7 +134,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     func donePressed(sender: UIBarButtonItem) {
         
         birthdateInput.resignFirstResponder()
-        
+        genderInput.resignFirstResponder()
+        languageInput.resignFirstResponder()
+        ethnicityInput.resignFirstResponder()
     }
     
     @IBAction func birthdateEditing(_ sender: UITextField) {
@@ -157,25 +171,28 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent: Int) -> Int {
         if pickerView.tag == 1 {return genderPickerData.count}
         else if pickerView.tag == 2 {return languagePickerData.count}
+        else if pickerView.tag == 3 {return ethnicityPickerData.count}
         else {return 1}
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView.tag == 1 {return genderPickerData[row]}
         else if pickerView.tag == 2 {return languagePickerData[row]}
+        else if pickerView.tag == 3 {return ethnicityPickerData[row]}
         else {return ("Error")}
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView.tag == 1 {genderInput.text = genderPickerData[row]}
         else if pickerView.tag == 2 {languageInput.text = languagePickerData[row]}
+        else if pickerView.tag == 3 {ethnicityInput.text = ethnicityPickerData[row]}
     }
 
     
     @IBAction func signUpButtonPressed(_ sender: Any) {
-        guard let emailTxt = emailInput.text, let passwordTxt = passwordInput.text, let firstNameTxt = firstNameInput.text, let lastNameTxt = lastNameInput.text, let licenseTxt = licenseInput.text, let phoneTxt = phoneNumberInput.text, let birthdateTxt = birthdateInput.text, let zipCodeTxt = zipCodeInput.text, var genderTxt : Int = 0, var languageTxt: Int = 0 else { return }
+        guard let emailTxt = emailInput.text, let passwordTxt = passwordInput.text, let firstNameTxt = firstNameInput.text, let lastNameTxt = lastNameInput.text, let licenseTxt = licenseInput.text, let phoneTxt = phoneNumberInput.text, let birthdateTxt = birthdateInput.text, let zipCodeTxt = zipCodeInput.text, var genderTxt : Int = 0, var languageTxt: Int = 0, var ethnicityTxt : Int = 0 else { return }
         
-        // set languageTxt
+        // set languageTxt (must match values in languagePickerData)
         if languageInput.text == "Arabic" { languageTxt = 0}
         else if languageInput.text == "Chinese (Mandarin)" { languageTxt = 1}
         else if languageInput.text == "English" { languageTxt = 2}
@@ -188,12 +205,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         else if languageInput.text == "Swedish" { languageTxt = 9}
         else if languageInput.text == "Vietnamese" { languageTxt = 10}
 
-        // set genderTxt
+        // set genderTxt (must match values in genderPickerData)
         if genderInput.text == "Female" { genderTxt = 0}
         else if genderInput.text == "Male" { genderTxt = 1}
         else if genderInput.text == "Prefer not to answer" { genderTxt = 2}
         
-        // set ethnicityTxt
+        // set ethnicityTxt (must match values in ethnicityPickerData)
+        if ethnicityInput.text == "Prefer not to answer" {ethnicityTxt = 0}
+        else if ethnicityInput.text == "African American" {ethnicityTxt = 1}
+        else if ethnicityInput.text == "American Indian" {ethnicityTxt = 2}
+        else if ethnicityInput.text == "Asian" {ethnicityTxt = 3}
+        else if ethnicityInput.text == "Hispanic" {ethnicityTxt = 4}
+        else if ethnicityInput.text == "Pacific Islander" {ethnicityTxt = 5}
+        else if ethnicityInput.text == "White" {ethnicityTxt = 6}
+        else if ethnicityInput.text == "Two or more races" {ethnicityTxt = 7}
+        else if ethnicityInput.text == "Other ethnicity" {ethnicityTxt = 8}
+
         
 
         FIRAuth.auth()?.createUser(withEmail: emailTxt, password: passwordTxt, completion: {(user: FIRUser?, error) in
