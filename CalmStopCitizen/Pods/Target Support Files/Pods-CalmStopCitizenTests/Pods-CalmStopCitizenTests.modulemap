@@ -1,0 +1,6 @@
+framework module Pods_CalmStopCitizenTests {
+  umbrella header "Pods-CalmStopCitizenTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
