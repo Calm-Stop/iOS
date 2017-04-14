@@ -171,7 +171,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
 
     
     @IBAction func signUpButtonPressed(_ sender: Any) {
-        guard let emailTxt = emailInput.text, let passwordTxt = passwordInput.text, let firstNameTxt = firstNameInput.text, let lastNameTxt = lastNameInput.text else { return }
+        guard let emailTxt = emailInput.text, let passwordTxt = passwordInput.text, let firstNameTxt = firstNameInput.text, let lastNameTxt = lastNameInput.text, let licenseTxt = licenseInput.text, let phoneTxt = phoneNumberInput.text, let birthdateTxt = birthdateInput.text, let zipCodeTxt = zipCodeInput.text, let languageTxt = languageInput.text, let genderTxt = genderInput.text else { return }
         
         FIRAuth.auth()?.createUser(withEmail: emailTxt, password: passwordTxt, completion: {(user: FIRUser?, error) in
             
@@ -187,7 +187,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
             // successfully authenticate user
             let ref = FIRDatabase.database().reference(fromURL: "https://calm-stop.firebaseio.com/")
             let usersReference = ref.child("citizen").child(uid).child("profile")
-            let values = ["first_name": firstNameTxt, "last_name": lastNameTxt, "email": emailTxt]
+            let values = ["first_name": firstNameTxt, "last_name": lastNameTxt, "email": emailTxt, "phone_number": phoneTxt, "zipcode": zipCodeTxt, "language": languageTxt, "dob": birthdateTxt, "gender": genderTxt, "license_number": licenseTxt]
             usersReference.updateChildValues(values, withCompletionBlock: { (err,ref) in
                 if err != nil{
                     
