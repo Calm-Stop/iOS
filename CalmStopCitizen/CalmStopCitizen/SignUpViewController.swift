@@ -42,14 +42,16 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         passwordInput.tag = 3
         licenseInput.delegate = self
         licenseInput.tag = 4
+        phoneNumberInput.delegate = self
+        phoneNumberInput.tag = 5
         birthdateInput.delegate = self
-        birthdateInput.tag = 5
+        birthdateInput.tag = 6
         zipCodeInput.delegate = self
-        zipCodeInput.tag = 6
+        zipCodeInput.tag = 7
         genderInput.delegate = self
-        genderInput.tag = 7
+        genderInput.tag = 8
         languageInput.delegate = self
-        languageInput.tag = 8
+        languageInput.tag = 9
         
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignInViewController.dismissKeyboard))
@@ -171,8 +173,29 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
 
     
     @IBAction func signUpButtonPressed(_ sender: Any) {
-        guard let emailTxt = emailInput.text, let passwordTxt = passwordInput.text, let firstNameTxt = firstNameInput.text, let lastNameTxt = lastNameInput.text, let licenseTxt = licenseInput.text, let phoneTxt = phoneNumberInput.text, let birthdateTxt = birthdateInput.text, let zipCodeTxt = zipCodeInput.text, let languageTxt = languageInput.text, let genderTxt = genderInput.text else { return }
+        guard let emailTxt = emailInput.text, let passwordTxt = passwordInput.text, let firstNameTxt = firstNameInput.text, let lastNameTxt = lastNameInput.text, let licenseTxt = licenseInput.text, let phoneTxt = phoneNumberInput.text, let birthdateTxt = birthdateInput.text, let zipCodeTxt = zipCodeInput.text, var genderTxt : Int = 0, var languageTxt: Int = 0 else { return }
         
+        // set languageTxt
+        if languageInput.text == "Arabic" { languageTxt = 0}
+        else if languageInput.text == "Chinese (Mandarin)" { languageTxt = 1}
+        else if languageInput.text == "English" { languageTxt = 2}
+        else if languageInput.text == "French" { languageTxt = 3}
+        else if languageInput.text == "German" { languageTxt = 4}
+        else if languageInput.text == "Italian" { languageTxt = 5}
+        else if languageInput.text == "Portuguese" { languageTxt = 6}
+        else if languageInput.text == "Russian" { languageTxt = 7}
+        else if languageInput.text == "Spanish" { languageTxt = 8}
+        else if languageInput.text == "Swedish" { languageTxt = 9}
+        else if languageInput.text == "Vietnamese" { languageTxt = 10}
+
+        // set genderTxt
+        if genderInput.text == "Female" { genderTxt = 0}
+        else if genderInput.text == "Male" { genderTxt = 1}
+        else if genderInput.text == "Prefer not to answer" { genderTxt = 2}
+        
+        // set ethnicityTxt
+        
+
         FIRAuth.auth()?.createUser(withEmail: emailTxt, password: passwordTxt, completion: {(user: FIRUser?, error) in
             
             if error != nil {
@@ -187,7 +210,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
             // successfully authenticate user
             let ref = FIRDatabase.database().reference(fromURL: "https://calm-stop.firebaseio.com/")
             let usersReference = ref.child("citizen").child(uid).child("profile")
-            let values = ["first_name": firstNameTxt, "last_name": lastNameTxt, "email": emailTxt, "phone_number": phoneTxt, "zipcode": zipCodeTxt, "language": languageTxt, "dob": birthdateTxt, "gender": genderTxt, "license_number": licenseTxt]
+            let values = ["first_name": firstNameTxt, "last_name": lastNameTxt, "email": emailTxt, "phone_number": phoneTxt, "zipcode": zipCodeTxt, "language": languageTxt, "dob": birthdateTxt, "gender": genderTxt, "license_number": licenseTxt] as [String : Any] as [String : Any]
             usersReference.updateChildValues(values, withCompletionBlock: { (err,ref) in
                 if err != nil{
                     
