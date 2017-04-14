@@ -17,7 +17,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
     @IBOutlet weak var birthdateInput: UITextField!
-    // @IBOutlet weak var datePicker: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,9 +35,25 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignInViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
         
-        //birthdateInput.inputView = datePicker
+        // Set up toolbar for datePicker
         
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height/6, width: self.view.frame.size.width, height: 40.0))
+        toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
+        toolBar.barStyle = UIBarStyle.blackTranslucent
+        toolBar.tintColor = UIColor.white
+        toolBar.backgroundColor = UIColor.black
         
+        let okBarBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(SignUpViewController.donePressed))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
+        //let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width/2, height: self.view.frame.size.height))
+        //label.font = UIFont(name: "Helvetica", size: 12)
+        //label.backgroundColor = UIColor.clear
+        //label.textColor = UIColor.white
+        //label.text = "Select your date of birth"
+        //label.textAlignment = NSTextAlignment.center
+        //let textBtn = UIBarButtonItem(customView: label)
+        toolBar.setItems([flexSpace,flexSpace,okBarBtn], animated: true)
+        birthdateInput.inputAccessoryView = toolBar
         }
     
     
@@ -69,10 +84,27 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    func donePressed(sender: UIBarButtonItem) {
+        
+        birthdateInput.resignFirstResponder()
+        
+    }
+    
     @IBAction func birthdateEditing(_ sender: UITextField) {
         let datePickerView:UIDatePicker = UIDatePicker()
         datePickerView.datePickerMode = UIDatePickerMode.date
         sender.inputView = datePickerView
+        
+        // set minimum (16 years old) and maximum (100 years old) birthdates
+        var components = DateComponents()
+        components.year = -100
+        let minDate = Calendar.current.date(byAdding: components, to: Date())
+        datePickerView.minimumDate = minDate
+        
+        components.year = -16
+        let maxDate = Calendar.current.date(byAdding: components, to: Date())
+        datePickerView.maximumDate = maxDate
+        
         datePickerView.addTarget(self, action: #selector(SignUpViewController.datePickerValueChanged),for: UIControlEvents.valueChanged)
     }
     
