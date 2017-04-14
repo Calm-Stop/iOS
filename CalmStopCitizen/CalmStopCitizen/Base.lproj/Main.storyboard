@@ -227,7 +227,7 @@
                                 <rect key="frame" x="36" y="444" width="254" height="1"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Preferred Language" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SbS-yJ-bVe" userLabel="genderInput">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Preferred Language" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SbS-yJ-bVe" userLabel="languageInput">
                                 <rect key="frame" x="36" y="450" width="254" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -264,8 +264,13 @@
                         <outlet property="birthdateInput" destination="Igf-Xr-d5f" id="mxL-3Z-nAb"/>
                         <outlet property="emailInput" destination="idM-nb-9tt" id="rSY-qa-GOg"/>
                         <outlet property="firstNameInput" destination="2Cy-LH-dje" id="HWQ-jp-G7B"/>
+                        <outlet property="genderInput" destination="HUe-Ix-d6q" id="jiI-jy-W3A"/>
+                        <outlet property="languageInput" destination="SbS-yJ-bVe" id="Jto-Ss-8MF"/>
                         <outlet property="lastNameInput" destination="m3J-IQ-0TJ" id="PDU-4p-CZK"/>
+                        <outlet property="licenseInput" destination="vFR-ob-01P" id="pe3-uX-Xtb"/>
                         <outlet property="passwordInput" destination="5t1-2u-D3u" id="F3d-5J-ciB"/>
+                        <outlet property="phoneNumberInput" destination="ZXS-KZ-nes" id="FcL-zl-oUp"/>
+                        <outlet property="zipCodeInput" destination="U71-nS-fyC" id="2Bc-Ze-8Yt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vI5-9j-X16" userLabel="First Responder" sceneMemberID="firstResponder"/>

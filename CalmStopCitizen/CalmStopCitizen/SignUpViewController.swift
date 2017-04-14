@@ -10,13 +10,22 @@ import Foundation
 import UIKit
 import Firebase
 
-class SignUpViewController: UIViewController, UITextFieldDelegate {
+class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     @IBOutlet weak var firstNameInput: UITextField!
     @IBOutlet weak var lastNameInput: UITextField!
     @IBOutlet weak var emailInput: UITextField!
     @IBOutlet weak var passwordInput: UITextField!
+    @IBOutlet weak var licenseInput: UITextField!
+    @IBOutlet weak var phoneNumberInput: UITextField!
     @IBOutlet weak var birthdateInput: UITextField!
+    @IBOutlet weak var zipCodeInput: UITextField!
+    @IBOutlet weak var genderInput: UITextField!
+    @IBOutlet weak var languageInput: UITextField!
+    
+    var genderPickerData = ["Male", "Female", "Prefer not to answer"]
+    var languagePickerData = ["English", "Spanish", "Arabic", "Chinese (Mandarin)", "French", "German", "Italian", "Portuguese", "Russian", "Spanish", "Swedish", "Vietnamese" ]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +40,17 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         emailInput.tag = 2
         passwordInput.delegate = self
         passwordInput.tag = 3
+        licenseInput.delegate = self
+        licenseInput.tag = 4
+        birthdateInput.delegate = self
+        birthdateInput.tag = 5
+        zipCodeInput.delegate = self
+        zipCodeInput.tag = 6
+        genderInput.delegate = self
+        genderInput.tag = 7
+        languageInput.delegate = self
+        languageInput.tag = 8
+        
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(SignInViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -54,6 +74,19 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         //let textBtn = UIBarButtonItem(customView: label)
         toolBar.setItems([flexSpace,flexSpace,okBarBtn], animated: true)
         birthdateInput.inputAccessoryView = toolBar
+        
+        
+        // Create gender pickerView
+        let genderPickerView = UIPickerView()
+        genderPickerView.delegate = self
+        genderPickerView.tag = 1
+        genderInput.inputView = genderPickerView
+        
+        // Create language pickerView
+        let languagePickerView = UIPickerView()
+        languagePickerView.delegate = self
+        languagePickerView.tag = 2
+        languageInput.inputView = languagePickerView
         }
     
     
@@ -114,6 +147,28 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         dateFormatter.timeStyle = .none
         birthdateInput.text = dateFormatter.string(from: sender.date)
     }
+    
+    func numberOfComponents(in: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent: Int) -> Int {
+        if pickerView.tag == 1 {return genderPickerData.count}
+        else if pickerView.tag == 2 {return languagePickerData.count}
+        else {return 1}
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView.tag == 1 {return genderPickerData[row]}
+        else if pickerView.tag == 2 {return languagePickerData[row]}
+        else {return ("Error")}
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.tag == 1 {genderInput.text = genderPickerData[row]}
+        else if pickerView.tag == 2 {languageInput.text = languagePickerData[row]}
+    }
+
     
     @IBAction func signUpButtonPressed(_ sender: Any) {
         guard let emailTxt = emailInput.text, let passwordTxt = passwordInput.text, let firstNameTxt = firstNameInput.text, let lastNameTxt = lastNameInput.text else { return }
