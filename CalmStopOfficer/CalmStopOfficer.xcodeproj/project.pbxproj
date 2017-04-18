@@ -13,6 +13,10 @@
 		6808219C1E6505B800F19570 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6808219B1E6505B800F19570 /* HistoryViewController.swift */; };
 		6808219E1E65181F00F19570 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6808219D1E65181F00F19570 /* AccountTableViewCell.swift */; };
 		680E8EAA1E56D5E2000508AF /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 680E8EA91E56D5E2000508AF /* WelcomeViewController.swift */; };
+		6820300A1E9C7BB5008F1A43 /* Slide.xib in Resources */ = {isa = PBXBuildFile; fileRef = 682030091E9C7BB5008F1A43 /* Slide.xib */; };
+		6820300D1E9C7BD2008F1A43 /* Slide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6820300C1E9C7BD2008F1A43 /* Slide.swift */; };
+		6820300F1E9CA058008F1A43 /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6820300E1E9CA058008F1A43 /* DocumentsViewController.swift */; };
+		683BD2FE1E9EC72B0009CC17 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683BD2FD1E9EC72B0009CC17 /* PopUpViewController.swift */; };
 		683DD9EF1E7A1FD1001E48C1 /* InitialResponseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683DD9EE1E7A1FD1001E48C1 /* InitialResponseViewController.swift */; };
 		683DD9F11E7A320D001E48C1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683DD9F01E7A320D001E48C1 /* ProfileViewController.swift */; };
 		683FBE4B1E7890FF0018C6B6 /* RespondedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683FBE4A1E7890FF0018C6B6 /* RespondedViewController.swift */; };
@@ -34,6 +38,10 @@
 		6808219B1E6505B800F19570 /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		6808219D1E65181F00F19570 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
 		680E8EA91E56D5E2000508AF /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		682030091E9C7BB5008F1A43 /* Slide.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Slide.xib; sourceTree = "<group>"; };
+		6820300C1E9C7BD2008F1A43 /* Slide.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Slide.swift; sourceTree = "<group>"; };
+		6820300E1E9CA058008F1A43 /* DocumentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
+		683BD2FD1E9EC72B0009CC17 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		683DD9EE1E7A1FD1001E48C1 /* InitialResponseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialResponseViewController.swift; sourceTree = "<group>"; };
 		683DD9F01E7A320D001E48C1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		683FBE4A1E7890FF0018C6B6 /* RespondedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RespondedViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +74,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		682030081E9C7B8F008F1A43 /* SlideView */ = {
+			isa = PBXGroup;
+			children = (
+				682030091E9C7BB5008F1A43 /* Slide.xib */,
+				6820300C1E9C7BD2008F1A43 /* Slide.swift */,
+			);
+			name = SlideView;
+			sourceTree = "<group>";
+		};
 		688B11CE1E566EC200ED2EEF = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +118,7 @@
 		68A97A951E5F9C9B00106117 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				682030081E9C7B8F008F1A43 /* SlideView */,
 				688B11DA1E566EC200ED2EEF /* AppDelegate.swift */,
 				688B11DC1E566EC200ED2EEF /* ViewController.swift */,
 				688B11F11E56770100ED2EEF /* SignUpViewController.swift */,
@@ -114,6 +132,8 @@
 				683FBE4A1E7890FF0018C6B6 /* RespondedViewController.swift */,
 				683DD9EE1E7A1FD1001E48C1 /* InitialResponseViewController.swift */,
 				683DD9F01E7A320D001E48C1 /* ProfileViewController.swift */,
+				6820300E1E9CA058008F1A43 /* DocumentsViewController.swift */,
+				683BD2FD1E9EC72B0009CC17 /* PopUpViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -198,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6820300A1E9C7BB5008F1A43 /* Slide.xib in Resources */,
 				688B11E81E566EC200ED2EEF /* LaunchScreen.storyboard in Resources */,
 				688B11F41E568DF300ED2EEF /* GoogleService-Info.plist in Resources */,
 				688B11E51E566EC200ED2EEF /* Assets.xcassets in Resources */,
@@ -269,6 +290,9 @@
 				6808219E1E65181F00F19570 /* AccountTableViewCell.swift in Sources */,
 				68B6F34F1E5CD6E100723C17 /* RatingsViewController.swift in Sources */,
 				68966F0D1E57C81900159161 /* AccountViewController.swift in Sources */,
+				6820300F1E9CA058008F1A43 /* DocumentsViewController.swift in Sources */,
+				683BD2FE1E9EC72B0009CC17 /* PopUpViewController.swift in Sources */,
+				6820300D1E9C7BD2008F1A43 /* Slide.swift in Sources */,
 				688B11DB1E566EC200ED2EEF /* AppDelegate.swift in Sources */,
 				688B11F21E56770100ED2EEF /* SignUpViewController.swift in Sources */,
 				683DD9EF1E7A1FD1001E48C1 /* InitialResponseViewController.swift in Sources */,

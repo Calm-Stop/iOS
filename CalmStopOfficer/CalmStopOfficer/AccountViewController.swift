@@ -53,7 +53,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AccountTableViewCell
         
         cell.title.text = titles[indexPath.row]
-        cell.arrow.image = #imageLiteral(resourceName: "ExpandArrow")
+//        cell.arrow.image = #imageLiteral(resourceName: "ExpandArrow")
         
         return (cell)
     }

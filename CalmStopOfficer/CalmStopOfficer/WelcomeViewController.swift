@@ -59,6 +59,7 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.requestWhenInUseAuthorization()
         }
         locationManager.startRangingBeacons(in: region)
+        locationManager.stopMonitoring(for: region)
         
         checkIfUserIsLoggedIn()
     }
@@ -68,7 +69,7 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
             print("Not logged in!")
         } else {
             let uid = FIRAuth.auth()?.currentUser?.uid
-            FIRDatabase.database().reference().child("officer").child("14566").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            FIRDatabase.database().reference().child("officer").child("14567").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if let dictionary = snapshot.value as? [String: AnyObject]{
                     let name = dictionary["first_name"] as? String
@@ -103,6 +104,7 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
                 activityIndicator.isHidden = false
                 activityIndicator.hidesWhenStopped = true
                 locatingLabel.isHidden = false
+                locatingLabel.text = "Locating CalmStop phones within 100 ft:"
                 activityIndicator.startAnimating()
                 
                 checkForCitizenAssociatedWithBeacon { (result) -> () in
@@ -113,21 +115,36 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
                 checked = 1
             }
         }
+        
+        if (knowBeacons.count <= 0){
+            checked = 0
+            activityIndicator.isHidden = true
+            requestInformation.isHidden = true
+            locatingLabel.isHidden = true
+        }
     }
+    
     
     private func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLBeaconRegion) {
         print("Entered region!!")
     }
 
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        checked = 0
+    }
+    
+    
     func checkForCitizenAssociatedWithBeacon(completion: @escaping (_ result: Bool) -> ()) {
         if FIRAuth.auth()?.currentUser?.uid == nil {
             print("Not logged in!")
         } else {
-            let beaconId = "0xaaaa0000002f"
+//            let beaconId = "0xaaaa0000002f"
+            let beaconId = "116"
             
             FIRDatabase.database().reference().child("beacons").child(beaconId).observeSingleEvent(of: .value, with: { (snapshot) in
-                if snapshot.hasChild("citizens"){
+                if snapshot.hasChild("citizen"){
                     completion(true)
+                    print("Tem sim!")
                 }
                 
             })
@@ -136,8 +153,11 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
 
     override func viewDidDisappear(_ animated: Bool) {
 //        requestInformation.isHidden = false
+        locatingLabel.text = "Turn Beacon off and start the process again!"
+        
     }
 
+    
     
 
     /*
