@@ -16,6 +16,8 @@
 		B03BD44C1E8030800037E86A /* CalmStopCitizenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD44B1E8030800037E86A /* CalmStopCitizenTests.swift */; };
 		B057834C1E9C57A4001E8F08 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B057834B1E9C57A4001E8F08 /* GoogleService-Info.plist */; };
 		B057834D1E9C57A4001E8F08 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B057834B1E9C57A4001E8F08 /* GoogleService-Info.plist */; };
+		B060BD471EA9388400C62365 /* zipCodeTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060BD461EA9388400C62365 /* zipCodeTextFieldDelegate.swift */; };
+		B060BD491EA938A300C62365 /* phoneNumberTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060BD481EA938A300C62365 /* phoneNumberTextFieldDelegate.swift */; };
 		B0EE2AF11E9F0CB10081B325 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EE2AF01E9F0CB10081B325 /* SignUpViewController.swift */; };
 		F952F4328A3F64B194A3A80C /* Pods_CalmStopCitizenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8169D5C418F6F287D67EB3 /* Pods_CalmStopCitizenTests.framework */; };
 /* End PBXBuildFile section */
@@ -47,6 +49,8 @@
 		B03BD44B1E8030800037E86A /* CalmStopCitizenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalmStopCitizenTests.swift; sourceTree = "<group>"; };
 		B03BD44D1E8030800037E86A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B057834B1E9C57A4001E8F08 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		B060BD461EA9388400C62365 /* zipCodeTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = zipCodeTextFieldDelegate.swift; sourceTree = "<group>"; };
+		B060BD481EA938A300C62365 /* phoneNumberTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = phoneNumberTextFieldDelegate.swift; sourceTree = "<group>"; };
 		B0EE2AF01E9F0CB10081B325 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F7D9879389710FD0992E54BD /* Pods-CalmStopCitizen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalmStopCitizen.release.xcconfig"; path = "Pods/Target Support Files/Pods-CalmStopCitizen/Pods-CalmStopCitizen.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -115,6 +119,7 @@
 		B03BD4351E8030800037E86A /* CalmStopCitizen */ = {
 			isa = PBXGroup;
 			children = (
+				B060BD451EA9386200C62365 /* textFieldDelegates */,
 				B03BD4361E8030800037E86A /* AppDelegate.swift */,
 				B03BD4381E8030800037E86A /* SignInViewController.swift */,
 				B0EE2AF01E9F0CB10081B325 /* SignUpViewController.swift */,
@@ -133,6 +138,16 @@
 				B03BD44D1E8030800037E86A /* Info.plist */,
 			);
 			path = CalmStopCitizenTests;
+			sourceTree = "<group>";
+		};
+		B060BD451EA9386200C62365 /* textFieldDelegates */ = {
+			isa = PBXGroup;
+			children = (
+				B060BD461EA9388400C62365 /* zipCodeTextFieldDelegate.swift */,
+				B060BD481EA938A300C62365 /* phoneNumberTextFieldDelegate.swift */,
+			);
+			name = textFieldDelegates;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,7 +355,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B060BD491EA938A300C62365 /* phoneNumberTextFieldDelegate.swift in Sources */,
 				B0EE2AF11E9F0CB10081B325 /* SignUpViewController.swift in Sources */,
+				B060BD471EA9388400C62365 /* zipCodeTextFieldDelegate.swift in Sources */,
 				B03BD4391E8030800037E86A /* SignInViewController.swift in Sources */,
 				B03BD4371E8030800037E86A /* AppDelegate.swift in Sources */,
 			);

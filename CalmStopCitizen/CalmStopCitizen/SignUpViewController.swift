@@ -12,6 +12,7 @@ import Firebase
 
 class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
+    // MARK: Outlets
     @IBOutlet weak var firstNameInput: UITextField!
     @IBOutlet weak var lastNameInput: UITextField!
     @IBOutlet weak var emailInput: UITextField!
@@ -24,10 +25,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
     @IBOutlet weak var languageInput: UITextField!
     @IBOutlet weak var ethnicityInput: UITextField!
     
+    // MARK: Data for drop-down options
     var genderPickerData = ["---", "Male", "Female", "Prefer not to answer"]
     var languagePickerData = ["---", "English", "Spanish", "Arabic", "Chinese (Mandarin)", "French", "German", "Italian", "Portuguese", "Russian", "Spanish", "Swedish", "Vietnamese" ]
     var ethnicityPickerData = ["---", "African American", "American Indian", "Asian", "Hispanic", "Pacific Islander", "White", "Two or more races", "Other ethnicity", "Prefer not to answer" ]
     
+    // MARK: Text field delegates
+    let phoneNumberDelegate = phoneNumberTextFieldDelegate()
+    let zipCodeDelegate = zipCodeTextFieldDelegate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,11 +49,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         passwordInput.tag = 3
         licenseInput.delegate = self
         licenseInput.tag = 4
-        phoneNumberInput.delegate = self
+        phoneNumberInput.delegate = phoneNumberDelegate
         phoneNumberInput.tag = 5
         birthdateInput.delegate = self
         birthdateInput.tag = 6
-        zipCodeInput.delegate = self
+        zipCodeInput.delegate = zipCodeDelegate
         zipCodeInput.tag = 7
         genderInput.delegate = self
         genderInput.tag = 8
