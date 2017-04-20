@@ -242,7 +242,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
             // successfully authenticate user
             let ref = FIRDatabase.database().reference(fromURL: "https://calm-stop.firebaseio.com/")
             let usersReference = ref.child("citizen").child(uid).child("profile")
-            let values = ["first_name": firstNameTxt, "last_name": lastNameTxt, "email": emailTxt, "phone_number": phoneTxt, "zipcode": zipCodeTxt, "language": languageTxt, "dob": birthdateTxt, "gender": genderTxt, "license_number": licenseTxt] as [String : Any] as [String : Any]
+            let values = ["first_name": firstNameTxt, "last_name": lastNameTxt, "email": emailTxt, "ethnicity": ethnicityTxt, "phone_number": phoneTxt, "zipcode": zipCodeTxt, "language": languageTxt, "dob": birthdateTxt, "gender": genderTxt, "license_number": licenseTxt] as [String : Any] as [String : Any]
             usersReference.updateChildValues(values, withCompletionBlock: { (err,ref) in
                 if err != nil{
                     
