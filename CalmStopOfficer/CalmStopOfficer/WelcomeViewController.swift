@@ -109,7 +109,7 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
                 
                 checkForCitizenAssociatedWithBeacon { (result) -> () in
                     if result{
-                        self.perform(#selector(WelcomeViewController.hideActivityIndicator), with: nil, afterDelay: 3.0)
+                        self.perform(#selector(WelcomeViewController.hideActivityIndicator), with: nil, afterDelay: 1.0)
                     }
                 }
                 checked = 1
