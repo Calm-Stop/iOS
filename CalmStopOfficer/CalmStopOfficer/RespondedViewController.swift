@@ -25,6 +25,14 @@ class RespondedViewController: UIViewController {
     @IBOutlet weak var intoxicated: UILabel!
     @IBOutlet weak var weapons: UILabel!
     
+    var phoneNumber: String?
+    
+    @IBAction func MakeCall(_ sender: UIButton) {
+        checkIfUserIsLoggedIn()
+        phoneNumber = "tel://"+phoneNumber!
+        let url: NSURL = NSURL(string: phoneNumber!)!
+        UIApplication.shared.openURL(url as URL)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +41,11 @@ class RespondedViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
-
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        checkIfUserIsLoggedIn()
+//    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -64,7 +76,7 @@ class RespondedViewController: UIViewController {
                             let language = "English"
 //                            let state = (dictionary["address"] as? String)!
                             let state = "Washington"
-                            
+                            self.phoneNumber = (dictionary["phone_number"] as? String)!
                             
                             self.nameLabel.text = name + " " + last_name
                             self.genderLabel.text = gender + " - " + age

@@ -8,23 +8,34 @@
 
 import UIKit
 
-class PopUpViewController: UIViewController {
+class PopUpViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func ClosePopUp(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var documentPhoto: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.scrollView.minimumZoomScale = 1.0
+        self.scrollView.maximumZoomScale = 6.0
         
         let downSwipe = UISwipeGestureRecognizer(target: self, action: #selector(PopUpViewController.dismissPopUp))
         downSwipe.direction = .down
         view.addGestureRecognizer(downSwipe)
             
         documentPhoto.image = photo
-        documentPhoto.transform = documentPhoto.transform.rotated(by: CGFloat(-M_PI_2))
+//        documentPhoto.transform = documentPhoto.transform.rotated(by: CGFloat(-M_PI_2))
         // Do any additional setup after loading the view.
+        
+        //Force landscape
+
+    }
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return self.documentPhoto
     }
 
     override func didReceiveMemoryWarning() {
