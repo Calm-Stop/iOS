@@ -125,11 +125,11 @@
 				B03BD4361E8030800037E86A /* AppDelegate.swift */,
 				B03BD4381E8030800037E86A /* SignInViewController.swift */,
 				B0EE2AF01E9F0CB10081B325 /* SignUpViewController.swift */,
+				B0B94C831EAE8176000ABE8F /* SurveyViewController.swift */,
 				B03BD43A1E8030800037E86A /* Main.storyboard */,
 				B03BD43D1E8030800037E86A /* Assets.xcassets */,
 				B03BD43F1E8030800037E86A /* LaunchScreen.storyboard */,
 				B03BD4421E8030800037E86A /* Info.plist */,
-				B0B94C831EAE8176000ABE8F /* SurveyViewController.swift */,
 			);
 			path = CalmStopCitizen;
 			sourceTree = "<group>";

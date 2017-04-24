@@ -569,6 +569,9 @@
                                 <state key="normal" title="Submit Feedback">
                                     <color key="titleColor" red="0.99872490284974091" green="0.99872490284974091" blue="0.99872490284974091" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="submitFeedbackTapped:" destination="1F8-Uq-Mth" eventType="touchUpInside" id="yCP-Hd-lvC"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYw-3z-VQY" userLabel="noOpinionButton">
                                 <rect key="frame" x="35" y="462" width="24" height="24"/>
