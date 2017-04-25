@@ -22,6 +22,11 @@ class SurveyViewController: UIViewController {
     
     let officerUID = "Tl4pCcIjlxTXQgCcoLp4IB4Hzti2"
     let officerDeptNo = "14567"
+    var oldOfficerRating: Float!
+    var numberOfRatings: Int!
+    var newOfficerRating: Float!
+    var noOpinionCount: Int!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,9 +54,6 @@ class SurveyViewController: UIViewController {
     
     
     @IBAction func submitFeedbackTapped(_ sender: UIButton) {
-        var oldOfficerRating: Float!
-        var numberOfRatings: Int!
-        var newOfficerRating: Float!
         
         // set officer rating on a 1-5 scale (very satisfied = 5, somewhat satisfied = 4, neutral = 3, somewhat dissatisfied = 2, very dissatisfied = 1, no opinion = 0)
         var officerRating: Int!
@@ -70,30 +72,45 @@ class SurveyViewController: UIViewController {
             officerRating = 0
         }
         
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+        
         // get officer rating information from firebase
         FIRDatabase.database().reference().child("officer").child("14567").child("Tl4pCcIjlxTXQgCcoLp4IB4Hzti2").child("ratings").observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject]{
-                oldOfficerRating = dictionary["avg_rating"] as? Float
-                numberOfRatings = dictionary["number_of_ratings"] as? Int
-                print (oldOfficerRating)
-                print (numberOfRatings)
-                
-                // calculate new rating for officer if rating > 0
-                let floatNumberOfRatings = Float(numberOfRatings)
-                let floatOfficerRating = Float(officerRating)
-                newOfficerRating = ((oldOfficerRating * floatNumberOfRatings) + floatOfficerRating ) / (floatNumberOfRatings + 1)
-                print (newOfficerRating)
+                self.oldOfficerRating = dictionary["avg_rating"] as? Float
+                self.numberOfRatings = dictionary["number_of_ratings"] as? Int
+                self.noOpinionCount = dictionary["no_opinion_count"] as? Int
+                print (self.oldOfficerRating)
+                print (self.numberOfRatings)
+                print (self.noOpinionCount)
             }
             
+            if officerRating > 0 {
+                // calculate new rating for officer if rating > 0
+                let floatNumberOfRatings = Float(self.numberOfRatings)
+                let floatOfficerRating = Float(officerRating)
+                self.newOfficerRating = ((self.oldOfficerRating * floatNumberOfRatings) + floatOfficerRating ) / (floatNumberOfRatings + 1)
+                self.numberOfRatings = self.numberOfRatings + 1
+                print (self.newOfficerRating)
+            } else if officerRating == 0 {
+                self.noOpinionCount = self.noOpinionCount + 1
+            }
             
+            // send new values to firebase
+            let post = ["avg_rating": self.newOfficerRating,
+                        "number_of_ratings": self.numberOfRatings, "no_opinion_count": self.noOpinionCount] as [String : Any]
+            let childUpdates = ["/officer/14567/Tl4pCcIjlxTXQgCcoLp4IB4Hzti2/ratings": post]
+            ref.updateChildValues(childUpdates)
+
             
         })
         
-
         
+
     }
     
 }
-    
+
 
