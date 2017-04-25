@@ -82,9 +82,6 @@ class SurveyViewController: UIViewController {
                 self.oldOfficerRating = dictionary["avg_rating"] as? Float
                 self.numberOfRatings = dictionary["number_of_ratings"] as? Int
                 self.noOpinionCount = dictionary["no_opinion_count"] as? Int
-                print (self.oldOfficerRating)
-                print (self.numberOfRatings)
-                print (self.noOpinionCount)
             }
             
             if officerRating > 0 {
@@ -93,11 +90,16 @@ class SurveyViewController: UIViewController {
                 let floatOfficerRating = Float(officerRating)
                 self.newOfficerRating = ((self.oldOfficerRating * floatNumberOfRatings) + floatOfficerRating ) / (floatNumberOfRatings + 1)
                 self.numberOfRatings = self.numberOfRatings + 1
-                print (self.newOfficerRating)
             } else if officerRating == 0 {
                 self.noOpinionCount = self.noOpinionCount + 1
+                self.newOfficerRating = self.oldOfficerRating
             }
             
+            print (self.oldOfficerRating)
+            print (self.numberOfRatings)
+            print (self.noOpinionCount)
+            print (self.newOfficerRating)
+
             // send new values to firebase
             let post = ["avg_rating": self.newOfficerRating,
                         "number_of_ratings": self.numberOfRatings, "no_opinion_count": self.noOpinionCount] as [String : Any]
