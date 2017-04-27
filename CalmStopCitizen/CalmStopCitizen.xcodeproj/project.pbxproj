@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		19F624A2C2984A0CB8CCA501 /* Pods_CalmStopCitizen.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F7EAF29965D174AECBB82A8 /* Pods_CalmStopCitizen.framework */; };
+		B00C13441EB28557008BEE59 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00C13431EB28557008BEE59 /* ChatViewController.swift */; };
+		B00C13461EB28574008BEE59 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00C13451EB28574008BEE59 /* Message.swift */; };
+		B00C13481EB28597008BEE59 /* ChatMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B00C13471EB28597008BEE59 /* ChatMessageCell.swift */; };
 		B037D0831EAEF3B0009B6ED1 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037D0821EAEF3B0009B6ED1 /* CommentsViewController.swift */; };
 		B03BD4371E8030800037E86A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD4361E8030800037E86A /* AppDelegate.swift */; };
 		B03BD4391E8030800037E86A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD4381E8030800037E86A /* SignInViewController.swift */; };
@@ -40,6 +43,9 @@
 		342DF01CC4EAC5B2BEF6CA5C /* Pods-CalmStopCitizen.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalmStopCitizen.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CalmStopCitizen/Pods-CalmStopCitizen.debug.xcconfig"; sourceTree = "<group>"; };
 		3A8169D5C418F6F287D67EB3 /* Pods_CalmStopCitizenTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CalmStopCitizenTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9BBC2D344B0E95E853D17063 /* Pods-CalmStopCitizenTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalmStopCitizenTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CalmStopCitizenTests/Pods-CalmStopCitizenTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B00C13431EB28557008BEE59 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		B00C13451EB28574008BEE59 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		B00C13471EB28597008BEE59 /* ChatMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatMessageCell.swift; sourceTree = "<group>"; };
 		B037D0821EAEF3B0009B6ED1 /* CommentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
 		B03BD4331E8030800037E86A /* CalmStopCitizen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalmStopCitizen.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B03BD4361E8030800037E86A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -128,6 +134,9 @@
 				B03BD4381E8030800037E86A /* SignInViewController.swift */,
 				B0EE2AF01E9F0CB10081B325 /* SignUpViewController.swift */,
 				B037D0821EAEF3B0009B6ED1 /* CommentsViewController.swift */,
+				B00C13431EB28557008BEE59 /* ChatViewController.swift */,
+				B00C13451EB28574008BEE59 /* Message.swift */,
+				B00C13471EB28597008BEE59 /* ChatMessageCell.swift */,
 				B0B94C831EAE8176000ABE8F /* SurveyViewController.swift */,
 				B03BD43A1E8030800037E86A /* Main.storyboard */,
 				B03BD43D1E8030800037E86A /* Assets.xcassets */,
@@ -362,7 +371,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B060BD491EA938A300C62365 /* phoneNumberTextFieldDelegate.swift in Sources */,
+				B00C13481EB28597008BEE59 /* ChatMessageCell.swift in Sources */,
 				B037D0831EAEF3B0009B6ED1 /* CommentsViewController.swift in Sources */,
+				B00C13441EB28557008BEE59 /* ChatViewController.swift in Sources */,
+				B00C13461EB28574008BEE59 /* Message.swift in Sources */,
 				B0EE2AF11E9F0CB10081B325 /* SignUpViewController.swift in Sources */,
 				B060BD471EA9388400C62365 /* zipCodeTextFieldDelegate.swift in Sources */,
 				B03BD4391E8030800037E86A /* SignInViewController.swift in Sources */,
