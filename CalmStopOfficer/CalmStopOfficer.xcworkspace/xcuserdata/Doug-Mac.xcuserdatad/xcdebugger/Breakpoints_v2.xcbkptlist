@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CalmStopOfficer/ChatViewController.swift"
-            timestampString = "514526910.987509"
+            timestampString = "515056993.259394"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "61"
-            endingLineNumber = "61"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CalmStopOfficer/ChatViewController.swift"
-            timestampString = "514526910.987509"
+            timestampString = "515056993.259394"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "handleKeyboardWillShow(notification:)"
             landmarkType = "7">
          </BreakpointContent>

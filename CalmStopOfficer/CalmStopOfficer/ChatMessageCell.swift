@@ -57,10 +57,11 @@ class ChatMessageCell: UICollectionViewCell {
         super.init(frame: frame)
         
         
-//        backgroundColor = UIColor.red
         addSubview(bubbleView)
         addSubview(textView)
         addSubview(profileImageView)
+        
+        // ios 10 constraints
         
         //ProfileImageView x,y,w,h
         profileImageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 8).isActive = true
@@ -77,13 +78,10 @@ class ChatMessageCell: UICollectionViewCell {
         bubbleWidthAnchor?.isActive = true
         bubbleView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
         
-        // ios 10 constraints
         // TextView x,y,w,h
-//        textView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         textView.leftAnchor.constraint(equalTo: bubbleView.leftAnchor, constant: 8).isActive = true
         textView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         textView.rightAnchor.constraint(equalTo: bubbleView.rightAnchor).isActive = true
-//        textView.widthAnchor.constraint(equalToConstant: 200).isActive = true
         textView.heightAnchor.constraint(equalTo: self.heightAnchor).isActive = true
     }
     

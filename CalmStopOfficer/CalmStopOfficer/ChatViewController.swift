@@ -58,31 +58,20 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
         }, withCancel: nil)
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         navigationItem.title = "Messages"
         collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
-//        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 58, right: 0)
         collectionView?.alwaysBounceVertical = true
         collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
         
-        // Hide tabbar
-//        self.tabBarController?.tabBar.isHidden = true
-        
-
-        // Do any additional setup after loading the view.
-        
-//        setInputComponents()
-//        setUpKeyboardObservers()
-        
         collectionView?.keyboardDismissMode = .interactive
 
-        
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ChatViewController.dismissKeyboard))
-//        view.addGestureRecognizer(tap)
         observeMessages()
     }
+    
     
     lazy var inputContainerView: UIView = {
         let containerView = UIView()
@@ -107,7 +96,6 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
         // x,y,w,h
         self.inputTextField.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 8).isActive = true
         self.inputTextField.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-        //        inputTextField.widthAnchor.constraint(equalToConstant: 100).isActive = true
         self.inputTextField.rightAnchor.constraint(equalTo: sendButton.leftAnchor).isActive = true
         self.inputTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
         
@@ -131,9 +119,11 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
         }
     }
     
+    
     override var canBecomeFirstResponder: Bool {
         return true
     }
+    
     
     func setUpKeyboardObservers(){
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
@@ -141,11 +131,13 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         NotificationCenter.default.removeObserver(self)
     }
+    
     
     func handleKeyboardWillShow(notification: Notification){
         let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
@@ -158,6 +150,7 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
         }
     }
     
+    
     func handleKeyboardWillHide(notification: Notification){
 
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
@@ -169,25 +162,26 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
         }
     }
     
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         collectionView?.collectionViewLayout.invalidateLayout()
     }
+    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
     }
     
+    
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ChatMessageCell
         
-//        cell.backgroundColor = UIColor.blue
         // Check if message belongs to thread
         let message = messages[indexPath.item]
         cell.textView.text = message.content
 
         // Detect who is the sender of the message to determine if it is a grey bubble or a blue bubble
         setupCell(cell: cell, message: message)
-        
         
         // modify the bubbleView's width
         cell.bubbleWidthAnchor?.constant = estimateFrameForText(text: message.content!).width + 32
