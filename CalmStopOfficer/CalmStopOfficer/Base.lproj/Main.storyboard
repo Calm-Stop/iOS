@@ -115,6 +115,7 @@
                                 </state>
                                 <connections>
                                     <action selector="locateDriver:" destination="PtF-Ru-nYr" eventType="touchUpInside" id="SFa-7T-17N"/>
+                                    <action selector="manageBeaconButton:" destination="PtF-Ru-nYr" eventType="touchUpInside" id="Zrh-tj-pPh"/>
                                     <segue destination="Hjq-01-S61" kind="popoverPresentation" popoverAnchorView="m1z-dn-ADy" id="bXS-C9-A32">
                                         <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                                     </segue>

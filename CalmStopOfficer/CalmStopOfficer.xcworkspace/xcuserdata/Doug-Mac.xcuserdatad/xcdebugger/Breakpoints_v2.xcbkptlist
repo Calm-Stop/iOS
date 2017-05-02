@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CalmStopOfficer/WelcomeViewController.swift"
-            timestampString = "515391033.18211"
+            timestampString = "515395297.121725"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
             landmarkName = "WelcomeViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CalmStopOfficer/WelcomeViewController.swift"
-            timestampString = "515391033.18211"
+            timestampString = "515395297.121725"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
             landmarkName = "WelcomeViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CalmStopOfficer/WelcomeViewController.swift"
-            timestampString = "515383996.022869"
+            timestampString = "515395297.121725"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
             landmarkName = "locationManager(_:didRangeBeacons:in:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -95,6 +95,54 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "9"
             endingLineNumber = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CalmStopOfficer/WelcomeViewController.swift"
+            timestampString = "515395297.121725"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
+            landmarkName = "checkForCitizenAssociatedWithBeacon(completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CalmStopOfficer.WelcomeViewController.checkForCitizenAssociatedWithBeacon (completion : (Swift.Bool) -&gt; ()) -&gt; ()"
+                  moduleName = "CalmStopOfficer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Doug-Mac/Desktop/iOS/CalmStopOfficer/CalmStopOfficer/WelcomeViewController.swift"
+                  timestampString = "515393410.635011"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "908">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CalmStopOfficer.WelcomeViewController.(checkForCitizenAssociatedWithBeacon (completion : (Swift.Bool) -&gt; ()) -&gt; ()).(closure #1)"
+                  moduleName = "CalmStopOfficer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Doug-Mac/Desktop/iOS/CalmStopOfficer/CalmStopOfficer/WelcomeViewController.swift"
+                  timestampString = "515393410.639895"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "146"
+                  endingLineNumber = "146"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

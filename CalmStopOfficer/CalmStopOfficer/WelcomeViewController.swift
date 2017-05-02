@@ -17,7 +17,7 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
 
     // "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"
     
-    var checked = 0
+    var checked = 1
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
@@ -35,6 +35,9 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
         self.perform(#selector(WelcomeViewController.hideActivityIndicator), with: nil, afterDelay: 8.0)
     }
     
+    @IBAction func manageBeaconButton(_ sender: UIButton) {
+        stopAnimating()
+    }
     
     
     @IBOutlet weak var welcomeLabel: UILabel!
@@ -62,10 +65,10 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startRangingBeacons(in: region)
         locationManager.stopMonitoring(for: region)
         
-        checkIfUserIsLoggedIn()
+        checkIfUserIsLoggedInAndBeaconIsRegistered()
     }
     
-    func checkIfUserIsLoggedIn(){
+    func checkIfUserIsLoggedInAndBeaconIsRegistered(){
         if FIRAuth.auth()?.currentUser?.uid == nil {
             print("Not logged in!")
         } else {
@@ -94,32 +97,30 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
     
-        //TODO: Get major value for beacon and pass it as an ID.
-        
         let knowBeacons = beacons.filter{ $0.proximity != CLProximity.unknown }
         if (knowBeacons.count > 0) && (checked == 0){
             
+            
             if (checked == 0){
-                activityIndicator.isHidden = false
-                activityIndicator.hidesWhenStopped = true
-                locatingLabel.isHidden = false
-                locatingLabel.text = "Locating CalmStop phones within 100 ft:"
-                activityIndicator.startAnimating()
+                startAnimating()
                 
-                checkForCitizenAssociatedWithBeacon { (result) -> () in
+                checkIfOfficerBeaconIsTheSameAsBeaconBeingPressed(beacons: beacons){ (result) -> () in
                     if result{
-                        self.perform(#selector(WelcomeViewController.hideActivityIndicator), with: nil, afterDelay: 1.0)
+                        self.checkForCitizenAssociatedWithBeacon { (result) -> () in
+                            if result{
+                                self.perform(#selector(WelcomeViewController.hideActivityIndicator), with: nil, afterDelay: 1.0)
+                            }
+                        }
                     }
                 }
-                checked = 1
+                
+//                checked = 1
             }
         }
         
         if (knowBeacons.count <= 0){
             checked = 0
-            activityIndicator.isHidden = true
-            requestInformation.isHidden = true
-            locatingLabel.isHidden = true
+            stopAnimating()
         }
     }
     
@@ -158,13 +159,71 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
             })
         }
     }
+    
+    func checkIfOfficerBeaconIsTheSameAsBeaconBeingPressed(beacons: [CLBeacon], completion: @escaping (_ result: Bool) -> ()) {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("officer").child("14567").child(uid!).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                let beaconId = (dictionary["beacon_id"] as? String)!
+                
+                let knowBeacons = beacons.filter{ $0.proximity != CLProximity.unknown }
+                if (knowBeacons.count > 0) && (knowBeacons[0].major.stringValue == beaconId){
+                    
+                    FIRDatabase.database().reference().child("beacons").child(beaconId).observeSingleEvent(of: .value, with: { (snapshot) in
+                        if snapshot.hasChild("officer"){
+                            completion(true)
+                            print("Officer ta Registrado!")
+                        }
+                        
+                    })
+
+                }
+                else {
+                    let alert = UIAlertController(title: "Error", message: "Beacon not found or officer not registered in the same beacon!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        alert.dismiss(animated: true, completion: nil)
+                    }))
+                    
+                    self.present(alert, animated: true, completion: nil)
+                    self.stopAnimating()
+                }
+                
+            }
+            print(snapshot)
+        })
+
+    }
 
     override func viewDidDisappear(_ animated: Bool) {
 //        requestInformation.isHidden = false
-        locatingLabel.text = "Turn Beacon off and start the process again!"
+//        locatingLabel.text = "Turn Beacon off and start the process again!"
+        stopAnimating()
         
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        stopAnimating()
+    }
+    
+    func startAnimating(){
+        activityIndicator.isHidden = false
+        activityIndicator.hidesWhenStopped = true
+        locatingLabel.isHidden = false
+        locatingLabel.text = "Locating CalmStop phones within 100 ft:"
+        activityIndicator.startAnimating()
+        checked = 1
+    }
+
+    func stopAnimating(){
+        locatingLabel.text = "Turn Beacon off and start the process again!"
+        activityIndicator.isHidden = true
+        requestInformation.isHidden = true
+        locatingLabel.isHidden = true
+        
+    }
+    
+    
     
     
     /*
