@@ -13,6 +13,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var officerNameLabel: UILabel!
     @IBOutlet weak var officerBadgeLabel: UILabel!
+    @IBOutlet weak var tableView: UITableView!
 
 //    @IBAction func logOut(_ sender: UIButton) {
 //        do{
@@ -36,6 +37,7 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         profileImage.layer.cornerRadius = profileImage.frame.size.width/2
         profileImage.clipsToBounds = true
         // Do any additional setup after loading the view.
+        tableView.tableFooterView = UIView()
     }
     
     override func didReceiveMemoryWarning() {
@@ -93,7 +95,9 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             backToInitialView()
         }
-        
+     
+        self.tableView.deselectRow(at: indexPath, animated: true)
+
     }
     
     

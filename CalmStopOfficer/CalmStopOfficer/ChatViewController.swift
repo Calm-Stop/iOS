@@ -198,7 +198,7 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
         
         
         // Detect who is the sender of the message to determine if it is a grey bubble or a blue bubble
-        if message.authorID == FIRAuth.auth()?.currentUser?.uid {
+        if message.author == FIRAuth.auth()?.currentUser?.uid {
             //outgoing blue
             cell.bubbleView.backgroundColor = ChatMessageCell.blueColor
             cell.textView.textColor = UIColor.white
@@ -299,9 +299,9 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
             let uid = FIRAuth.auth()?.currentUser?.uid
             let ref = FIRDatabase.database().reference().child("threads").child("01").child("messages")
             let childRef = ref.childByAutoId()
-            let thread_id = "blas"
+            // TODO: Fix timestamp to match Android one
             let timeStamp = Int(NSDate().timeIntervalSince1970)
-            let values = ["authorID": uid!, "content": inputTextField.text!, "threadID": thread_id, "timestamp": timeStamp, ] as [String : Any]
+            let values = ["author": uid!, "content": inputTextField.text!, "timestamp": timeStamp] as [String : Any]
             
             childRef.updateChildValues(values) { (error, ref) in
                 if  error != nil {

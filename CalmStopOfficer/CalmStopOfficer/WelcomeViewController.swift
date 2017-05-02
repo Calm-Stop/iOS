@@ -13,7 +13,8 @@ import CoreLocation
 class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
     
     let locationManager = CLLocationManager()
-    let region = CLBeaconRegion(proximityUUID: NSUUID(uuidString: "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6") as! UUID, identifier: "CalmStop")
+    let region = CLBeaconRegion(proximityUUID: NSUUID(uuidString: "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6")! as UUID, identifier: "CalmStop")
+
     // "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6"
     
     var checked = 0
@@ -92,13 +93,11 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
     
     
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+    
+        //TODO: Get major value for beacon and pass it as an ID.
         
         let knowBeacons = beacons.filter{ $0.proximity != CLProximity.unknown }
         if (knowBeacons.count > 0) && (checked == 0){
-//            let closestBeacon = knowBeacons[0] as CLBeacon
-//            print(closestBeacon)
-//            minorValueLabel.text =
-//            print(String(describing: closestBeacon.proximityUUID))
             
             if (checked == 0){
                 activityIndicator.isHidden = false
@@ -139,14 +138,23 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
             print("Not logged in!")
         } else {
 //            let beaconId = "0xaaaa0000002f"
-            let beaconId = "116"
+//            var beaconId = "116"
             
-            FIRDatabase.database().reference().child("beacons").child(beaconId).observeSingleEvent(of: .value, with: { (snapshot) in
-                if snapshot.hasChild("citizen"){
-                    completion(true)
-                    print("Tem sim!")
-                }
+            let uid = FIRAuth.auth()?.currentUser?.uid
+            FIRDatabase.database().reference().child("officer").child("14567").child(uid!).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
                 
+                if let dictionary = snapshot.value as? [String: AnyObject]{
+                    let beaconId = (dictionary["beacon_id"] as? String)!
+                    
+                    FIRDatabase.database().reference().child("beacons").child(beaconId).observeSingleEvent(of: .value, with: { (snapshot) in
+                        if snapshot.hasChild("citizen"){
+                            completion(true)
+                            print("Tem sim!")
+                        }
+                        
+                    })
+                }
+                print(snapshot)
             })
         }
     }
@@ -159,7 +167,6 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
 
     
     
-
     /*
     // MARK: - Navigation
 
