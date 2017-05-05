@@ -29,25 +29,16 @@ class RatingsViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        checkIfUserIsLoggedIn()
+        print(comments.count)
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
-        checkIfUserIsLoggedIn()
+
 
     }
     
-    let comments = ["“Officer Jones was really respectfull and let me go with just a warning.”","“He was really nice!”", "“Officer Jones was really polite and helped me fixing my car.”", "“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”"]
-    
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (comments.count)
-    }
-    
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RatingsTableViewCell
-        
-        cell.commentsLabel.text = comments[indexPath.row]
-        
-        return (cell)
-    }
+    //TODO: comments array is being updated but updated array isn't being loaded into table
+    var comments = ["“Officer Jones was really respectfull and let me go with just a warning.”","“He was really nice!”", "“Officer Jones was really polite and helped me fixing my car.”", "“Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.”"]
     
     
     func checkIfUserIsLoggedIn(){
@@ -55,15 +46,31 @@ class RatingsViewController: UIViewController, UITableViewDelegate, UITableViewD
             print("Not logged in!")
         } else {
             let uid = FIRAuth.auth()?.currentUser?.uid
-            FIRDatabase.database().reference().child("officer").child("14566").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // TODO: uid hardcoded b/c login is not real
+            FIRDatabase.database().reference().child("officer").child("14567").child("Tl4pCcIjlxTXQgCcoLp4IB4Hzti2").child("ratings").observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if let dictionary = snapshot.value as? [String: AnyObject]{
-                    let ratings = dictionary["ratings_average"] as? Float
+                    let ratings = dictionary["avg_rating"] as? Float
                     self.setRatings(ratings_average: ratings!)
                 }
                 
-                print (snapshot)
             })
+            
+            FIRDatabase.database().reference().child("officer").child("14567").child("Tl4pCcIjlxTXQgCcoLp4IB4Hzti2").child("comments").observeSingleEvent(of: .value, with: {(snap) in
+                
+                if let snapDict = snap.value as? [String:AnyObject]{
+                    
+                    for each in snapDict as [String:AnyObject]{
+                        
+                        var newComment = each.value["text"] as! String
+                        newComment = "\"\(newComment)\""
+                        self.comments.append(newComment)
+                    }
+                }
+                
+            })
+            
+
         }
     }
     
@@ -75,7 +82,26 @@ class RatingsViewController: UIViewController, UITableViewDelegate, UITableViewD
         stars.frame = CGRect(x: 99 , y: 119 , width: Int(widthValue) , height: 40);
         
     }
+    
 
+
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return (comments.count)
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print(comments.count)
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RatingsTableViewCell
+        
+        cell.commentsLabel.text = comments[indexPath.row]
+
+        
+        return (cell)
+    }
+    
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
