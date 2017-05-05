@@ -18,6 +18,7 @@
 		B03BD43E1E8030800037E86A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B03BD43D1E8030800037E86A /* Assets.xcassets */; };
 		B03BD4411E8030800037E86A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B03BD43F1E8030800037E86A /* LaunchScreen.storyboard */; };
 		B03BD44C1E8030800037E86A /* CalmStopCitizenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B03BD44B1E8030800037E86A /* CalmStopCitizenTests.swift */; };
+		B04160A71EBCEDF700E86884 /* DocumentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B04160A61EBCEDF700E86884 /* DocumentsViewController.swift */; };
 		B057834C1E9C57A4001E8F08 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B057834B1E9C57A4001E8F08 /* GoogleService-Info.plist */; };
 		B057834D1E9C57A4001E8F08 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B057834B1E9C57A4001E8F08 /* GoogleService-Info.plist */; };
 		B060BD471EA9388400C62365 /* zipCodeTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060BD461EA9388400C62365 /* zipCodeTextFieldDelegate.swift */; };
@@ -57,6 +58,7 @@
 		B03BD4471E8030800037E86A /* CalmStopCitizenTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CalmStopCitizenTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B03BD44B1E8030800037E86A /* CalmStopCitizenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalmStopCitizenTests.swift; sourceTree = "<group>"; };
 		B03BD44D1E8030800037E86A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B04160A61EBCEDF700E86884 /* DocumentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentsViewController.swift; sourceTree = "<group>"; };
 		B057834B1E9C57A4001E8F08 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B060BD461EA9388400C62365 /* zipCodeTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = zipCodeTextFieldDelegate.swift; sourceTree = "<group>"; };
 		B060BD481EA938A300C62365 /* phoneNumberTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = phoneNumberTextFieldDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			children = (
 				B060BD451EA9386200C62365 /* textFieldDelegates */,
 				B03BD4361E8030800037E86A /* AppDelegate.swift */,
+				B04160A61EBCEDF700E86884 /* DocumentsViewController.swift */,
 				B03BD4381E8030800037E86A /* SignInViewController.swift */,
 				B0EE2AF01E9F0CB10081B325 /* SignUpViewController.swift */,
 				B037D0821EAEF3B0009B6ED1 /* CommentsViewController.swift */,
@@ -379,6 +382,7 @@
 				B060BD471EA9388400C62365 /* zipCodeTextFieldDelegate.swift in Sources */,
 				B03BD4391E8030800037E86A /* SignInViewController.swift in Sources */,
 				B0B94C841EAE8176000ABE8F /* SurveyViewController.swift in Sources */,
+				B04160A71EBCEDF700E86884 /* DocumentsViewController.swift in Sources */,
 				B03BD4371E8030800037E86A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
