@@ -23,6 +23,7 @@
 		B057834D1E9C57A4001E8F08 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B057834B1E9C57A4001E8F08 /* GoogleService-Info.plist */; };
 		B060BD471EA9388400C62365 /* zipCodeTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060BD461EA9388400C62365 /* zipCodeTextFieldDelegate.swift */; };
 		B060BD491EA938A300C62365 /* phoneNumberTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060BD481EA938A300C62365 /* phoneNumberTextFieldDelegate.swift */; };
+		B094EDE81EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B094EDE61EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodeld */; };
 		B0B94C841EAE8176000ABE8F /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B94C831EAE8176000ABE8F /* SurveyViewController.swift */; };
 		B0EE2AF11E9F0CB10081B325 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EE2AF01E9F0CB10081B325 /* SignUpViewController.swift */; };
 		F952F4328A3F64B194A3A80C /* Pods_CalmStopCitizenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8169D5C418F6F287D67EB3 /* Pods_CalmStopCitizenTests.framework */; };
@@ -62,6 +63,7 @@
 		B057834B1E9C57A4001E8F08 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B060BD461EA9388400C62365 /* zipCodeTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = zipCodeTextFieldDelegate.swift; sourceTree = "<group>"; };
 		B060BD481EA938A300C62365 /* phoneNumberTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = phoneNumberTextFieldDelegate.swift; sourceTree = "<group>"; };
+		B094EDE71EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CalmStopCitizen.xcdatamodel; sourceTree = "<group>"; };
 		B0B94C831EAE8176000ABE8F /* SurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		B0EE2AF01E9F0CB10081B325 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F7D9879389710FD0992E54BD /* Pods-CalmStopCitizen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalmStopCitizen.release.xcconfig"; path = "Pods/Target Support Files/Pods-CalmStopCitizen/Pods-CalmStopCitizen.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				B03BD43D1E8030800037E86A /* Assets.xcassets */,
 				B03BD43F1E8030800037E86A /* LaunchScreen.storyboard */,
 				B03BD4421E8030800037E86A /* Info.plist */,
+				B094EDE61EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodeld */,
 			);
 			path = CalmStopCitizen;
 			sourceTree = "<group>";
@@ -378,6 +381,7 @@
 				B037D0831EAEF3B0009B6ED1 /* CommentsViewController.swift in Sources */,
 				B00C13441EB28557008BEE59 /* ChatViewController.swift in Sources */,
 				B00C13461EB28574008BEE59 /* Message.swift in Sources */,
+				B094EDE81EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodeld in Sources */,
 				B0EE2AF11E9F0CB10081B325 /* SignUpViewController.swift in Sources */,
 				B060BD471EA9388400C62365 /* zipCodeTextFieldDelegate.swift in Sources */,
 				B03BD4391E8030800037E86A /* SignInViewController.swift in Sources */,
@@ -609,6 +613,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B094EDE61EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B094EDE71EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodel */,
+			);
+			currentVersion = B094EDE71EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodel */;
+			path = CalmStopCitizen.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B03BD42B1E8030800037E86A /* Project object */;
 }

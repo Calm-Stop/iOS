@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class DocumentsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, UIPopoverControllerDelegate {
     
@@ -21,10 +22,9 @@ class DocumentsViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        // Tag each text field so they can be iterated through with "Next" button
     }
     
+
     //MARK: UIImagePickerControllerDelegate
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
@@ -38,8 +38,44 @@ class DocumentsViewController: UIViewController, UIImagePickerControllerDelegate
         }
         // Set photoImageView to display the selected image.
         viewInsurance.image = selectedImage
+        
+        // Save selectedImage to Core Data
+        saveInsuranceImage(image: selectedImage)
+        
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
+    }
+    
+    func saveInsuranceImage(image: UIImage) {
+        
+        let imageData =  UIImagePNGRepresentation(image) as NSData?
+
+        guard let appDelegate =
+            UIApplication.shared.delegate as? AppDelegate else {
+                return
+        }
+        
+        // 1
+        let managedContext =
+            appDelegate.persistentContainer.viewContext
+        
+        // 2
+        let entity =
+            NSEntityDescription.entity(forEntityName: "Insurance",
+                                       in: managedContext)!
+        
+        let newImage = NSManagedObject(entity: entity,
+                                     insertInto: managedContext)
+        
+        // 3
+        newImage.setValue(imageData, forKey: "insuranceImage")
+        
+        // 4
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
     }
     
     @IBAction func uploadInsurance(_ sender: Any) {
