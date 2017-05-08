@@ -22,6 +22,8 @@ class DocumentsViewController: UIViewController, UIImagePickerControllerDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        loadInsurance()
     }
     
 
@@ -159,5 +161,45 @@ class DocumentsViewController: UIViewController, UIImagePickerControllerDelegate
     }
     
     @IBAction func viewInsrance(_ sender: Any) {
+    }
+    
+    func loadInsurance() {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Insurance")
+        
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            
+            let results = try context.fetch(request)
+            
+            if results.count > 0 {
+                
+                print("Insurance Image found!")
+                
+                for result in results as! [NSManagedObject] {
+                    
+                    if let imageData = result.value(forKey: "insuranceImage") as? NSData {
+                        if let image = UIImage(data: imageData as Data) {
+                            viewInsurance.image = image
+                        }
+                    }
+                    
+                    
+                    
+                }
+                
+                
+            } else {
+                print("Profile : No data found")
+            }
+            
+            //print("Loaded!!!")
+            
+        } catch {
+            
+            print ("Error Loading")
+        }
     }
 }
