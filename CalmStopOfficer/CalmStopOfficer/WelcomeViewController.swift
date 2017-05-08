@@ -53,7 +53,6 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.isHidden = true
-        requestInformation.isHidden = true
         locatingLabel.isHidden = true
         // Do any additional setup after loading the view.
         
@@ -170,7 +169,7 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
                 let knowBeacons = beacons.filter{ $0.proximity != CLProximity.unknown }
                 if (knowBeacons.count > 0) && (knowBeacons[0].major.stringValue == beaconId){
                     
-                    FIRDatabase.database().reference().child("beacons").child(beaconId).observeSingleEvent(of: .value, with: { (snapshot) in
+                FIRDatabase.database().reference().child("beacons").child(beaconId).observeSingleEvent(of: .value, with: { (snapshot) in
                         if snapshot.hasChild("officer"){
                             completion(true)
                             print("Officer ta Registrado!")
@@ -196,7 +195,6 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
     }
 
     override func viewDidDisappear(_ animated: Bool) {
-//        requestInformation.isHidden = false
 //        locatingLabel.text = "Turn Beacon off and start the process again!"
         stopAnimating()
         
@@ -218,22 +216,8 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
     func stopAnimating(){
         locatingLabel.text = "Turn Beacon off and start the process again!"
         activityIndicator.isHidden = true
-        requestInformation.isHidden = true
         locatingLabel.isHidden = true
         
     }
-    
-    
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

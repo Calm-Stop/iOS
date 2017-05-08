@@ -141,7 +141,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="RequestInfoBtn"/>
                                         <connections>
-                                            <segue destination="9DX-Cx-61I" kind="show" identifier="goToInitialResponseSegue" id="ITT-Or-JT8"/>
+                                            <segue destination="DBM-Uq-qhB" kind="show" id="emb-nh-Xj4"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -165,6 +165,7 @@
                         <outlet property="locatingLabel" destination="HWr-hk-YRK" id="S3U-9M-UpH"/>
                         <outlet property="requestInformation" destination="eLg-Ga-yeC" id="vIl-2x-en1"/>
                         <outlet property="welcomeLabel" destination="QF3-ni-0q7" id="urL-tU-i5W"/>
+                        <segue destination="9DX-Cx-61I" kind="show" identifier="goToInitialResponseSegue" id="bdn-X2-AaS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aCh-m4-u7Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -221,7 +222,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="109"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="37w-Re-d4P" id="b5d-hY-PLa">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="109"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="108.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GTh-Ss-Bim">
@@ -280,7 +281,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="adD-JR-4hf" id="eh1-AL-jsy">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                                 <connections>
@@ -299,10 +300,10 @@
             </objects>
             <point key="canvasLocation" x="2684" y="877"/>
         </scene>
-        <!--View Controller-->
+        <!--Stop Details View Controller-->
         <scene sceneID="woV-lD-pWu">
             <objects>
-                <viewController id="mYN-pz-caZ" sceneMemberID="viewController">
+                <viewController id="mYN-pz-caZ" customClass="StopDetailsViewController" customModule="CalmStopOfficer" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sjO-9N-aWd"/>
                         <viewControllerLayoutGuide type="bottom" id="SMo-bc-gqR"/>
@@ -407,6 +408,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="addressLabel" destination="668-0h-OfT" id="MCL-sx-ght"/>
+                        <outlet property="dateAndTime" destination="wpb-ky-ejX" id="MRJ-d2-cyr"/>
+                        <outlet property="detailMap" destination="8Ld-Yh-XL4" id="2DB-fn-XSb"/>
+                        <outlet property="driverZipcodeLabel" destination="orI-ZM-qh3" id="7gK-MU-RrU"/>
+                        <outlet property="genderLabel" destination="DHz-uH-QAP" id="zTW-3y-3w7"/>
+                        <outlet property="nameLabel" destination="Inm-lh-pgZ" id="hhJ-hb-1gf"/>
+                        <outlet property="reasonLabel" destination="lFG-7Y-p7y" id="zqs-He-QeL"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nQw-tI-D7Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -459,7 +469,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="51"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cXH-tj-u5O" id="6Sf-b3-da2">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="51"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="342" height="50.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="02S-p4-9Ab">
@@ -1057,7 +1067,7 @@
                             <constraint firstItem="Cvx-ym-nJf" firstAttribute="top" secondItem="JoA-4U-TbN" secondAttribute="bottom" constant="40" id="UYq-x6-N8x"/>
                             <constraint firstItem="W5m-yt-fJq" firstAttribute="centerX" secondItem="xHZ-Y8-TEk" secondAttribute="centerX" id="dS5-tk-utQ"/>
                             <constraint firstItem="xHZ-Y8-TEk" firstAttribute="leading" secondItem="DuI-w7-jtb" secondAttribute="leading" id="fU6-iA-Zbe"/>
-                            <constraint firstAttribute="bottom" secondItem="xHZ-Y8-TEk" secondAttribute="bottom" constant="20" symbolic="YES" id="tgw-dh-wgS"/>
+                            <constraint firstAttribute="bottom" secondItem="xHZ-Y8-TEk" secondAttribute="bottom" constant="20" id="tgw-dh-wgS"/>
                             <constraint firstItem="Cvx-ym-nJf" firstAttribute="centerX" secondItem="W5m-yt-fJq" secondAttribute="centerX" id="vGI-rf-LdB"/>
                             <constraint firstItem="W5m-yt-fJq" firstAttribute="leading" secondItem="DuI-w7-jtb" secondAttribute="leadingMargin" constant="-4" id="wPQ-48-nYz"/>
                         </constraints>
@@ -1427,11 +1437,72 @@
             </objects>
             <point key="canvasLocation" x="5174" y="-491"/>
         </scene>
+        <!--Home View Controller-->
+        <scene sceneID="wfn-YG-RpD">
+            <objects>
+                <viewController id="DBM-Uq-qhB" customClass="HomeViewController" customModule="CalmStopOfficer" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="8As-Yb-WZn"/>
+                        <viewControllerLayoutGuide type="bottom" id="OUx-e0-78y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tvw-Zr-79B">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome Back, officer " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o4T-Hf-0Ff">
+                                <rect key="frame" x="16" y="141" width="343" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="34"/>
+                                <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="officer_jones" translatesAutoresizingMaskIntoConstraints="NO" id="JQ0-kd-bLH">
+                                <rect key="frame" x="125" y="8" width="125" height="125"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJn-6j-gx2">
+                                <rect key="frame" x="33" y="289" width="308" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                <state key="normal" title="Manage Beacon" backgroundImage="BlueButton">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="locateDriver:" destination="PtF-Ru-nYr" eventType="touchUpInside" id="sE5-rN-XeZ"/>
+                                    <action selector="manageBeaconButton:" destination="PtF-Ru-nYr" eventType="touchUpInside" id="b1G-3J-tw8"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="After making a stop, press Beacon to locate driver..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hG9-Iy-TQS">
+                                <rect key="frame" x="33" y="390" width="308" height="91"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="20"/>
+                                <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="law-dI-R6t">
+                                <rect key="frame" x="66" y="249" width="243" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
+                                <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="beaconNotRegisteredLabel" destination="law-dI-R6t" id="jQL-on-yjl"/>
+                        <outlet property="wecomeLabel" destination="o4T-Hf-0Ff" id="ifZ-jW-flK"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M0U-rM-b9t" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3472.8000000000002" y="146.17691154422789"/>
+        </scene>
         <!--Chat View Controller-->
         <scene sceneID="r6T-PC-wVj">
             <objects>
                 <collectionViewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="3Np-7Z-7a1" customClass="ChatViewController" customModule="CalmStopOfficer" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="oM0-Ly-dTy">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="oM0-Ly-dTy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

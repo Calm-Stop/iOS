@@ -20,6 +20,7 @@
 		683DD9F11E7A320D001E48C1 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683DD9F01E7A320D001E48C1 /* ProfileViewController.swift */; };
 		683FBE4B1E7890FF0018C6B6 /* RespondedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683FBE4A1E7890FF0018C6B6 /* RespondedViewController.swift */; };
 		687E23061EB81E90005BA967 /* RegisterBeaconViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E23051EB81E90005BA967 /* RegisterBeaconViewController.swift */; };
+		687E23081EB8FDD9005BA967 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687E23071EB8FDD9005BA967 /* HomeViewController.swift */; };
 		688B11DB1E566EC200ED2EEF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688B11DA1E566EC200ED2EEF /* AppDelegate.swift */; };
 		688B11DD1E566EC200ED2EEF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688B11DC1E566EC200ED2EEF /* ViewController.swift */; };
 		688B11E01E566EC200ED2EEF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 688B11DE1E566EC200ED2EEF /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		68B6F34F1E5CD6E100723C17 /* RatingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68B6F34E1E5CD6E100723C17 /* RatingsViewController.swift */; };
 		68C2A1D51EA5B51C006DF652 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C2A1D41EA5B51C006DF652 /* ChatViewController.swift */; };
 		68C2A1D71EA5D4F6006DF652 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C2A1D61EA5D4F6006DF652 /* Message.swift */; };
+		68C9DB0B1EBCFEA2002A37E2 /* StopDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C9DB0A1EBCFEA2002A37E2 /* StopDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,7 @@
 		683DD9F01E7A320D001E48C1 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		683FBE4A1E7890FF0018C6B6 /* RespondedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RespondedViewController.swift; sourceTree = "<group>"; };
 		687E23051EB81E90005BA967 /* RegisterBeaconViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterBeaconViewController.swift; sourceTree = "<group>"; };
+		687E23071EB8FDD9005BA967 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		688B11D71E566EC200ED2EEF /* CalmStopOfficer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CalmStopOfficer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		688B11DA1E566EC200ED2EEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		688B11DC1E566EC200ED2EEF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +72,7 @@
 		68B6F34E1E5CD6E100723C17 /* RatingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingsViewController.swift; sourceTree = "<group>"; };
 		68C2A1D41EA5B51C006DF652 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		68C2A1D61EA5D4F6006DF652 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		68C9DB0A1EBCFEA2002A37E2 /* StopDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopDetailsViewController.swift; sourceTree = "<group>"; };
 		8D7D7355222F98548E42C1CF /* Pods-CalmStopOfficer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalmStopOfficer.release.xcconfig"; path = "Pods/Target Support Files/Pods-CalmStopOfficer/Pods-CalmStopOfficer.release.xcconfig"; sourceTree = "<group>"; };
 		AF1A07AAD817478EB418A812 /* Pods_CalmStopOfficer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CalmStopOfficer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAFE20BE3604D41EA944F86D /* Pods-CalmStopOfficer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalmStopOfficer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CalmStopOfficer/Pods-CalmStopOfficer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				688B11DC1E566EC200ED2EEF /* ViewController.swift */,
 				688B11F11E56770100ED2EEF /* SignUpViewController.swift */,
 				680E8EA91E56D5E2000508AF /* WelcomeViewController.swift */,
+				687E23071EB8FDD9005BA967 /* HomeViewController.swift */,
 				68966F0C1E57C81900159161 /* AccountViewController.swift */,
 				68B6F34E1E5CD6E100723C17 /* RatingsViewController.swift */,
 				680821971E64D1AF00F19570 /* RatingsTableViewCell.swift */,
@@ -158,6 +163,7 @@
 				683BD2FD1E9EC72B0009CC17 /* PopUpViewController.swift */,
 				68C2A1D41EA5B51C006DF652 /* ChatViewController.swift */,
 				6898B3EA1EB2F9870012BD24 /* StopsTableViewController.swift */,
+				68C9DB0A1EBCFEA2002A37E2 /* StopDetailsViewController.swift */,
 				687E23051EB81E90005BA967 /* RegisterBeaconViewController.swift */,
 			);
 			name = ViewControllers;
@@ -322,12 +328,14 @@
 				688B11DD1E566EC200ED2EEF /* ViewController.swift in Sources */,
 				683DD9F11E7A320D001E48C1 /* ProfileViewController.swift in Sources */,
 				680E8EAA1E56D5E2000508AF /* WelcomeViewController.swift in Sources */,
+				687E23081EB8FDD9005BA967 /* HomeViewController.swift in Sources */,
 				6808219E1E65181F00F19570 /* AccountTableViewCell.swift in Sources */,
 				68C2A1D71EA5D4F6006DF652 /* Message.swift in Sources */,
 				68B6F34F1E5CD6E100723C17 /* RatingsViewController.swift in Sources */,
 				68966F0D1E57C81900159161 /* AccountViewController.swift in Sources */,
 				6820300F1E9CA058008F1A43 /* DocumentsViewController.swift in Sources */,
 				6898B3E81EB2F5730012BD24 /* TableViewCell.swift in Sources */,
+				68C9DB0B1EBCFEA2002A37E2 /* StopDetailsViewController.swift in Sources */,
 				683BD2FE1E9EC72B0009CC17 /* PopUpViewController.swift in Sources */,
 				6898B3EE1EB31FEC0012BD24 /* Stop.swift in Sources */,
 				6820300D1E9C7BD2008F1A43 /* Slide.swift in Sources */,

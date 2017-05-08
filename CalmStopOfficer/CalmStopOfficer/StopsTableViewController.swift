@@ -142,13 +142,15 @@ class StopsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if (segue.identifier == "showStop"){
-//            var upcoming: NewViewController = segue.destinationViewController as! NewViewController
-//            
+//            var upcoming: StopDetailsViewController = segue.destination as! StopDetailsViewController
+//
             let indexPath = self.tableView.indexPathForSelectedRow!
 //
-//            let titleString = self.objects.objectAtIndexPath(indexPath.row) as? String
-//            
-//            upcoming.titleString = titleString
+//            let titleString = self.objectAtIndexPath(indexPath.row) as? String
+//            let titleString = "HAHA"
+            
+//            upcoming.nameLabel.text = titleString
+            
             self.tableView.deselectRow(at: indexPath, animated: true)
         }
     }

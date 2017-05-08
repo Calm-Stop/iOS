@@ -14,15 +14,27 @@ class RegisterBeaconViewController: UIViewController, CLLocationManagerDelegate,
     
     @IBOutlet weak var tableView: UITableView!
     @IBAction func closeButton(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        dismissViewController()
     }
     
-    var list = ["114", "115", "116"]
+    // Initialie Refresh when pull table down
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(RegisterBeaconViewController.handleRefresh(refreshControl:)), for: UIControlEvents.valueChanged)
+        
+        return refreshControl
+    }()
     
-    var checked = 0
+    
+    var list = ["114", "115", "116"]
+    var myBeaconId = ""
+    var myBeaconOn = false
+    var blah: [CLBeacon] = []
+    
     let locationManager = CLLocationManager()
     let region = CLBeaconRegion(proximityUUID: NSUUID(uuidString: "2F234454-CF6D-4A0F-ADF2-F4911BA9FFA6")! as UUID, identifier: "CalmStop")
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -35,25 +47,51 @@ class RegisterBeaconViewController: UIViewController, CLLocationManagerDelegate,
         locationManager.stopMonitoring(for: region)
         
         tableView.tableFooterView = UIView()
+        
+        // Add refresh when pull table down
+        self.tableView.addSubview(self.refreshControl)
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        // Do some reloading of data and update the table view's data source
+        
+        list.removeAll()
+        list = ["114", "115", "116"]
+        
+        self.tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
+    
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         
         //TODO: Get major value for beacon and pass it as an ID.
         
-
-        
-        let knowBeacons = beacons.filter{ $0.proximity != CLProximity.unknown }
-        if (knowBeacons.count > 0) && (checked == 0){
+        let knowBeacons = beacons.filter{ $0.proximity != CLProximity.unknown}
+        if (knowBeacons.count > 0){
             
-            for beacon in beacons{
-                list.append(beacon.major.stringValue)
+            if (blah.isEmpty) {
+                blah = knowBeacons
             }
+            else{
+                blah.removeAll()
+                blah = knowBeacons
+            }
+
+            for beacon in beacons{
+                if (!list.contains(beacon.major.stringValue)){
+                    list.append(beacon.major.stringValue)
+                }
+            }
+            
+            
             
             // TODO: Display list of beacons to officer on a table view.
             
@@ -62,13 +100,15 @@ class RegisterBeaconViewController: UIViewController, CLLocationManagerDelegate,
             //            print(closestBeacon)
             //            minorValueLabel.text =
             //            print(String(describing: closestBeacon.proximityUUID))
-            checked = 1
             
             DispatchQueue.main.async(execute: {
                 self.tableView.reloadData()
             })
         }
-        
+        else{
+            blah.removeAll()
+            myBeaconOn = false
+        }
     }
     
 
@@ -105,6 +145,8 @@ class RegisterBeaconViewController: UIViewController, CLLocationManagerDelegate,
             // if yes, ask if you're sure you want to remove, if no, just add the officer to that beacon.
             alert.dismiss(animated: true, completion: nil)
             
+            self.myBeaconId = beaconId
+            
             //Register beacon if user clicks ok.
             if FIRAuth.auth()?.currentUser?.uid == nil {
                 print("Not logged in!")
@@ -114,12 +156,15 @@ class RegisterBeaconViewController: UIViewController, CLLocationManagerDelegate,
                 // Delete Officer from previous beacon
                 FIRDatabase.database().reference().child("officer").child("14567").child(uid!).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
                     
-                    if let dictionary = snapshot.value as? [String: AnyObject]{
-                        let beaconId = (dictionary["beacon_id"] as? String)!
-                        
-                        // TODO: Delete the whole beacon child or just officer?
-                        let deleteBeaconRef = FIRDatabase.database().reference().child("beacons").child(beaconId).child("officer")
-                        deleteBeaconRef.removeValue()
+                    if snapshot.hasChild("beacon_id"){
+                    
+                        if let dictionary = snapshot.value as? [String: AnyObject]{
+                            let beaconId = (dictionary["beacon_id"] as? String)!
+                            
+                            // Deletes the whole beacon child
+                            let deleteBeaconRef = FIRDatabase.database().reference().child("beacons").child(beaconId)
+                            deleteBeaconRef.removeValue()
+                        }
                     }
                
                 
@@ -150,8 +195,10 @@ class RegisterBeaconViewController: UIViewController, CLLocationManagerDelegate,
             // Alert to say that beacon was added successfully
             beaconAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                 alert.dismiss(animated: true, completion: nil)
-                self.dismiss(animated: true, completion: nil)
-
+                
+                // Dismiss pop-up and go back to inital screen
+                self.dismissViewController()
+            
             }))
             
             self.present(beaconAlert, animated: true, completion: nil)
@@ -164,6 +211,33 @@ class RegisterBeaconViewController: UIViewController, CLLocationManagerDelegate,
         }))
         
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    func dismissViewController(){
+        
+        myBeaconOn = false
+        
+        for beacon in blah {
+            if (myBeaconId == beacon.major.stringValue) {
+                myBeaconOn = true
+            }
+        }
+        
+        // Check if the beacon is still on in order to go back to previous view controller
+        if myBeaconOn {
+            //Print alert message to turn beacon off
+            let beaconAlert = UIAlertController(title: "Turn beacon off before moving back!", message: "", preferredStyle: .alert)
+            
+            beaconAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                beaconAlert.dismiss(animated: true, completion: nil)}))
+            
+            self.present(beaconAlert, animated: true, completion: nil)
+        }
+        else{
+            self.dismiss(animated: true, completion: nil)
+            locationManager.stopMonitoring(for: region)
+        }
     }
 
 }
