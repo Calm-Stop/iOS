@@ -44,6 +44,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        checkIfUserIsLoggedIn()
+        
         email.delegate = self
         email.tag = 0
         email.attributedPlaceholder = NSAttributedString(string:"Email",
@@ -61,6 +63,18 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        FIRAuth.auth()?.addStateDidChangeListener{auth, user in
+        
+            if let user = user {
+                let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "VC2") as! UITabBarController
+                self.present(vc2, animated: true, completion: nil)
+            }
+        }
+        
+    }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
     {
@@ -88,6 +102,15 @@ class ViewController: UIViewController, UITextFieldDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func checkIfUserIsLoggedIn(){
+        if FIRAuth.auth()?.currentUser?.uid == nil {
+            print("Not logged in!")
+        } else {
+            performSegue(withIdentifier: "loginSegue", sender: nil)
+            print("Logged IN!!")
+        }
     }
 
 

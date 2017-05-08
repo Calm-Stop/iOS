@@ -16,9 +16,12 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, CBPeriphe
     @IBOutlet weak var wecomeLabel: UILabel!
     @IBOutlet weak var beaconNotRegisteredLabel: UILabel!
     
+    @IBOutlet weak var pressBeaconLabel: UILabel!
+    
+    
     var myBTManager: CBPeripheralManager?
     var isBluetoothOn: Bool = false
-
+    var checked = 1
     
     // Initialize the beacon and region.
     let locationManager = CLLocationManager()
@@ -39,6 +42,16 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, CBPeriphe
          // TODO: Print message telling user to turn bluetooth on.
         }
         
+        // Beacon Stuff
+        locationManager.delegate = self
+        
+        if (CLLocationManager.authorizationStatus() != CLAuthorizationStatus.authorizedWhenInUse){
+            locationManager.requestWhenInUseAuthorization()
+        }
+        
+        locationManager.startRangingBeacons(in: region)
+//        locationManager.stopMonitoring(for: region)
+        
     }
     
     // Check if bluetooth is ON.
@@ -58,7 +71,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, CBPeriphe
     }
     
     
-    // Check if officer has registered beacon
+    // Check if officer has registered beacon in the database
     func checkForRegisteredBeacon() -> Bool{
         
         var beaconRegistered = false
@@ -68,13 +81,13 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, CBPeriphe
             if snapshot.hasChild("beacon_id"){
                 if let dictionary = snapshot.value as? [String: AnyObject]{
                     let beaconId = (dictionary["beacon_id"] as? String)!
-                    //TODO: Display beaconID.
+                    // Display beacon ID
                     self.beaconNotRegisteredLabel.text = "Beacon ID: " + beaconId
                     beaconRegistered = true
                 }
             }
             else{
-                //TODO: Display "Beacon not registered."
+                // Display that beacon is not registered
                 self.beaconNotRegisteredLabel.text = "Beacon not Registered."
 
             }
@@ -101,5 +114,89 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, CBPeriphe
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+    
+    // Search for beacons
+    func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
+        
+        // Checks for beacons in range
+        let knowBeacons = beacons.filter{ $0.proximity != CLProximity.unknown }
+        if (knowBeacons.count > 0) && (checked == 0){
+            
+            
+            if (checked == 0){
+                checkIfOfficerBeaconIsTheSameAsBeaconBeingPressed(beacons: beacons){ (result) -> () in
+                    if result{
+                        self.checkForCitizenAssociatedWithBeacon { (result) -> () in
+                            if result{
+//                                performSegue(withIdentifier: "goToInitialResponseSegue", sender: nil)
+                                //TODO: Perform Segue
+                                self.pressBeaconLabel.text = "Searching for beacon..."
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        if (knowBeacons.count <= 0){
+            checked = 0
+        }
+    }
+    
+    
+    func checkIfOfficerBeaconIsTheSameAsBeaconBeingPressed(beacons: [CLBeacon], completion: @escaping (_ result: Bool) -> ()) {
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("officer").child("14567").child(uid!).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                let beaconId = (dictionary["beacon_id"] as? String)!
+                
+                let knowBeacons = beacons.filter{ $0.proximity != CLProximity.unknown }
+                if (knowBeacons.count > 0) && (knowBeacons[0].major.stringValue == beaconId){
+                FIRDatabase.database().reference().child("beacons").child(beaconId).observeSingleEvent(of: .value, with: { (snapshot) in
+                        if snapshot.hasChild("officer"){
+                            completion(true)
+                            print("Officer ta Registrado!")
+                        }
+                        
+                    })
+                    
+                }
+                else {
+                    let alert = UIAlertController(title: "Error", message: "Beacon not found or officer not registered in the same beacon!", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                        alert.dismiss(animated: true, completion: nil)
+                    }))
+                    
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        })
+    }
+    
+    
+    func checkForCitizenAssociatedWithBeacon(completion: @escaping (_ result: Bool) -> ()) {
+        if FIRAuth.auth()?.currentUser?.uid == nil {
+            print("Not logged in!")
+        } else {
+            
+            let uid = FIRAuth.auth()?.currentUser?.uid
+            FIRDatabase.database().reference().child("officer").child("14567").child(uid!).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let dictionary = snapshot.value as? [String: AnyObject]{
+                    let beaconId = (dictionary["beacon_id"] as? String)!
+                    FIRDatabase.database().reference().child("beacons").child(beaconId).observeSingleEvent(of: .value, with: { (snapshot) in
+                        if snapshot.hasChild("citizen"){
+                            completion(true)
+                            print("Tem sim!")
+                        }
+                        
+                    })
+                }
+            })
+        }
+    }
+    
 
 }

@@ -37,7 +37,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate  {
             let ref = FIRDatabase.database().reference(fromURL: "https://calm-stop.firebaseio.com/")
             
             // TODO: Check for officer department and then insert the officer into the database
-            let usersReference = ref.child("officer").child("14567").child(uid)
+            let usersReference = ref.child("officer").child("14567").child(uid).child("profile")
             let values = ["first_name": nametxt, "email": emailtxt, "departmentID": departmenttxt]
             usersReference.updateChildValues(values, withCompletionBlock: { (err,ref) in
                 if err != nil{

@@ -197,12 +197,15 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
     override func viewDidDisappear(_ animated: Bool) {
 //        locatingLabel.text = "Turn Beacon off and start the process again!"
         stopAnimating()
+        locationManager.stopMonitoring(for: region)
         
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         stopAnimating()
+        locationManager.stopMonitoring(for: region)
     }
+    
     
     func startAnimating(){
         activityIndicator.isHidden = false

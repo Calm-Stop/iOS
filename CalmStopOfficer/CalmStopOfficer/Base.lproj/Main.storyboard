@@ -970,7 +970,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="eID-FL-0dL">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="WrI-Md-7Nz" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="VC2" automaticallyAdjustsScrollViewInsets="NO" id="WrI-Md-7Nz" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="AI1-iM-4kz">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -1491,6 +1491,7 @@
                     </view>
                     <connections>
                         <outlet property="beaconNotRegisteredLabel" destination="law-dI-R6t" id="jQL-on-yjl"/>
+                        <outlet property="pressBeaconLabel" destination="hG9-Iy-TQS" id="B1X-0s-Mjy"/>
                         <outlet property="wecomeLabel" destination="o4T-Hf-0Ff" id="ifZ-jW-flK"/>
                     </connections>
                 </viewController>
