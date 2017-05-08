@@ -29,6 +29,12 @@ class ProfileViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        checkIfUserIsLoggedIn()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -39,39 +45,26 @@ class ProfileViewController: UIViewController {
             print("Not logged in!")
         } else {
             let uid = FIRAuth.auth()?.currentUser?.uid
-            FIRDatabase.database().reference().child("officer").child("14567").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            FIRDatabase.database().reference().child("officer").child("14567").child(uid!).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if let dictionary = snapshot.value as? [String: AnyObject]{
                     let first_name = dictionary["first_name"] as? String
-//                    let last_name = dictionary["last_name"] as? String
+                    let last_name = dictionary["last_name"] as? String
                     let email = dictionary["email"] as? String
-//                    let phone_number = dictionary["phone_number"] as? String
-//                    let gender = dictionary["gender"] as? String
-//                    let ethnicity = dictionary["ethnicity"] as? String
-//                    let badge_number = dictionary["badge_number"] as? String
+                    let phone_number = dictionary["phone_number"] as? String
+                    let gender = dictionary["gender"] as? String
+                    let badge_number = dictionary["badge_number"] as? String
                     
-                    self.nameLabel.text = first_name! + " " //+ last_name!
-                    self.emailLabel.text = email!
-//                    self.phoneLabel.text = phone_number!
-//                    self.genderLabel.text = gender!
-//                    self.ethnicityLabel.text = ethnicity!
-//                    self.numberLabel.text = badge_number!
+                    self.nameLabel.text = (first_name! + " ") + (last_name  ?? " ")
+                    self.emailLabel.text = email ?? " "
+                    self.phoneLabel.text = phone_number ?? " "
+                    self.genderLabel.text = gender ?? " "
+                    self.numberLabel.text = badge_number ?? " "
                 }
                 
                 print (snapshot)
             })
         }
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -10,6 +10,10 @@ import UIKit
 import MapKit
 import Firebase
 
+var stopID:Int?
+var arrayStopData = [Stop]()
+
+
 struct cellData {
     let dateTime: String!
     let driver: String!
@@ -20,11 +24,9 @@ struct cellData {
 class StopsTableViewController: UITableViewController {
     
     
-    
     // Load From Firebase
     let cellId = "cellId"
     var arrayOfCellData = [cellData]()
-    var arrayStopData = [Stop]()
 
     
     func observeStops(){
@@ -48,7 +50,7 @@ class StopsTableViewController: UITableViewController {
                 // Potential of crashing if keys don't match
                 stop.setValuesForKeys(dictionary)
                 
-                self.arrayStopData.append(stop)
+                arrayStopData.append(stop)
                 print(stop.lat ?? "Nao tem Content")
                 
                 // Load data on table
@@ -115,6 +117,7 @@ class StopsTableViewController: UITableViewController {
         
         cell.mapView.setRegion(region, animated: true)
         cell.mapView.addAnnotation(annotation)
+        
         cell.dataTimeLabel.text = arrayStopData[indexPath.row].date! + ", " + arrayStopData[indexPath.row].time!
         
         // Get citizen name 
@@ -136,22 +139,28 @@ class StopsTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        stopID = indexPath.row
+        
         self.performSegue(withIdentifier: "showStop", sender: self)
+        
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if (segue.identifier == "showStop"){
-//            var upcoming: StopDetailsViewController = segue.destination as! StopDetailsViewController
-//
-            let indexPath = self.tableView.indexPathForSelectedRow!
-//
-//            let titleString = self.objectAtIndexPath(indexPath.row) as? String
-//            let titleString = "HAHA"
-            
-//            upcoming.nameLabel.text = titleString
-            
-            self.tableView.deselectRow(at: indexPath, animated: true)
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        
+//        if (segue.identifier == "showStop"){
+////            var upcoming: StopDetailsViewController = segue.destination as! StopDetailsViewController
+////
+//            let indexPath = self.tableView.indexPathForSelectedRow!
+////
+////            let titleString = self.objectAtIndexPath(indexPath.row) as? String
+////            let titleString = "HAHA"
+//            
+////            upcoming.nameLabel.text = titleString
+//            
+//            self.tableView.deselectRow(at: indexPath, animated: true)
+//        }
+//    }
+    
+
 }

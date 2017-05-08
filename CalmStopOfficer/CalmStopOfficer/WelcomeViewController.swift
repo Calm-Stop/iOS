@@ -72,7 +72,7 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
             print("Not logged in!")
         } else {
             let uid = FIRAuth.auth()?.currentUser?.uid
-            FIRDatabase.database().reference().child("officer").child("14567").child(uid!).observeSingleEvent(of: .value, with: { (snapshot) in
+            FIRDatabase.database().reference().child("officer").child("14567").child(uid!).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if let dictionary = snapshot.value as? [String: AnyObject]{
                     let name = dictionary["first_name"] as? String
