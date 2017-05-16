@@ -3,11 +3,15 @@
     <entity name="Insurance" representedClassName="Insurance" syncable="YES" codeGenerationType="class">
         <attribute name="insuranceImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
     </entity>
+    <entity name="License" representedClassName="License" syncable="YES" codeGenerationType="class">
+        <attribute name="licenseImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+    </entity>
     <entity name="Registration" representedClassName="Registration" syncable="YES" codeGenerationType="class">
         <attribute name="registrationImage" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
     </entity>
     <elements>
         <element name="Insurance" positionX="-63" positionY="-18" width="128" height="60"/>
         <element name="Registration" positionX="-63" positionY="-9" width="128" height="60"/>
+        <element name="License" positionX="-54" positionY="0" width="128" height="60"/>
     </elements>
 </model>

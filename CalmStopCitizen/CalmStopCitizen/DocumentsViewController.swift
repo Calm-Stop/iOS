@@ -60,6 +60,9 @@ class DocumentsViewController: UIViewController, UIImagePickerControllerDelegate
         case "registration" :
             registrationImageView.image = selectedImage
             saveRegistrationImage(image: selectedImage)
+        case "license" :
+            licenseImageView.image = selectedImage
+            saveLicenseImage(image: selectedImage)
         default:
             dismiss(animated: true, completion: nil)
         }
@@ -94,8 +97,9 @@ class DocumentsViewController: UIViewController, UIImagePickerControllerDelegate
             popover=UIPopoverController(contentViewController: picker!)
             
             switch imageUploaded{
-                case "insurance": popover!.present(from: uploadInsuranceBtn.frame, in: self.view, permittedArrowDirections: UIPopoverArrowDirection.any, animated: true)
+            case "insurance": popover!.present(from: uploadInsuranceBtn.frame, in: self.view, permittedArrowDirections: UIPopoverArrowDirection.any, animated: true)
             case "registration": popover!.present(from: uploadRegistrationBtn.frame, in: self.view, permittedArrowDirections: UIPopoverArrowDirection.any, animated: true)
+            case "license": popover!.present(from: uploadLicenseBtn.frame, in: self.view, permittedArrowDirections: UIPopoverArrowDirection.any, animated: true)
             default:
                 dismiss(animated: true, completion: nil)
             }

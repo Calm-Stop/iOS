@@ -6,6 +6,7 @@
 //  Copyright © 2017 Calm Stop. All rights reserved.
 //
 
+
 import Foundation
 import UIKit
 import CoreData
@@ -108,6 +109,7 @@ extension DocumentsViewController {
         }
         
         loadLicense()
+        
     }
     
     @IBAction func viewLicense(_ sender: Any) {
@@ -147,5 +149,6 @@ extension DocumentsViewController {
     }
     
 }
+
 
 
