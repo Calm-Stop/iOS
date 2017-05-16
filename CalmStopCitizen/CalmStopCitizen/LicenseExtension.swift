@@ -1,8 +1,8 @@
 //
-//  RegistrationExtension.swift
+//  LicenseExtension.swift
 //  CalmStopCitizen
 //
-//  Created by Annisa Karaca on 5/11/17.
+//  Created by Annisa Karaca on 5/15/17.
 //  Copyright © 2017 Calm Stop. All rights reserved.
 //
 
@@ -11,8 +11,8 @@ import UIKit
 import CoreData
 
 extension DocumentsViewController {
-    // Functions for uploading registration, saving registration to core data, loading registration from core data
-    func saveRegistrationImage(image: UIImage) {
+    // Functions for uploading license, saving license to core data, loading license from core data
+    func saveLicenseImage(image: UIImage) {
         
         let imageData =  UIImagePNGRepresentation(image) as NSData?
         
@@ -27,14 +27,14 @@ extension DocumentsViewController {
         
         // 2
         let entity =
-            NSEntityDescription.entity(forEntityName: "Registration",
+            NSEntityDescription.entity(forEntityName: "License",
                                        in: managedContext)!
         
         let newImage = NSManagedObject(entity: entity,
                                        insertInto: managedContext)
         
         // 3
-        newImage.setValue(imageData, forKey: "registrationImage")
+        newImage.setValue(imageData, forKey: "licenseImage")
         
         // 4
         do {
@@ -45,11 +45,10 @@ extension DocumentsViewController {
     }
     
     
-    @IBAction func uploadRegistration(_ sender: Any) {
+    @IBAction func uploadLicense(_ sender: Any) {
         print ("touched Upload!")
-        imageUploaded = "registration"
+        imageUploaded = "license"
         print (imageUploaded)
-        uploadRegistrationBtn.isEnabled = true
         // UIImagePickerController is a view controller that lets a user pick media from their photo library.
         //let imagePickerController = UIImagePickerController()
         
@@ -92,15 +91,15 @@ extension DocumentsViewController {
         else
         {
             popover=UIPopoverController(contentViewController: alert)
-            popover!.present(from: uploadRegistrationBtn.frame, in: self.view, permittedArrowDirections: UIPopoverArrowDirection.any, animated: true)
+            popover!.present(from: uploadLicenseBtn.frame, in: self.view, permittedArrowDirections: UIPopoverArrowDirection.any, animated: true)
         }
     }
     
-    @IBAction func deleteRegistration(_ sender: Any) {
+    @IBAction func deleteLicense(_ sender: Any) {
         print("delete button pressed!")
         let app = UIApplication.shared.delegate as! AppDelegate
         let context = app.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Registration")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "License")
         
         if let result = try? context.fetch(request) {
             for object in result {
@@ -108,17 +107,16 @@ extension DocumentsViewController {
             }
         }
         
-        loadRegistration()
-
+        loadLicense()
     }
     
-    @IBAction func viewRegistration(_ sender: Any) {
+    @IBAction func viewLicense(_ sender: Any) {
     }
     
-    func loadRegistration() {
+    func loadLicense() {
         let app = UIApplication.shared.delegate as! AppDelegate
         let context = app.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Registration")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "License")
         request.returnsObjectsAsFaults = false
         
         do {
@@ -127,20 +125,20 @@ extension DocumentsViewController {
             
             if results.count > 0 {
                 
-                print("Registration Image found!")
+                print("License Image found!")
                 
                 for result in results as! [NSManagedObject] {
                     
-                    if let imageData = result.value(forKey: "registrationImage") as? NSData {
+                    if let imageData = result.value(forKey: "licenseImage") as? NSData {
                         if let image = UIImage(data: imageData as Data) {
-                            registrationImageView.image = image
+                            licenseImageView.image = image
                         }
                     }
                 }
                 
             } else {
                 print("Profile : No data found")
-                registrationImageView.image = nil
+                licenseImageView.image = nil
             }
         } catch {
             

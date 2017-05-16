@@ -507,6 +507,9 @@
                                                 <state key="normal" title="Delete" image="uploadBtn">
                                                     <color key="titleColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="deleteRegistration:" destination="hgM-yx-aU0" eventType="touchUpInside" id="kIm-Bs-hox"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2h-yW-ome" userLabel="uploadRegistrationBtn">
                                                 <rect key="frame" x="209" y="419" width="71" height="24"/>
