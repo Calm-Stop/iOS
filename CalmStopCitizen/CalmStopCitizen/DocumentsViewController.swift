@@ -12,9 +12,20 @@ import CoreData
 
 class DocumentsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, UIPopoverControllerDelegate {
     
+    // insurance outlets
     @IBOutlet weak var viewInsuranceBtn: UIButton!
     @IBOutlet weak var viewInsurance: UIImageView!
     @IBOutlet weak var uploadInsuranceBtn: UIButton!
+    
+    // registration outlets
+    @IBOutlet weak var registrationImageView: UIImageView!
+    @IBOutlet weak var uploadRegistrationBtn: UIButton!
+    
+    // license outlets
+    @IBOutlet weak var licenseImageView: UIImageView!
+    @IBOutlet weak var uploadLicenseBtn: UIButton!
+    
+    var imageUploaded: String!
     
     var picker:UIImagePickerController?=UIImagePickerController()
     var popover:UIPopoverController?=nil
@@ -24,6 +35,9 @@ class DocumentsViewController: UIViewController, UIImagePickerControllerDelegate
         // Do any additional setup after loading the view, typically from a nib.
         
         loadInsurance()
+        loadRegistration()
+        uploadRegistrationBtn.isEnabled = true
+
     }
     
 
@@ -38,94 +52,21 @@ class DocumentsViewController: UIViewController, UIImagePickerControllerDelegate
         guard let selectedImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
-        // Set photoImageView to display the selected image.
-        viewInsurance.image = selectedImage
+        // Set photoImageView to display the selected image and save selectedImage to Core data.
+        switch imageUploaded{
+        case "insurance":
+            viewInsurance.image = selectedImage
+            saveInsuranceImage(image: selectedImage)
+        case "registration" :
+            registrationImageView.image = selectedImage
+            saveRegistrationImage(image: selectedImage)
+        default:
+            dismiss(animated: true, completion: nil)
+        }
         
-        // Save selectedImage to Core Data
-        saveInsuranceImage(image: selectedImage)
         
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
-    }
-    
-    func saveInsuranceImage(image: UIImage) {
-        
-        let imageData =  UIImagePNGRepresentation(image) as NSData?
-
-        guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-                return
-        }
-        
-        // 1
-        let managedContext =
-            appDelegate.persistentContainer.viewContext
-        
-        // 2
-        let entity =
-            NSEntityDescription.entity(forEntityName: "Insurance",
-                                       in: managedContext)!
-        
-        let newImage = NSManagedObject(entity: entity,
-                                     insertInto: managedContext)
-        
-        // 3
-        newImage.setValue(imageData, forKey: "insuranceImage")
-        
-        // 4
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Could not save. \(error), \(error.userInfo)")
-        }
-    }
-    
-    @IBAction func uploadInsurance(_ sender: Any) {
-        print ("touched Upload!")
-        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
-        //let imagePickerController = UIImagePickerController()
-        
-        // Only allow photos to be picked, not taken.
-        //imagePickerController.sourceType = .photoLibrary
-        
-        // Make sure ViewController is notified when the user picks an image.
-        //imagePickerController.delegate = self
-        //present(imagePickerController, animated: true, completion: nil)
-        
-        let alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
-        
-        let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.default)
-        {
-            UIAlertAction in
-            self.openCamera()
-            
-        }
-        let galleryAction = UIAlertAction(title: "Photo Library", style: UIAlertActionStyle.default)
-        {
-            UIAlertAction in
-            self.openGallery()
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel)
-        {
-            UIAlertAction in
-            
-        }
-        
-        // Add the actions
-        picker?.delegate = self
-        alert.addAction(cameraAction)
-        alert.addAction(galleryAction)
-        alert.addAction(cancelAction)
-        // Present the controller
-        if UIDevice.current.userInterfaceIdiom == .phone
-        {
-            self.present(alert, animated: true, completion: nil)
-        }
-        else
-        {
-            popover=UIPopoverController(contentViewController: alert)
-            popover!.present(from: uploadInsuranceBtn.frame, in: self.view, permittedArrowDirections: UIPopoverArrowDirection.any, animated: true)
-        }
     }
     
     func openCamera()
@@ -151,55 +92,17 @@ class DocumentsViewController: UIViewController, UIImagePickerControllerDelegate
         else
         {
             popover=UIPopoverController(contentViewController: picker!)
-            popover!.present(from: uploadInsuranceBtn.frame, in: self.view, permittedArrowDirections: UIPopoverArrowDirection.any, animated: true)
-        }
-    }
-
-
-
-    @IBAction func deleteInsurance(_ sender: Any) {
-    }
-    
-    @IBAction func viewInsrance(_ sender: Any) {
-    }
-    
-    func loadInsurance() {
-        let app = UIApplication.shared.delegate as! AppDelegate
-        let context = app.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Insurance")
-        
-        request.returnsObjectsAsFaults = false
-        
-        do {
             
-            let results = try context.fetch(request)
-            
-            if results.count > 0 {
-                
-                print("Insurance Image found!")
-                
-                for result in results as! [NSManagedObject] {
-                    
-                    if let imageData = result.value(forKey: "insuranceImage") as? NSData {
-                        if let image = UIImage(data: imageData as Data) {
-                            viewInsurance.image = image
-                        }
-                    }
-                    
-                    
-                    
-                }
-                
-                
-            } else {
-                print("Profile : No data found")
+            switch imageUploaded{
+                case "insurance": popover!.present(from: uploadInsuranceBtn.frame, in: self.view, permittedArrowDirections: UIPopoverArrowDirection.any, animated: true)
+            case "registration": popover!.present(from: uploadRegistrationBtn.frame, in: self.view, permittedArrowDirections: UIPopoverArrowDirection.any, animated: true)
+            default:
+                dismiss(animated: true, completion: nil)
             }
-            
-            //print("Loaded!!!")
-            
-        } catch {
-            
-            print ("Error Loading")
+
         }
     }
-}
+
+    
+    
+   }

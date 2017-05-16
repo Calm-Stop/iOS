@@ -24,6 +24,8 @@
 		B060BD471EA9388400C62365 /* zipCodeTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060BD461EA9388400C62365 /* zipCodeTextFieldDelegate.swift */; };
 		B060BD491EA938A300C62365 /* phoneNumberTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060BD481EA938A300C62365 /* phoneNumberTextFieldDelegate.swift */; };
 		B094EDE81EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B094EDE61EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodeld */; };
+		B09D3FC61EC4E7270011D84C /* InsuranceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D3FC51EC4E7270011D84C /* InsuranceExtension.swift */; };
+		B09D3FC81EC4E8AD0011D84C /* RegistrationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D3FC71EC4E8AD0011D84C /* RegistrationExtension.swift */; };
 		B0B94C841EAE8176000ABE8F /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B94C831EAE8176000ABE8F /* SurveyViewController.swift */; };
 		B0EE2AF11E9F0CB10081B325 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EE2AF01E9F0CB10081B325 /* SignUpViewController.swift */; };
 		F952F4328A3F64B194A3A80C /* Pods_CalmStopCitizenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8169D5C418F6F287D67EB3 /* Pods_CalmStopCitizenTests.framework */; };
@@ -64,6 +66,8 @@
 		B060BD461EA9388400C62365 /* zipCodeTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = zipCodeTextFieldDelegate.swift; sourceTree = "<group>"; };
 		B060BD481EA938A300C62365 /* phoneNumberTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = phoneNumberTextFieldDelegate.swift; sourceTree = "<group>"; };
 		B094EDE71EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CalmStopCitizen.xcdatamodel; sourceTree = "<group>"; };
+		B09D3FC51EC4E7270011D84C /* InsuranceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsuranceExtension.swift; sourceTree = "<group>"; };
+		B09D3FC71EC4E8AD0011D84C /* RegistrationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationExtension.swift; sourceTree = "<group>"; };
 		B0B94C831EAE8176000ABE8F /* SurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		B0EE2AF01E9F0CB10081B325 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F7D9879389710FD0992E54BD /* Pods-CalmStopCitizen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalmStopCitizen.release.xcconfig"; path = "Pods/Target Support Files/Pods-CalmStopCitizen/Pods-CalmStopCitizen.release.xcconfig"; sourceTree = "<group>"; };
@@ -136,6 +140,7 @@
 				B060BD451EA9386200C62365 /* textFieldDelegates */,
 				B03BD4361E8030800037E86A /* AppDelegate.swift */,
 				B04160A61EBCEDF700E86884 /* DocumentsViewController.swift */,
+				B09D3FC41EC4E67F0011D84C /* Documents Extensions */,
 				B03BD4381E8030800037E86A /* SignInViewController.swift */,
 				B0EE2AF01E9F0CB10081B325 /* SignUpViewController.swift */,
 				B037D0821EAEF3B0009B6ED1 /* CommentsViewController.swift */,
@@ -169,6 +174,15 @@
 			);
 			name = textFieldDelegates;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		B09D3FC41EC4E67F0011D84C /* Documents Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B09D3FC51EC4E7270011D84C /* InsuranceExtension.swift */,
+				B09D3FC71EC4E8AD0011D84C /* RegistrationExtension.swift */,
+			);
+			name = "Documents Extensions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -387,6 +401,8 @@
 				B03BD4391E8030800037E86A /* SignInViewController.swift in Sources */,
 				B0B94C841EAE8176000ABE8F /* SurveyViewController.swift in Sources */,
 				B04160A71EBCEDF700E86884 /* DocumentsViewController.swift in Sources */,
+				B09D3FC61EC4E7270011D84C /* InsuranceExtension.swift in Sources */,
+				B09D3FC81EC4E8AD0011D84C /* RegistrationExtension.swift in Sources */,
 				B03BD4371E8030800037E86A /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
