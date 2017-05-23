@@ -18,10 +18,11 @@ class InitialContactViewController: UIViewController {
     @IBOutlet weak var requestText: UITextView!
     @IBOutlet weak var officerImageView: UIImageView!
 
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        // Get a reference to the storage service using the default Firebase App
         loadOfficerInfo()
     }
     
@@ -37,17 +38,32 @@ class InitialContactViewController: UIViewController {
                 let lastName = dictionary["last_name"] as? String
                 let badgeNumber = dictionary["badge"] as? String
                 let deptNumber = dictionary["department"] as? String
+                let photoRef = dictionary["photo"] as? String
                 
                 
                 self.officerNameLabel.text = "Officer " + firstName! + " " + lastName!
                 self.badgeNumberLabel.text = "Badge #" + badgeNumber!
                 self.deptNumberLabel.text = "Dept #" + deptNumber!
                 self.requestText.text = "Officer " + lastName! + " has made a traffic stop and is requesting the license, insurance, and vehicle registration from the driver."
+                
+                //download image from firebase
+                let storage = FIRStorage.storage().reference()
+                let officerPhoto = storage.child(photoRef!)
+                officerPhoto.data(withMaxSize: 1*1000*1000) { (data, error) in
+                    if error == nil {
+                        self.officerImageView.image = UIImage(data: data!)
+                        // self.insuranceButton.setBackgroundImage(self.insurancePhoto, for: .normal)
+                    }
+                    else {
+                        print(error?.localizedDescription)
+                    }
+                }
             }
             
         })
 
     }
+    
     
 }
 
