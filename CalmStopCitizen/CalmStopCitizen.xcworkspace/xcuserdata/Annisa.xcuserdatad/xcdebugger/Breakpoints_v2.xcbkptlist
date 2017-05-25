@@ -31,5 +31,98 @@
             endingLineNumber = "158">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CalmStopCitizen/DocumentsViewController.swift"
+            timestampString = "517446805.556246"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "DocumentsViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CalmStopCitizen.DocumentsViewController.__deallocating_deinit"
+                  moduleName = "CalmStopCitizen"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Annisa/Documents/School/UCSC/Senior/Calm_Stop/iOS/CalmStopCitizen/CalmStopCitizen/DocumentsViewController.swift"
+                  timestampString = "517443066.18383"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CalmStopCitizen.DocumentsViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; CalmStopCitizen.DocumentsViewController"
+                  moduleName = "CalmStopCitizen"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Annisa/Documents/School/UCSC/Senior/Calm_Stop/iOS/CalmStopCitizen/CalmStopCitizen/DocumentsViewController.swift"
+                  timestampString = "517443066.188189"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CalmStopCitizen.DocumentsViewController.__allocating_init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; CalmStopCitizen.DocumentsViewController"
+                  moduleName = "CalmStopCitizen"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Annisa/Documents/School/UCSC/Senior/Calm_Stop/iOS/CalmStopCitizen/CalmStopCitizen/DocumentsViewController.swift"
+                  timestampString = "517443066.190079"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "26">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CalmStopCitizen.DocumentsViewController.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;CalmStopCitizen.DocumentsViewController&gt;"
+                  moduleName = "CalmStopCitizen"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Annisa/Documents/School/UCSC/Senior/Calm_Stop/iOS/CalmStopCitizen/CalmStopCitizen/DocumentsViewController.swift"
+                  timestampString = "517443066.191952"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "9">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CalmStopCitizen.DocumentsViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;CalmStopCitizen.DocumentsViewController&gt;"
+                  moduleName = "CalmStopCitizen"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Annisa/Documents/School/UCSC/Senior/Calm_Stop/iOS/CalmStopCitizen/CalmStopCitizen/DocumentsViewController.swift"
+                  timestampString = "517443066.193777"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

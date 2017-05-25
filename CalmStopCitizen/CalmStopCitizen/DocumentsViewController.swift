@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import CoreData
 
+var photo: UIImage?
+
 class DocumentsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, UIPopoverControllerDelegate {
     
     // insurance outlets
