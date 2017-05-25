@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class InitialContactViewController: UIViewController {
     
@@ -17,6 +18,9 @@ class InitialContactViewController: UIViewController {
     @IBOutlet weak var deptNumberLabel: UILabel!
     @IBOutlet weak var requestText: UITextView!
     @IBOutlet weak var officerImageView: UIImageView!
+    
+    // Document variables
+    var insuranceImage: UIImage!
 
 
     override func viewDidLoad() {
@@ -64,6 +68,68 @@ class InitialContactViewController: UIViewController {
 
     }
     
+    @IBAction func sendDocuments(_ sender: UIButton) {
+        loadInsurance()
+        uploadInsurance()
+    }
+    
+    func loadInsurance() {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Insurance")
+        
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            
+            let results = try context.fetch(request)
+            
+            if results.count > 0 {
+                
+                print("Insurance Image found!")
+                
+                for result in results as! [NSManagedObject] {
+                    
+                    if let imageData = result.value(forKey: "insuranceImage") as? NSData {
+                        if let image = UIImage(data: imageData as Data) {
+                            insuranceImage = image
+                        }
+                    }
+                }
+                
+            } else {
+                print("Profile : No data found")
+                insuranceImage = nil
+            }
+        } catch {
+            
+            print ("Error Loading")
+        }
+    }
+    
+    func uploadInsurance() {
+        // Upload
+        
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        let storage = FIRStorage.storage().reference()
+        
+        let tempImageRef = storage.child("images/documents/insurance/" + uid!)
+        
+        let metaData = FIRStorageMetadata()
+        metaData.contentType = "image/png"
+        
+        tempImageRef.put(UIImagePNGRepresentation(insuranceImage)!, metadata: metaData) { (data, error) in
+            if error == nil {
+                print("Upload successful")
+            }
+            else{
+                print(error)
+            }
+            
+        }
+    }
+
     
 }
 

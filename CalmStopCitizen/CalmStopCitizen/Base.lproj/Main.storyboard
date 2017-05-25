@@ -419,6 +419,17 @@
                                     <segue destination="hgM-yx-aU0" kind="show" id="X2K-NI-ker"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JaY-WN-PVg">
+                                <rect key="frame" x="231" y="150" width="73" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.047626040699620634" green="0.13055264572793512" blue="0.98959682642487046" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="CONTACT">
+                                    <color key="titleColor" red="0.98999999999999999" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="7bm-lE-Ay0" kind="show" id="ef1-S0-a77"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -937,6 +948,9 @@
                                         <state key="normal" image="BlueButton">
                                             <color key="titleColor" red="0.98999999999999999" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sendDocuments:" destination="7bm-lE-Ay0" eventType="touchUpInside" id="hrg-II-Irq"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Send My Documents" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RGc-M7-a4O">
                                         <rect key="frame" x="53" y="56" width="233" height="21"/>
@@ -1159,7 +1173,7 @@
                                 </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYC-mL-RlT">
-                                <rect key="frame" x="272" y="28" width="32" height="22"/>
+                                <rect key="frame" x="272" y="-58" width="32" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="SEG-hY-f6d"/>
                                 </constraints>
@@ -1177,7 +1191,6 @@
                             <constraint firstItem="aX6-4V-UZa" firstAttribute="top" secondItem="sYC-mL-RlT" secondAttribute="bottom" constant="604" id="eVJ-NP-VKb"/>
                             <constraint firstItem="eFF-WE-xbt" firstAttribute="centerX" secondItem="zbX-iN-rif" secondAttribute="centerX" id="hqt-NY-zXq"/>
                             <constraint firstItem="eFF-WE-xbt" firstAttribute="leading" secondItem="zbX-iN-rif" secondAttribute="leadingMargin" constant="-9" id="jGj-EL-xVJ"/>
-                            <constraint firstItem="sYC-mL-RlT" firstAttribute="top" secondItem="C66-lI-Q5w" secondAttribute="bottom" constant="8" symbolic="YES" id="zH9-yd-ytc"/>
                         </constraints>
                     </view>
                     <connections>
