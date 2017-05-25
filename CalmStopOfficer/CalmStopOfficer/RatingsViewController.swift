@@ -47,16 +47,27 @@ class RatingsViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             let uid = FIRAuth.auth()?.currentUser?.uid
             // TODO: uid hardcoded b/c login is not real
+<<<<<<< HEAD
             FIRDatabase.database().reference().child("officer").child("14567").child(uid!).child("ratings").observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if let dictionary = snapshot.value as? [String: AnyObject]{
                     let ratings = dictionary["average_rating"] as? Float
+=======
+            FIRDatabase.database().reference().child("officer").child("14567").child("Tl4pCcIjlxTXQgCcoLp4IB4Hzti2").child("ratings").observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let dictionary = snapshot.value as? [String: AnyObject]{
+                    let ratings = dictionary["avg_rating"] as? Float
+>>>>>>> bf3f81a4c5bf4f516806ed258f35c905141e32eb
                     self.setRatings(ratings_average: ratings!)
                 }
                 
             })
             
+<<<<<<< HEAD
             FIRDatabase.database().reference().child("officer").child("14567").child(uid!).child("coments").observeSingleEvent(of: .value, with: {(snap) in
+=======
+            FIRDatabase.database().reference().child("officer").child("14567").child("Tl4pCcIjlxTXQgCcoLp4IB4Hzti2").child("comments").observeSingleEvent(of: .value, with: {(snap) in
+>>>>>>> bf3f81a4c5bf4f516806ed258f35c905141e32eb
                 
                 if let snapDict = snap.value as? [String:AnyObject]{
                     
@@ -65,7 +76,10 @@ class RatingsViewController: UIViewController, UITableViewDelegate, UITableViewD
                         var newComment = each.value["text"] as! String
                         newComment = "\"\(newComment)\""
                         self.comments.append(newComment)
+<<<<<<< HEAD
                         self.tableView.reloadData()
+=======
+>>>>>>> bf3f81a4c5bf4f516806ed258f35c905141e32eb
                     }
                 }
                 
