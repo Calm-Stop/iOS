@@ -93,25 +93,6 @@ class DocumentsViewController: UIViewController {
             }
         }
         
-        // Upload
-        
-//        let image = UIImage(named: "github.png")
-//        let metaData = FIRStorageMetadata()
-//        metaData.contentType = "image/png"
-//        
-//        tempImageRef.put(UIImagePNGRepresentation(image!)!, metadata: metaData) { (data, error) in
-//            if error == nil {
-//                print("Upload successful")
-//            }
-//            else{
-//                print(error)
-//            }
-//            
-//        }
-        
-
-
-
         // Do any additional setup after loading the view.
     }
 

@@ -32,6 +32,10 @@
 	</array>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleLightContent</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Allow access to image galery!</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow app to use your camera!</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

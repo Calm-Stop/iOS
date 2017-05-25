@@ -36,10 +36,14 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        profileImage.image = #imageLiteral(resourceName: "officer_jones")
 //        profileImage.layer.cornerRadius = profileImage.frame.size.width/2
 //        profileImage.clipsToBounds = true
-        downloadProfileImage()
+//        downloadProfileImage()
         getOfficerInfo()
         // Do any additional setup after loading the view.
         tableView.tableFooterView = UIView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        getOfficerInfo()
     }
     
     override func didReceiveMemoryWarning() {
@@ -102,14 +106,14 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     }
     
-    func downloadProfileImage(){
+    func downloadProfileImage(path: String){
         let database = FIRDatabase.database().reference()
         let storage = FIRStorage.storage().reference()
-        let profile = storage.child("images/profile/default_male")
+        let profile = storage.child(path)
         
         
         // Download Images
-        profile.data(withMaxSize: 1*1000*1000) { (data, error) in
+        profile.data(withMaxSize: 1*1000*10000) { (data, error) in
             if error == nil {
                 self.profileImage.image = UIImage(data: data!)
                 self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2
@@ -130,6 +134,9 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let first_name = (dictionary["first_name"] as? String) ?? ""
                 let last_name = (dictionary["last_name"] as? String) ?? ""
                 let badge_number = (dictionary["badge_number"] as? String) ?? ""
+                let profileImagePath = dictionary["photo"] as? String
+                
+                self.downloadProfileImage(path: profileImagePath!)
 
 
                 self.officerNameLabel.text = "Officer " + first_name + " " + last_name

@@ -60,6 +60,10 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, CBPeriphe
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        checkForRegisteredBeacon()
+    }
+    
     // Check if bluetooth is ON.
     func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager){
         if peripheral.state == CBManagerState.poweredOn {
@@ -398,7 +402,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, CBPeriphe
         
         
         // Download Images
-        profile.data(withMaxSize: 1*1000*1000) { (data, error) in
+        profile.data(withMaxSize: 1*1000*10000) { (data, error) in
             if error == nil {
                 self.profileImage.image = UIImage(data: data!)
                 self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2

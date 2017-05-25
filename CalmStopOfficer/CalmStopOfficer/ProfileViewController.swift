@@ -25,10 +25,11 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var numberLabel: UILabel!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         checkIfUserIsLoggedIn()
-        downloadProfileImage()
+//        downloadProfileImage()
         // Do any additional setup after loading the view.
     }
 
@@ -57,6 +58,10 @@ class ProfileViewController: UIViewController {
                     let phone_number = dictionary["phone_number"] as? String
                     let gender = dictionary["gender"] as? String
                     let badge_number = dictionary["badge_number"] as? String
+                    let profileImagePath = dictionary["photo"] as? String
+                    
+                    self.downloadProfileImage(path: profileImagePath!)
+
                     
                     self.nameLabel.text = (first_name! + " ") + (last_name  ?? " ")
                     self.emailLabel.text = email ?? " "
@@ -70,14 +75,14 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    func downloadProfileImage(){
+    func downloadProfileImage(path: String){
         let database = FIRDatabase.database().reference()
         let storage = FIRStorage.storage().reference()
-        let profile = storage.child("images/profile/default_male")
+        let profile = storage.child(path)
         
         
         // Download Images
-        profile.data(withMaxSize: 1*1000*1000) { (data, error) in
+        profile.data(withMaxSize: 1*1000*10000) { (data, error) in
             if error == nil {
                 self.profileImage.image = UIImage(data: data!)
                 self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2

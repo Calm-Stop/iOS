@@ -141,11 +141,11 @@
 		B03BD4351E8030800037E86A /* CalmStopCitizen */ = {
 			isa = PBXGroup;
 			children = (
+				B09D3FC41EC4E67F0011D84C /* Documents Extensions */,
 				B060BD451EA9386200C62365 /* textFieldDelegates */,
 				B03BD4361E8030800037E86A /* AppDelegate.swift */,
 				B0D8E9F81ECB5C3300EC9A7D /* InitialContactViewController.swift */,
 				B04160A61EBCEDF700E86884 /* DocumentsViewController.swift */,
-				B09D3FC41EC4E67F0011D84C /* Documents Extensions */,
 				B03BD4381E8030800037E86A /* SignInViewController.swift */,
 				B0EE2AF01E9F0CB10081B325 /* SignUpViewController.swift */,
 				B037D0821EAEF3B0009B6ED1 /* CommentsViewController.swift */,
@@ -247,7 +247,7 @@
 				TargetAttributes = {
 					B03BD4321E8030800037E86A = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = YJUP7QAXXH;
+						DevelopmentTeam = 6P29MLAXD8;
 						ProvisioningStyle = Automatic;
 					};
 					B03BD4461E8030800037E86A = {
@@ -551,11 +551,11 @@
 			baseConfigurationReference = 342DF01CC4EAC5B2BEF6CA5C /* Pods-CalmStopCitizen.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = YJUP7QAXXH;
+				DEVELOPMENT_TEAM = 6P29MLAXD8;
 				INFOPLIST_FILE = CalmStopCitizen/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.CalmStop.CalmStopCitizen;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CalmStop.CalmStopCitizen1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -566,11 +566,11 @@
 			baseConfigurationReference = F7D9879389710FD0992E54BD /* Pods-CalmStopCitizen.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = YJUP7QAXXH;
+				DEVELOPMENT_TEAM = 6P29MLAXD8;
 				INFOPLIST_FILE = CalmStopCitizen/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.CalmStop.CalmStopCitizen;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CalmStop.CalmStopCitizen1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

@@ -771,6 +771,23 @@
                                                             <action selector="dismiss:" destination="qcm-qF-K4P" eventType="touchUpInside" id="NUU-Uy-ntB"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mCx-G5-k3j">
+                                                        <rect key="frame" x="125" y="52" width="125" height="125"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <connections>
+                                                            <action selector="importImage:" destination="qcm-qF-K4P" eventType="touchUpInside" id="3Si-Dg-dFd"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bWO-dW-fnu">
+                                                        <rect key="frame" x="150" y="176" width="74" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Change">
+                                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <connections>
+                                                            <action selector="importImage:" destination="qcm-qF-K4P" eventType="touchUpInside" id="6tp-f1-SVm"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" red="0.012425323950000001" green="0.077955298130000003" blue="0.20756524800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </view>
