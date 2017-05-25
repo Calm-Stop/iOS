@@ -18,8 +18,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginBtn(_ sender: UIButton) {
         
         // default
-        email.text = "a@b.com"
-        password.text = "123456"
+//        email.text = "a@b.com"
+//        password.text = "123456"
         
         guard let emailtxt = email.text, let passwordtxt = password.text
 

@@ -21,8 +21,8 @@ struct cellData {
     let mapAnnotation: MKPointAnnotation!
 }
 
+
 class StopsTableViewController: UITableViewController {
-    
     
     // Load From Firebase
     let cellId = "cellId"
@@ -33,7 +33,9 @@ class StopsTableViewController: UITableViewController {
         let stop_id = "temp_stop_id"
         let uid = FIRAuth.auth()?.currentUser?.uid
         let stopsRef = FIRDatabase.database().reference().child("officer").child("14567").child(uid!).child("stops")
+        print("ENROTUDSNADNF")
 
+        
         stopsRef.observe(.childAdded, with: { (snapshot) in
             print ("Key: ", snapshot.key)
             let stopId = snapshot.key

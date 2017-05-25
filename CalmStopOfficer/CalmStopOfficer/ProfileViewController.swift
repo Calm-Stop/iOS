@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 
 class ProfileViewController: UIViewController {
+    
+    @IBOutlet weak var profileImage: UIImageView!
 
     @IBOutlet weak var nameLabel: UILabel!
     
@@ -26,6 +28,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkIfUserIsLoggedIn()
+        downloadProfileImage()
         // Do any additional setup after loading the view.
     }
 
@@ -64,6 +67,25 @@ class ProfileViewController: UIViewController {
                 
                 print (snapshot)
             })
+        }
+    }
+    
+    func downloadProfileImage(){
+        let database = FIRDatabase.database().reference()
+        let storage = FIRStorage.storage().reference()
+        let profile = storage.child("images/profile/default_male")
+        
+        
+        // Download Images
+        profile.data(withMaxSize: 1*1000*1000) { (data, error) in
+            if error == nil {
+                self.profileImage.image = UIImage(data: data!)
+                self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2
+                self.profileImage.clipsToBounds = true
+            }
+            else {
+                print(error?.localizedDescription)
+            }
         }
     }
 

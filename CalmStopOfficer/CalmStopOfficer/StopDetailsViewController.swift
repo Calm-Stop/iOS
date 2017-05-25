@@ -19,6 +19,7 @@ class StopDetailsViewController: UIViewController {
     @IBOutlet weak var reasonLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var driverZipcodeLabel: UILabel!
+    @IBOutlet weak var citizenPhoto: UIImageView!
     
     var stopIndex = stopID!
     
@@ -46,8 +47,16 @@ class StopDetailsViewController: UIViewController {
             }
             else{
                 if let place = placemark?[0] {
+                        let number = place.subThoroughfare ?? ""
+                        let street = place.thoroughfare ?? ""
+                        let city = place.locality ?? ""
+                        let state = place.administrativeArea ?? ""
+                        let zipcode = place.postalCode ?? ""
+                        let country = place.isoCountryCode ?? ""
+                    
                         self.addressLabel.text =
-                            place.subThoroughfare! + " " + place.thoroughfare! + ", " + place.locality! + " " + place.administrativeArea! + " " + place.postalCode! + ", " + place.isoCountryCode!
+                            number + " " + street + ", " + city + " " + state + " " + zipcode + ", " + country
+                    
                 }
             }
         }
@@ -59,25 +68,68 @@ class StopDetailsViewController: UIViewController {
                 let name = dictionary["first_name"] as? String
                 let gender = dictionary["gender"] as? String
                 let zipcode = dictionary["zip_code"] as? String
-
+                let photo = dictionary["photo"] as? String
 
                 self.nameLabel.text = name
                 self.genderLabel.text = gender
-                self.driverZipcodeLabel.text = zipcode
+                
+                self.downloadProfileImage(photoPath: photo ?? " ")
+                
+                // Get City and state from zipcode
+                let geocoder = CLGeocoder()
+                geocoder.geocodeAddressString(zipcode!) {
+                    (placemarks, error) -> Void in
+                    // Placemarks is an optional array of CLPlacemarks, first item in array is best guess of Address
+                    
+                    if let placemark = placemarks?[0] {
+                        
+//                        print(placemark.addressDictionary)
+                        
+                        let city = placemark.locality ?? ""
+                        let state = placemark.administrativeArea ?? ""
+                        self.driverZipcodeLabel.text =  city + ", " + state
 
+                    }
+                    
+                }
             }
         })
         
         dateAndTime.text = arrayStopData[stopIndex].date! + ", " + arrayStopData[stopIndex].time!
         reasonLabel.text = arrayStopData[stopIndex].reason
-
-        
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func downloadProfileImage(photoPath: String){
+        if (photoPath != " "){
+            let database = FIRDatabase.database().reference()
+            let storage = FIRStorage.storage().reference()
+            let profile = storage.child(photoPath)
+            
+            // Download Images
+            profile.data(withMaxSize: 1*1000*1000) { (data, error) in
+                if error == nil {
+                    self.citizenPhoto.image = UIImage(data: data!)
+                    self.citizenPhoto.layer.cornerRadius = self.citizenPhoto.frame.size.width/2
+                    self.citizenPhoto.clipsToBounds = true
+                }
+                else {
+                    print(error?.localizedDescription ?? "Error downloading image!")
+                }
+            }
+        }
+        else{
+            self.citizenPhoto.layer.cornerRadius = self.citizenPhoto.frame.size.width/2
+            self.citizenPhoto.clipsToBounds = true
+
+        }
+        
+
     }
 
 }

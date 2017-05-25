@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 
 class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
+    
+    var threadID = "01"
 
     lazy var inputTextField: UITextField = {
         let textField = UITextField()
@@ -25,13 +27,12 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
     var messages = [Message]()
     
     func observeMessages(){
-        let thread_id = "01"
-        let messagesRef = FIRDatabase.database().reference().child("threads").child(thread_id).child("messages")
+        let messagesRef = FIRDatabase.database().reference().child("threads").child(threadID).child("messages")
         
         messagesRef.observe(.childAdded, with: { (snapshot) in
             print (snapshot)
             let messageId = snapshot.key
-            let messageRef = FIRDatabase.database().reference().child("threads").child(thread_id).child("messages").child(messageId)
+            let messageRef = FIRDatabase.database().reference().child("threads").child(self.threadID).child("messages").child(messageId)
         
             messageRef.observe(.value, with: { (snapshot) in
                 
@@ -62,14 +63,24 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "Messages"
-        collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
-        collectionView?.alwaysBounceVertical = true
-        collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: cellId)
+        self.navigationItem.title = "Messages"
+        self.collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
+        self.collectionView?.alwaysBounceVertical = true
+        self.collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: self.cellId)
         
-        collectionView?.keyboardDismissMode = .interactive
+        self.collectionView?.keyboardDismissMode = .interactive
+        
+        self.getThreadIDDuringStop{ (result) -> () in
+            if result{
 
-        observeMessages()
+                
+                self.observeMessages()
+            }
+            else{
+                //TODO: Print Message "No User could be found!"
+                print("No User could be found!")
+            }
+        }
     }
     
     
@@ -297,7 +308,7 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
             print("Not logged in!")
         } else {
             let uid = FIRAuth.auth()?.currentUser?.uid
-            let ref = FIRDatabase.database().reference().child("threads").child("01").child("messages")
+            let ref = FIRDatabase.database().reference().child("threads").child(threadID).child("messages")
             let childRef = ref.childByAutoId()
             // TODO: Fix timestamp to match Android one
             let timeStamp = Int(NSDate().timeIntervalSince1970)
@@ -334,20 +345,50 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        self.tabBarController?.tabBar.isHidden = true
-//    }
     
-    /*
-    // MARK: - Navigation
+    func getThreadIDDuringStop(completion: @escaping (_ result: Bool) -> ()) {
+        
+        //TODO: Get StopID
+        // 1. Go to officer and grab beacon id
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("officer").child("14567").child(uid!).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
+            if snapshot.hasChild("beacon_id"){
+                if let dictionary = snapshot.value as? [String: AnyObject]{
+                    let beaconId = (dictionary["beacon_id"] as? String)!
+                    print("beacon ID: ", beaconId)
+                    
+                    // 2. Go to beacons and grab stopID
+                    FIRDatabase.database().reference().child("beacons").child(beaconId).observeSingleEvent(of: .value, with: { (snapshot) in
+                        
+                        if let dictionary = snapshot.value as? [String: AnyObject]{
+                            let stopID = (dictionary["stop_id"] as? String)!
+                            print("stop ID: ", stopID)
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+                            
+                            // TODO: Get ThreadID
+                            // 1. Go under StopID and get threadID
+                            FIRDatabase.database().reference().child("stops").child(stopID).observeSingleEvent(of: .value, with: { (snapshot) in
+                                
+                                if let dictionary = snapshot.value as? [String: AnyObject]{
+                                    let thread_id = dictionary["threadID"] as? String
+                                    
+                                    self.threadID = thread_id ?? stopID
+                                    print("Thread ID: ", self.threadID)
+                                    completion(true)
+                                }
+                            }) //Closes getting ThreadID
+                        }
+                    }) //Closes getting StopID
+                }
+            }
+            else{
+                // Display that beacon is not registered
+                print("Beacon not Registered.")
+            }
+        }) //Closes getting BeaconID
+        
+        print("Thread ID Original: ", self.threadID)
+
     }
-    */
 
 }

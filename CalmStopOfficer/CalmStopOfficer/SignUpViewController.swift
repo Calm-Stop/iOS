@@ -37,8 +37,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate  {
             let ref = FIRDatabase.database().reference(fromURL: "https://calm-stop.firebaseio.com/")
             
             // TODO: Check for officer department and then insert the officer into the database
-            let usersReference = ref.child("officer").child("14567").child(uid).child("profile")
-            let values = ["first_name": nametxt, "email": emailtxt, "departmentID": departmenttxt]
+            var usersReference = ref.child("officer").child("14567").child(uid).child("profile")
+            let values = ["first_name": nametxt, "email": emailtxt, "departmentID": departmenttxt, "photo": "images/profile/default_male"]
+            
             usersReference.updateChildValues(values, withCompletionBlock: { (err,ref) in
                 if err != nil{
                     
@@ -50,6 +51,18 @@ class SignUpViewController: UIViewController, UITextFieldDelegate  {
                 print("Saved user successfully into Firebase DB")
             })
             
+            // Create ratings child
+            usersReference = ref.child("officer").child("14567").child(uid).child("ratings")
+            let ratingvalues = ["average_rating": 5.0, "number_of_ratings": 1]
+            
+            usersReference.updateChildValues(ratingvalues, withCompletionBlock: { (err,ref) in
+                if err != nil{
+                    print(err ?? "Error")
+                    return
+                }
+                
+                self.dismiss(animated: true, completion: nil)
+            })
         })
     }
     

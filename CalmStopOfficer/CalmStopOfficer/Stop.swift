@@ -16,8 +16,8 @@ class Stop: NSObject {
     var long: String?
     var officerID: String?
     var reason: String?
-    var threadID: String?
     var time: String?
+    var threadID: String?
     
     init(dictionary: [String: Any]) {
         self.citizenID = dictionary["citizenID"] as? String
@@ -26,7 +26,8 @@ class Stop: NSObject {
         self.long = dictionary["long"] as? String
         self.officerID = dictionary["officerID"] as? String
         self.reason = dictionary["reason"] as? String
-        self.threadID = dictionary["threadID"] as? String
         self.time = dictionary["time"] as? String
+        self.threadID = dictionary["threadID"] as? String
+
     }
 }

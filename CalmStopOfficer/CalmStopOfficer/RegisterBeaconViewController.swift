@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import CoreLocation
 
+
+
 class RegisterBeaconViewController: UIViewController, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
@@ -172,6 +174,7 @@ class RegisterBeaconViewController: UIViewController, CLLocationManagerDelegate,
                     let ref = FIRDatabase.database().reference().child("officer").child("14567").child(uid!).child("profile")
                     let values = ["beacon_id": beaconId] as [String : Any]
                     
+                    
                     ref.updateChildValues(values) { (error, ref) in
                         if  error != nil {
                             print(error ?? "")
@@ -180,8 +183,8 @@ class RegisterBeaconViewController: UIViewController, CLLocationManagerDelegate,
                     }
                     
                     //Register Officer under Beacons.
-                    let beaconRef = FIRDatabase.database().reference().child("beacons").child(beaconId).child("officer")
-                    let beaconValues = ["uid": uid!, "department": "14567"] as [String : Any]
+                    var beaconRef = FIRDatabase.database().reference().child("beacons").child(beaconId).child("officer")
+                    var beaconValues = ["uid": uid!, "department": "14567"] as [String : Any]
                     
                     beaconRef.updateChildValues(beaconValues) { (error, ref) in
                         if  error != nil {
@@ -189,6 +192,18 @@ class RegisterBeaconViewController: UIViewController, CLLocationManagerDelegate,
                             return
                         }
                     }
+                    
+                    // Beacon Active
+                    beaconRef = FIRDatabase.database().reference().child("beacons").child(beaconId)
+                    beaconValues = ["active": false] as [String : Any]
+                    
+                    beaconRef.updateChildValues(beaconValues) { (error, ref) in
+                        if  error != nil {
+                            print(error ?? "")
+                            return
+                        }
+                    }
+
                 })
             }
             

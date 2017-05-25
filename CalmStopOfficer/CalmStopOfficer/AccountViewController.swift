@@ -33,9 +33,11 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        profileImage.image = #imageLiteral(resourceName: "officer_jones")
-        profileImage.layer.cornerRadius = profileImage.frame.size.width/2
-        profileImage.clipsToBounds = true
+//        profileImage.image = #imageLiteral(resourceName: "officer_jones")
+//        profileImage.layer.cornerRadius = profileImage.frame.size.width/2
+//        profileImage.clipsToBounds = true
+        downloadProfileImage()
+        getOfficerInfo()
         // Do any additional setup after loading the view.
         tableView.tableFooterView = UIView()
     }
@@ -97,6 +99,44 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
      
         self.tableView.deselectRow(at: indexPath, animated: true)
+
+    }
+    
+    func downloadProfileImage(){
+        let database = FIRDatabase.database().reference()
+        let storage = FIRStorage.storage().reference()
+        let profile = storage.child("images/profile/default_male")
+        
+        
+        // Download Images
+        profile.data(withMaxSize: 1*1000*1000) { (data, error) in
+            if error == nil {
+                self.profileImage.image = UIImage(data: data!)
+                self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2
+                self.profileImage.clipsToBounds = true
+            }
+            else {
+                print(error?.localizedDescription)
+            }
+        }
+    }
+    
+    // Gets name and badge number
+    func getOfficerInfo(){
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("officer").child("14567").child(uid!).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                let first_name = (dictionary["first_name"] as? String) ?? ""
+                let last_name = (dictionary["last_name"] as? String) ?? ""
+                let badge_number = (dictionary["badge_number"] as? String) ?? ""
+
+
+                self.officerNameLabel.text = "Officer " + first_name + " " + last_name
+                self.officerBadgeLabel.text = "#" + badge_number
+            }
+            
+        })
 
     }
     

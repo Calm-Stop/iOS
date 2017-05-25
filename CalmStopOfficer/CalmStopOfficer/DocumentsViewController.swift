@@ -37,14 +37,61 @@ class DocumentsViewController: UIViewController {
         performSegue(withIdentifier: "popUpSegue", sender: self)
     }
     
+//    var tempImageRef = storage.child("images/profile/license.png")
+//    var registration = storage.child("images/profile/registration.png")
+//    var insurance = storage.child("images/profile/insurance.png")
+    
+    var licensePath = ""
+    var registrationPath = ""
+    var insurancePath = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let database = FIRDatabase.database().reference()
-        let storage = FIRStorage.storage().reference()
-        let tempImageRef = storage.child("images/profile/license.png")
-        let registration = storage.child("images/profile/registration.png")
-        let insurance = storage.child("images/profile/insurance.png")
+        self.getDocumentImagesPath{(result) -> () in
+            if result{
+                let storage = FIRStorage.storage().reference()
+                
+                let tempImageRef = storage.child(self.licensePath)
+                let registration = storage.child(self.registrationPath)
+                let insurance = storage.child(self.insurancePath)
+                
+                // Download Images
+                insurance.data(withMaxSize: 1*1000*1000) { (data, error) in
+                    if error == nil {
+                        self.insurancePhoto = UIImage(data: data!)
+                        self.insuranceButton.setBackgroundImage(self.insurancePhoto, for: .normal)
+                    }
+                    else {
+                        print(error?.localizedDescription ?? "")
+                    }
+                }
+                
+                registration.data(withMaxSize: 1*1000*1000) { (data, error) in
+                    if error == nil {
+                        self.registrationPhoto = UIImage(data: data!)
+                        //                self.registrationButton.setImage(image, for: .normal)
+                        self.registrationButton.setBackgroundImage(self.registrationPhoto, for: .normal)
+                    }
+                    else {
+                        print(error?.localizedDescription ?? "")
+                    }
+                }
+                
+                
+                tempImageRef.data(withMaxSize: 1*1000*1000) { (data, error) in
+                    if error == nil {
+                        self.driverLicensePhoto = UIImage(data: data!)
+                        self.licenseButton.setBackgroundImage(self.driverLicensePhoto, for: .normal)
+                    }
+                    else {
+                        print(error?.localizedDescription ?? "")
+                    }
+                }
+
+                
+            }
+        }
         
         // Upload
         
@@ -63,38 +110,7 @@ class DocumentsViewController: UIViewController {
 //        }
         
 
-        // Download Images
-        insurance.data(withMaxSize: 1*1000*1000) { (data, error) in
-            if error == nil {
-                self.insurancePhoto = UIImage(data: data!)
-                self.insuranceButton.setBackgroundImage(self.insurancePhoto, for: .normal)
-            }
-            else {
-                print(error?.localizedDescription)
-            }
-        }
-        
-        registration.data(withMaxSize: 1*1000*1000) { (data, error) in
-            if error == nil {
-                self.registrationPhoto = UIImage(data: data!)
-                //                self.registrationButton.setImage(image, for: .normal)
-                self.registrationButton.setBackgroundImage(self.registrationPhoto, for: .normal)
-            }
-            else {
-                print(error?.localizedDescription)
-            }
-        }
 
-
-        tempImageRef.data(withMaxSize: 1*1000*1000) { (data, error) in
-            if error == nil {
-                self.driverLicensePhoto = UIImage(data: data!)
-                self.licenseButton.setBackgroundImage(self.driverLicensePhoto, for: .normal)
-            }
-            else {
-                print(error?.localizedDescription)
-            }
-        }
 
         // Do any additional setup after loading the view.
     }
@@ -103,6 +119,20 @@ class DocumentsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func getDocumentImagesPath(completion: @escaping (_ result: Bool) -> ()){
+        FIRDatabase.database().reference().child("beacons").child(generalBeaconID).child("citizen").child("documents").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                
+                self.licensePath = (dictionary["drivers_license"] as? String) ?? ""
+                self.registrationPath = (dictionary["insurance"] as? String) ?? ""
+                self.insurancePath = (dictionary["registration"] as? String) ?? ""
+                
+                completion(true)
+            }
+        })
+    }
+    
     
 
     /*
