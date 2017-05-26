@@ -77,6 +77,7 @@ class InitialContactViewController: UIViewController {
         uploadRegistration()
         loadLicense()
         uploadLicense()
+        updateImagePaths()
     }
     
     func loadInsurance() {
@@ -247,6 +248,27 @@ class InitialContactViewController: UIViewController {
             }
             
         }
+    }
+    
+    func updateImagePaths(){
+        let beaconId = "116"
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+        FIRDatabase.database().reference().child("beacons").child(beaconId).child("citizen").child("documents").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            // send new values to firebase
+            let post = ["insurance": "images/documents/insurance/" + uid!,
+                        "license": "images/documents/license/" + uid!,
+                        "registration": "images/documents/registration/" + uid!] as [String : Any]
+            let childUpdates = ["/beacons/"+beaconId+"/citizen/documents": post]
+            ref.updateChildValues(childUpdates)
+            
+            
+        })
+        
+        print("paths updated!")
     }
 
     
