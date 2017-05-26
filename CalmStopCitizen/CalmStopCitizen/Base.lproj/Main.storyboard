@@ -463,6 +463,17 @@
                                                     <constraint firstAttribute="height" constant="128" id="Z9y-va-B8s"/>
                                                 </constraints>
                                             </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lm0-DN-apD">
+                                                <rect key="frame" x="40" y="40" width="240" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="insuranceViewBtn">
+                                                    <color key="titleColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="viewInsurance:" destination="hgM-yx-aU0" eventType="touchUpInside" id="QpO-gA-ic3"/>
+                                                </connections>
+                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Insurance" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NqW-yx-NG9">
                                                 <rect key="frame" x="116" y="8" width="89" height="24"/>
                                                 <constraints>
@@ -498,6 +509,15 @@
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Line" translatesAutoresizingMaskIntoConstraints="NO" id="g3R-xN-jxF">
                                                 <rect key="frame" x="0.0" y="223" width="320" height="1"/>
                                             </imageView>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K7T-RW-so6">
+                                                <rect key="frame" x="40" y="283" width="240" height="128"/>
+                                                <color key="backgroundColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="K7T-RW-so6" secondAttribute="height" multiplier="15:8" id="A6N-dR-YtZ"/>
+                                                    <constraint firstAttribute="width" constant="240" id="GRZ-WU-ejd"/>
+                                                    <constraint firstAttribute="height" constant="128" id="qM8-g2-2Fw"/>
+                                                </constraints>
+                                            </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Registration" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rOP-Ru-iCC" userLabel="Registration">
                                                 <rect key="frame" x="105" y="251" width="110" height="24"/>
                                                 <constraints>
@@ -508,6 +528,17 @@
                                                 <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9yF-Oy-qMs" userLabel="registrationViewBtn">
+                                                <rect key="frame" x="41" y="283" width="239" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                <state key="normal" title="registrationBtn">
+                                                    <color key="titleColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.0" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="viewRegistration:" destination="hgM-yx-aU0" eventType="touchUpInside" id="Iph-fd-RTm"/>
+                                                </connections>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HMK-js-dt5" userLabel="deleteRegistrationBtn">
                                                 <rect key="frame" x="40" y="419" width="65" height="24"/>
                                                 <constraints>
@@ -569,15 +600,6 @@
                                                     <action selector="deleteLicense:" destination="hgM-yx-aU0" eventType="touchUpInside" id="hil-Wa-lFm"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="K7T-RW-so6">
-                                                <rect key="frame" x="40" y="283" width="240" height="128"/>
-                                                <color key="backgroundColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" secondItem="K7T-RW-so6" secondAttribute="height" multiplier="15:8" id="A6N-dR-YtZ"/>
-                                                    <constraint firstAttribute="width" constant="240" id="GRZ-WU-ejd"/>
-                                                    <constraint firstAttribute="height" constant="128" id="qM8-g2-2Fw"/>
-                                                </constraints>
-                                            </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQP-4w-sJf" userLabel="uploadLicenseBtn">
                                                 <rect key="frame" x="209" y="662" width="70.5" height="24"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
@@ -588,15 +610,15 @@
                                                     <action selector="uploadLicense:" destination="hgM-yx-aU0" eventType="touchUpInside" id="0hf-84-18g"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lm0-DN-apD">
-                                                <rect key="frame" x="40" y="40" width="240" height="128"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qo7-hv-6qi">
+                                                <rect key="frame" x="41" y="526" width="239" height="128"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
-                                                <state key="normal" title="insuranceBtn">
+                                                <state key="normal" title="viewLicenseBtn">
                                                     <color key="titleColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="0.0" colorSpace="calibratedRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="viewInsurance:" destination="hgM-yx-aU0" eventType="touchUpInside" id="QpO-gA-ic3"/>
+                                                    <action selector="viewLicense:" destination="hgM-yx-aU0" eventType="touchUpInside" id="Sv8-mX-sg2"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -693,6 +715,8 @@
                         <outlet property="uploadRegistrationBtn" destination="r2h-yW-ome" id="fiZ-FQ-93C"/>
                         <outlet property="viewInsurance" destination="g1z-Xs-Z7T" id="osH-23-m5e"/>
                         <outlet property="viewInsuranceBtn" destination="Lm0-DN-apD" id="u5v-kF-EA7"/>
+                        <outlet property="viewLicenseBtn" destination="Qo7-hv-6qi" id="glg-Oo-9Gy"/>
+                        <outlet property="viewRegistrationBtn" destination="9yF-Oy-qMs" id="iPY-Sw-9Av"/>
                         <segue destination="vJC-LL-G9i" kind="presentation" identifier="popUpSegue" id="nY8-RL-yvL"/>
                     </connections>
                 </viewController>
@@ -1182,6 +1206,14 @@
                                     <action selector="ClosePopUp:" destination="vJC-LL-G9i" eventType="touchUpInside" id="os8-lW-MCs"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Zh-ku-rc7" userLabel="closeButton">
+                                <rect key="frame" x="274" y="20" width="30" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="Close"/>
+                                <connections>
+                                    <action selector="ClosePopUp:" destination="vJC-LL-G9i" eventType="touchUpInside" id="1w9-ab-Cnd"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.79987157529999997" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -1200,12 +1232,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rfD-hW-SRD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3021" y="-1455"/>
+            <point key="canvasLocation" x="3020.625" y="-1455.6338028169014"/>
         </scene>
     </scenes>
     <resources>
         <image name="BlueButton" width="308" height="42"/>
         <image name="BookMarkRibbon" width="12" height="20"/>
+        <image name="Close" width="28" height="28"/>
         <image name="HelpBtn" width="21" height="21"/>
         <image name="HomePagePlaceholder" width="375" height="274"/>
         <image name="HomePagePlaceholder2" width="110" height="74"/>

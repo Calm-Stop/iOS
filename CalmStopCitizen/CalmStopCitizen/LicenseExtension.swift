@@ -113,6 +113,8 @@ extension DocumentsViewController {
     }
     
     @IBAction func viewLicense(_ sender: Any) {
+        photo = viewLicenseBtn.backgroundImage(for: .normal)
+        performSegue(withIdentifier: "popUpSegue", sender: self)
     }
     
     func loadLicense() {
@@ -133,14 +135,14 @@ extension DocumentsViewController {
                     
                     if let imageData = result.value(forKey: "licenseImage") as? NSData {
                         if let image = UIImage(data: imageData as Data) {
-                            licenseImageView.image = image
+                            self.viewLicenseBtn.setBackgroundImage(image, for: .normal)
                         }
                     }
                 }
                 
             } else {
                 print("Profile : No data found")
-                licenseImageView.image = nil
+                self.viewLicenseBtn.setBackgroundImage(nil, for: .normal)
             }
         } catch {
             
