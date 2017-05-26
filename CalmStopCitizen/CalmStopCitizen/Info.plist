@@ -2,8 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Detect Beacon</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>iBeacon Enabled</string>
 	<key>CFBundleDisplayName</key>
 	<string>Calm Stop</string>
 	<key>CFBundleExecutable</key>
@@ -23,9 +27,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>"Enable camera usage to take photos of your documents."</string>
+	<string>&quot;Enable camera usage to take photos of your documents.&quot;</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>"Enable photo library access to upload images of your documents."</string>
+	<string>&quot;Enable photo library access to upload images of your documents.&quot;</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
