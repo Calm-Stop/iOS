@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import CoreData
 
+var photo: UIImage?
+
 class DocumentsViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIAlertViewDelegate, UIPopoverControllerDelegate {
     
     // insurance outlets
@@ -18,10 +20,12 @@ class DocumentsViewController: UIViewController, UIImagePickerControllerDelegate
     @IBOutlet weak var uploadInsuranceBtn: UIButton!
     
     // registration outlets
+    @IBOutlet weak var viewRegistrationBtn: UIButton!
     @IBOutlet weak var registrationImageView: UIImageView!
     @IBOutlet weak var uploadRegistrationBtn: UIButton!
     
     // license outlets
+    @IBOutlet weak var viewLicenseBtn: UIButton!
     @IBOutlet weak var licenseImageView: UIImageView!
     @IBOutlet weak var uploadLicenseBtn: UIButton!
     
@@ -36,6 +40,7 @@ class DocumentsViewController: UIViewController, UIImagePickerControllerDelegate
         
         loadInsurance()
         loadRegistration()
+        loadLicense()
         uploadRegistrationBtn.isEnabled = true
 
     }

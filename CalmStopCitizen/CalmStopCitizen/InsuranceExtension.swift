@@ -111,6 +111,8 @@ extension DocumentsViewController {
     }
     
     @IBAction func viewInsurance(_ sender: Any) {
+        photo = viewInsuranceBtn.backgroundImage(for: .normal)
+        performSegue(withIdentifier: "popUpSegue", sender: self)
     }
     
     func loadInsurance() {
@@ -132,14 +134,14 @@ extension DocumentsViewController {
                     
                     if let imageData = result.value(forKey: "insuranceImage") as? NSData {
                         if let image = UIImage(data: imageData as Data) {
-                            viewInsurance.image = image
+                            self.viewInsuranceBtn.setBackgroundImage(image, for: .normal)
                         }
                     }
                 }
                 
             } else {
                 print("Profile : No data found")
-                viewInsurance.image = nil
+                self.viewInsuranceBtn.setBackgroundImage(nil, for: .normal)
             }
         } catch {
             

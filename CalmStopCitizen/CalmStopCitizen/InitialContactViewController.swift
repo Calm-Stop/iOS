@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import CoreData
 
 class InitialContactViewController: UIViewController {
     
@@ -17,6 +18,11 @@ class InitialContactViewController: UIViewController {
     @IBOutlet weak var deptNumberLabel: UILabel!
     @IBOutlet weak var requestText: UITextView!
     @IBOutlet weak var officerImageView: UIImageView!
+    
+    // Document variables
+    var insuranceImage: UIImage!
+    var registrationImage: UIImage!
+    var licenseImage: UIImage!
 
 
     override func viewDidLoad() {
@@ -64,6 +70,207 @@ class InitialContactViewController: UIViewController {
 
     }
     
+    @IBAction func sendDocuments(_ sender: UIButton) {
+        loadInsurance()
+        uploadInsurance()
+        loadRegistration()
+        uploadRegistration()
+        loadLicense()
+        uploadLicense()
+        updateImagePaths()
+    }
+    
+    func loadInsurance() {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Insurance")
+        
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            
+            let results = try context.fetch(request)
+            
+            if results.count > 0 {
+                
+                print("Insurance Image found!")
+                
+                for result in results as! [NSManagedObject] {
+                    
+                    if let imageData = result.value(forKey: "insuranceImage") as? NSData {
+                        if let image = UIImage(data: imageData as Data) {
+                            insuranceImage = image
+                        }
+                    }
+                }
+                
+            } else {
+                print("Profile : No data found")
+                insuranceImage = nil
+            }
+        } catch {
+            
+            print ("Error Loading")
+        }
+    }
+    
+    func uploadInsurance() {
+        // Upload
+        
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        let storage = FIRStorage.storage().reference()
+        
+        let tempImageRef = storage.child("images/documents/insurance/" + uid!)
+        
+        let metaData = FIRStorageMetadata()
+        metaData.contentType = "image/png"
+        
+        tempImageRef.put(UIImagePNGRepresentation(insuranceImage)!, metadata: metaData) { (data, error) in
+            if error == nil {
+                print("Upload successful")
+            }
+            else{
+                print(error)
+            }
+            
+        }
+    }
+    
+    func loadRegistration() {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Registration")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            
+            let results = try context.fetch(request)
+            
+            if results.count > 0 {
+                
+                print("Registration Image found!")
+                
+                for result in results as! [NSManagedObject] {
+                    
+                    if let imageData = result.value(forKey: "registrationImage") as? NSData {
+                        if let image = UIImage(data: imageData as Data) {
+                            registrationImage = image
+                        }
+                    }
+                }
+                
+            } else {
+                print("Profile : No data found")
+                registrationImage = nil
+            }
+        } catch {
+            
+            print ("Error Loading")
+        }
+
+    }
+    
+    func uploadRegistration() {
+        // Upload
+        
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        let storage = FIRStorage.storage().reference()
+        
+        let tempImageRef = storage.child("images/documents/registration/" + uid!)
+        
+        let metaData = FIRStorageMetadata()
+        metaData.contentType = "image/png"
+        
+        tempImageRef.put(UIImagePNGRepresentation(registrationImage)!, metadata: metaData) { (data, error) in
+            if error == nil {
+                print("Upload successful")
+            }
+            else{
+                print(error)
+            }
+            
+        }
+    }
+    
+    func loadLicense() {
+        let app = UIApplication.shared.delegate as! AppDelegate
+        let context = app.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "License")
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            
+            let results = try context.fetch(request)
+            
+            if results.count > 0 {
+                
+                print("License Image found!")
+                
+                for result in results as! [NSManagedObject] {
+                    
+                    if let imageData = result.value(forKey: "licenseImage") as? NSData {
+                        if let image = UIImage(data: imageData as Data) {
+                            licenseImage = image
+                        }
+                    }
+                }
+                
+            } else {
+                print("Profile : No data found")
+                licenseImage = nil
+            }
+        } catch {
+            
+            print ("Error Loading")
+        }
+    }
+    
+    func uploadLicense() {
+        // Upload
+        
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        let storage = FIRStorage.storage().reference()
+        
+        let tempImageRef = storage.child("images/documents/license/" + uid!)
+        
+        let metaData = FIRStorageMetadata()
+        metaData.contentType = "image/png"
+        
+        tempImageRef.put(UIImagePNGRepresentation(licenseImage)!, metadata: metaData) { (data, error) in
+            if error == nil {
+                print("Upload successful")
+            }
+            else{
+                print(error)
+            }
+            
+        }
+    }
+    
+    func updateImagePaths(){
+        let beaconId = "116"
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+        FIRDatabase.database().reference().child("beacons").child(beaconId).child("citizen").child("documents").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            // send new values to firebase
+            let post = ["insurance": "images/documents/insurance/" + uid!,
+                        "license": "images/documents/license/" + uid!,
+                        "registration": "images/documents/registration/" + uid!] as [String : Any]
+            let childUpdates = ["/beacons/"+beaconId+"/citizen/documents": post]
+            ref.updateChildValues(childUpdates)
+            
+            
+        })
+        
+        print("paths updated!")
+    }
+
     
 }
 

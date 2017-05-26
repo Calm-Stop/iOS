@@ -24,6 +24,7 @@
 		B060BD471EA9388400C62365 /* zipCodeTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060BD461EA9388400C62365 /* zipCodeTextFieldDelegate.swift */; };
 		B060BD491EA938A300C62365 /* phoneNumberTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060BD481EA938A300C62365 /* phoneNumberTextFieldDelegate.swift */; };
 		B06CBD351ECA7F81002F6CA6 /* LicenseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06CBD341ECA7F81002F6CA6 /* LicenseExtension.swift */; };
+		B07805131ED79ABE00DB1EF9 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07805121ED79ABE00DB1EF9 /* PopUpViewController.swift */; };
 		B094EDE81EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B094EDE61EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodeld */; };
 		B09D3FC61EC4E7270011D84C /* InsuranceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D3FC51EC4E7270011D84C /* InsuranceExtension.swift */; };
 		B09D3FC81EC4E8AD0011D84C /* RegistrationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D3FC71EC4E8AD0011D84C /* RegistrationExtension.swift */; };
@@ -68,6 +69,7 @@
 		B060BD461EA9388400C62365 /* zipCodeTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = zipCodeTextFieldDelegate.swift; sourceTree = "<group>"; };
 		B060BD481EA938A300C62365 /* phoneNumberTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = phoneNumberTextFieldDelegate.swift; sourceTree = "<group>"; };
 		B06CBD341ECA7F81002F6CA6 /* LicenseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicenseExtension.swift; sourceTree = "<group>"; };
+		B07805121ED79ABE00DB1EF9 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		B094EDE71EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CalmStopCitizen.xcdatamodel; sourceTree = "<group>"; };
 		B09D3FC51EC4E7270011D84C /* InsuranceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsuranceExtension.swift; sourceTree = "<group>"; };
 		B09D3FC71EC4E8AD0011D84C /* RegistrationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationExtension.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 				B00C13431EB28557008BEE59 /* ChatViewController.swift */,
 				B00C13451EB28574008BEE59 /* Message.swift */,
 				B00C13471EB28597008BEE59 /* ChatMessageCell.swift */,
+				B07805121ED79ABE00DB1EF9 /* PopUpViewController.swift */,
 				B0B94C831EAE8176000ABE8F /* SurveyViewController.swift */,
 				B03BD43A1E8030800037E86A /* Main.storyboard */,
 				B03BD43D1E8030800037E86A /* Assets.xcassets */,
@@ -247,7 +250,7 @@
 				TargetAttributes = {
 					B03BD4321E8030800037E86A = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 6P29MLAXD8;
+						DevelopmentTeam = YJUP7QAXXH;
 						ProvisioningStyle = Automatic;
 					};
 					B03BD4461E8030800037E86A = {
@@ -406,6 +409,7 @@
 				B0EE2AF11E9F0CB10081B325 /* SignUpViewController.swift in Sources */,
 				B060BD471EA9388400C62365 /* zipCodeTextFieldDelegate.swift in Sources */,
 				B03BD4391E8030800037E86A /* SignInViewController.swift in Sources */,
+				B07805131ED79ABE00DB1EF9 /* PopUpViewController.swift in Sources */,
 				B0D8E9F91ECB5C3300EC9A7D /* InitialContactViewController.swift in Sources */,
 				B0B94C841EAE8176000ABE8F /* SurveyViewController.swift in Sources */,
 				B04160A71EBCEDF700E86884 /* DocumentsViewController.swift in Sources */,
@@ -551,11 +555,11 @@
 			baseConfigurationReference = 342DF01CC4EAC5B2BEF6CA5C /* Pods-CalmStopCitizen.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6P29MLAXD8;
+				DEVELOPMENT_TEAM = YJUP7QAXXH;
 				INFOPLIST_FILE = CalmStopCitizen/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.CalmStop.CalmStopCitizen1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CalmStop.CalmStopCitizen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -566,11 +570,11 @@
 			baseConfigurationReference = F7D9879389710FD0992E54BD /* Pods-CalmStopCitizen.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6P29MLAXD8;
+				DEVELOPMENT_TEAM = YJUP7QAXXH;
 				INFOPLIST_FILE = CalmStopCitizen/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.CalmStop.CalmStopCitizen1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CalmStop.CalmStopCitizen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
