@@ -298,7 +298,7 @@
         <!--Home Page View Controller-->
         <scene sceneID="s6T-vm-7Lx">
             <objects>
-                <viewController title="Home Page View Controller" id="z2b-aU-Pla" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="home" title="Home Page View Controller" id="z2b-aU-Pla" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wRI-bK-Tfi"/>
                         <viewControllerLayoutGuide type="bottom" id="u56-Op-vsz"/>
