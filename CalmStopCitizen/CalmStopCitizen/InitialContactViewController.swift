@@ -12,6 +12,8 @@ import CoreData
 
 class InitialContactViewController: UIViewController {
     
+    
+    
     // MARK: Outlets
     @IBOutlet weak var officerNameLabel: UILabel!
     @IBOutlet weak var badgeNumberLabel: UILabel!
@@ -24,20 +26,127 @@ class InitialContactViewController: UIViewController {
     var registrationImage: UIImage!
     var licenseImage: UIImage!
 
+    // Stop_id
+    // var stop_id: String!
+    
+    // Officer variables
+    var officerUID: String!
+    var officerDept: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // Get a reference to the storage service using the default Firebase App
-        loadOfficerInfo()
+        beaconIDString = "65535"
+        checkIfUserIsLoggedIn()
+        loadStopId()
+        updateCitizenChild()
     }
     
-    func loadOfficerInfo() {
-        // hard-coded officer ID
-        let officerUID = "Tl4pCcIjlxTXQgCcoLp4IB4Hzti2"
-        let officerDept = "14567"
+    func checkIfUserIsLoggedIn(){
+        if FIRAuth.auth()?.currentUser?.uid == nil {
+            print("Not logged in!")
+        } else {
+            let uid = FIRAuth.auth()?.currentUser?.uid
+            let beaconId = beaconIDString
+            var officerUid = "id"
+            var officerDept = "dept"
+            print("BeaconID: ", beaconId)
+            
+            FIRDatabase.database().reference().child("beacons").child(beaconId).child("officer").observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let dictionary = snapshot.value as? [String: AnyObject]{
+                    officerUid = (dictionary["uid"] as? String)!
+                    officerDept = ( dictionary["department"] as? String)!
+                    //Check for id
+                    FIRDatabase.database().reference().child("officer").child(officerDept).child(officerUid).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
+                        
+                        if let dictionary = snapshot.value as? [String: AnyObject]{
+                            let first_name = (dictionary["first_name"] as? String)!
+                            let last_name = (dictionary["last_name"] as? String)!
+                            let badge_number = (dictionary["badge_number"] as? String)!
+                            let photoRef = dictionary["photo"] as? String
+
+                            
+                            // fill out view with info from database
+                            self.officerNameLabel.text = "Officer " + first_name + " " + last_name
+                            self.badgeNumberLabel.text = "Badge #" + badge_number
+                            self.deptNumberLabel.text = "Dept #" + officerDept
+                            self.requestText.text = "Officer " + last_name + " has made a traffic stop and is requesting the license, insurance, and vehicle registration from the driver."
+                            
+                            //download image from firebase
+                            let storage = FIRStorage.storage().reference()
+                            let officerPhoto = storage.child(photoRef!)
+                            officerPhoto.data(withMaxSize: 1*1000*1000) { (data, error) in
+                                if error == nil {
+                                    self.officerImageView.image = UIImage(data: data!)
+                                }
+                                else {
+                                    print(error?.localizedDescription)
+                                }
+                            }
+                        }
+                        
+                        print (snapshot)
+                    })
+                }
+                print (snapshot)
+            })
+            
+            print("got officer info")
+        }
+    }
     
-        FIRDatabase.database().reference().child("officer").child(officerDept).child(officerUID).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
+    func loadStopId() {
+        
+    }
+    
+    func updateCitizenChild() {
+        var ref: FIRDatabaseReference!
+        ref = FIRDatabase.database().reference()
+        
+        let uid = FIRAuth.auth()?.currentUser?.uid
+
+        // send new values to firebase
+        let post = ["uid": uid] as [String : Any]
+        let childUpdates = ["/beacons/"+beaconIDString+"/citizen": post]
+        ref.updateChildValues(childUpdates)
+        
+    }
+    
+    func loadOfficerUid() -> String {
+        var id = String()
+        // load officer Id using beacon id
+        FIRDatabase.database().reference().child("beacons").child(beaconIDString).child("officer").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                // print(dictionary)
+                id = (dictionary["uid"] as? String)!
+            }
+        })
+        print(id)
+        return(id)
+    }
+    
+    func loadOfficerDept() -> String {
+        var dept = String()
+        // load officer Id using beacon id
+        FIRDatabase.database().reference().child("beacons").child(beaconIDString).child("officer").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                // print(dictionary)
+                dept = (dictionary["department"] as? String)!
+            }
+        })
+        print(dept)
+        return(dept)
+    }
+    
+    func loadOfficerInfo(uid: String, deptNumber: String) {
+        print(uid)
+        print(deptNumber)
+        
+        // load officer info from officer uid
+        
+        FIRDatabase.database().reference().child("officer").child(self.officerDept).child(self.officerUID).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject]{
                 print(dictionary)
                 let firstName = dictionary["first_name"] as? String
@@ -117,25 +226,34 @@ class InitialContactViewController: UIViewController {
     func uploadInsurance() {
         // Upload
         
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        
-        let storage = FIRStorage.storage().reference()
-        
-        let tempImageRef = storage.child("images/documents/insurance/" + uid!)
-        
-        let metaData = FIRStorageMetadata()
-        metaData.contentType = "image/png"
-        
-        tempImageRef.put(UIImagePNGRepresentation(insuranceImage)!, metadata: metaData) { (data, error) in
-            if error == nil {
-                print("Upload successful")
+        FIRDatabase.database().reference().child("beacons").child(beaconIDString).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                let stop_id = (dictionary["stop_id"] as? String)!
+                print(stop_id)
+                
+                let uid = FIRAuth.auth()?.currentUser?.uid
+                
+                let storage = FIRStorage.storage().reference()
+                
+                let tempImageRef = storage.child(stop_id+"/insurance")
+                
+                let metaData = FIRStorageMetadata()
+                metaData.contentType = "image/png"
+                
+                tempImageRef.put(UIImagePNGRepresentation(self.insuranceImage)!, metadata: metaData) { (data, error) in
+                    if error == nil {
+                        print("Upload successful")
+                    }
+                    else{
+                        print(error)
+                    }
+                    
+                }
+
             }
-            else{
-                print(error)
+        })
+        
             }
-            
-        }
-    }
     
     func loadRegistration() {
         let app = UIApplication.shared.delegate as! AppDelegate
@@ -174,24 +292,32 @@ class InitialContactViewController: UIViewController {
     func uploadRegistration() {
         // Upload
         
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        
-        let storage = FIRStorage.storage().reference()
-        
-        let tempImageRef = storage.child("images/documents/registration/" + uid!)
-        
-        let metaData = FIRStorageMetadata()
-        metaData.contentType = "image/png"
-        
-        tempImageRef.put(UIImagePNGRepresentation(registrationImage)!, metadata: metaData) { (data, error) in
-            if error == nil {
-                print("Upload successful")
+        FIRDatabase.database().reference().child("beacons").child(beaconIDString).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                let stop_id = (dictionary["stop_id"] as? String)!
+                
+                let uid = FIRAuth.auth()?.currentUser?.uid
+                
+                let storage = FIRStorage.storage().reference()
+                
+                let tempImageRef = storage.child(stop_id+"/registration")
+                
+                let metaData = FIRStorageMetadata()
+                metaData.contentType = "image/png"
+                
+                tempImageRef.put(UIImagePNGRepresentation(self.registrationImage)!, metadata: metaData) { (data, error) in
+                    if error == nil {
+                        print("Upload successful")
+                    }
+                    else{
+                        print(error)
+                    }
+                    
+                }
+                
             }
-            else{
-                print(error)
-            }
-            
-        }
+        })
+        
     }
     
     func loadLicense() {
@@ -230,40 +356,50 @@ class InitialContactViewController: UIViewController {
     func uploadLicense() {
         // Upload
         
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        
-        let storage = FIRStorage.storage().reference()
-        
-        let tempImageRef = storage.child("images/documents/license/" + uid!)
-        
-        let metaData = FIRStorageMetadata()
-        metaData.contentType = "image/png"
-        
-        tempImageRef.put(UIImagePNGRepresentation(licenseImage)!, metadata: metaData) { (data, error) in
-            if error == nil {
-                print("Upload successful")
+        FIRDatabase.database().reference().child("beacons").child(beaconIDString).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                let stop_id = (dictionary["stop_id"] as? String)!
+                
+                let uid = FIRAuth.auth()?.currentUser?.uid
+                
+                let storage = FIRStorage.storage().reference()
+                
+                let tempImageRef = storage.child(stop_id+"/license")
+                
+                let metaData = FIRStorageMetadata()
+                metaData.contentType = "image/png"
+                
+                tempImageRef.put(UIImagePNGRepresentation(self.licenseImage)!, metadata: metaData) { (data, error) in
+                    if error == nil {
+                        print("Upload successful")
+                    }
+                    else{
+                        print(error)
+                    }
+                    
+                }
+                
             }
-            else{
-                print(error)
-            }
-            
-        }
+        })
+        
     }
-    
-    func updateImagePaths(){
-        let beaconId = "116"
-        let uid = FIRAuth.auth()?.currentUser?.uid
         
-        var ref: FIRDatabaseReference!
-        ref = FIRDatabase.database().reference()
-        FIRDatabase.database().reference().child("beacons").child(beaconId).child("citizen").child("documents").observeSingleEvent(of: .value, with: { (snapshot) in
+    func updateImagePaths(){
+        FIRDatabase.database().reference().child("beacons").child(beaconIDString).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                let stop_id = (dictionary["stop_id"] as? String)!
+                let uid = FIRAuth.auth()?.currentUser?.uid
+        
+                var ref: FIRDatabaseReference!
+                ref = FIRDatabase.database().reference()
+                FIRDatabase.database().reference().child("beacons").child(beaconIDString).child("citizen").child("documents").observeSingleEvent(of: .value, with: { (snapshot) in
             
-            // send new values to firebase
-            let post = ["insurance": "images/documents/insurance/" + uid!,
-                        "license": "images/documents/license/" + uid!,
-                        "registration": "images/documents/registration/" + uid!] as [String : Any]
-            let childUpdates = ["/beacons/"+beaconId+"/citizen/documents": post]
-            ref.updateChildValues(childUpdates)
+                    // send new values to firebase
+                    let post = ["insurance": stop_id+"/insurance",
+                                "license": stop_id+"/license",
+                                "registration": stop_id+"/registration"] as [String : Any]
+                    let childUpdates = ["/beacons/"+beaconIDString+"/citizen/documents": post]
+                    ref.updateChildValues(childUpdates)
             
             
         })
@@ -271,6 +407,9 @@ class InitialContactViewController: UIViewController {
         print("paths updated!")
     }
 
+        })
+    }
+    
     
 }
 
