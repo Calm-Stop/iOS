@@ -42,6 +42,10 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
         submitCommentsButton.isEnabled = false
     }
     
+    @IBAction func submitComplaintButtonTapped(){
+        UIApplication.shared.openURL(URL(string: "http://www.cityofsantacruz.com/departments/police/how-do-i/obtain-a-citizen-comment-form")!)
+    }
+    
 
 
 }
