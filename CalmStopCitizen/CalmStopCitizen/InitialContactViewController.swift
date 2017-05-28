@@ -38,8 +38,9 @@ class InitialContactViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         // Get a reference to the storage service using the default Firebase App
         beaconIDString = "65535"
+        officerImageView.layer.cornerRadius = self.officerImageView.frame.width/2
+        officerImageView.clipsToBounds = true
         checkIfUserIsLoggedIn()
-        loadStopId()
         updateCitizenChild()
     }
     
@@ -97,9 +98,7 @@ class InitialContactViewController: UIViewController {
         }
     }
     
-    func loadStopId() {
-        
-    }
+
     
     func updateCitizenChild() {
         var ref: FIRDatabaseReference!
