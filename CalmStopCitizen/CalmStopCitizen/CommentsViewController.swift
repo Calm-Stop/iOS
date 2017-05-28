@@ -18,6 +18,7 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        beaconIDString = "65535"
         submitCommentsButton.isEnabled = false
         commentsBox.delegate = self
     }
@@ -28,15 +29,27 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
     }
     
     @IBAction func submitCommentsButtonTapped(_ sender: UIButton) {
-        var ref: FIRDatabaseReference!
-        ref = FIRDatabase.database().reference()
         
-        let key = ref.child("officer").child("14567").child("Tl4pCcIjlxTXQgCcoLp4IB4Hzti2").child("comments").childByAutoId().key
+        let beaconId = beaconIDString
+        var officerUid = "id"
+        var officerDept = "dept"
+        FIRDatabase.database().reference().child("beacons").child(beaconId).child("officer").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                officerUid = (dictionary["uid"] as? String)!
+                officerDept = ( dictionary["department"] as? String)!
+                
+                var ref: FIRDatabaseReference!
+                ref = FIRDatabase.database().reference()
         
-        // send new values to firebase
-        let post = ["text": commentsBox.text] as [String : Any]
-        let childUpdates = ["/officer/14567/Tl4pCcIjlxTXQgCcoLp4IB4Hzti2/comments/\(key)": post]
-        ref.updateChildValues(childUpdates)
+                let key = ref.child("officer").child("14567").child("Tl4pCcIjlxTXQgCcoLp4IB4Hzti2").child("comments").childByAutoId().key
+        
+                // send new values to firebase
+                let post = ["text": self.commentsBox.text] as [String : Any]
+                let childUpdates = ["/officer/"+officerDept+"/"+officerUid+"/comments/\(key)": post]
+                ref.updateChildValues(childUpdates)
+            }
+        })
 
         commentsBox.isEditable = false
         submitCommentsButton.isEnabled = false
