@@ -16,7 +16,7 @@
         <!--Sign In View Controller Scene-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Sign In View Controller Scene" id="BYZ-38-t0r" customClass="SignInViewController" customModule="CalmStopCitizen" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="initialScreenVC" title="Sign In View Controller Scene" id="BYZ-38-t0r" customClass="SignInViewController" customModule="CalmStopCitizen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -298,7 +298,7 @@
         <!--Home Page View Controller-->
         <scene sceneID="s6T-vm-7Lx">
             <objects>
-                <viewController storyboardIdentifier="home" title="Home Page View Controller" id="z2b-aU-Pla" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="home" title="Home Page View Controller" id="z2b-aU-Pla" customClass="HomeViewController" customModule="CalmStopCitizen" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wRI-bK-Tfi"/>
                         <viewControllerLayoutGuide type="bottom" id="u56-Op-vsz"/>
@@ -325,18 +325,18 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="HomePagePlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="s7w-0o-5Uq">
-                                <rect key="frame" x="-4" y="185" width="379" height="213"/>
+                                <rect key="frame" x="-4" y="214" width="327" height="184"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="App Reduces Number of Violent Stops" translatesAutoresizingMaskIntoConstraints="NO" id="yyX-jW-zFY">
-                                <rect key="frame" x="16" y="407" width="339" height="40"/>
+                                <rect key="frame" x="16" y="410" width="302" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-DemiBold" family="Avenir Next Condensed" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W4q-w9-Ax6">
-                                <rect key="frame" x="16" y="445" width="336" height="69"/>
+                                <rect key="frame" x="16" y="456" width="284" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -431,7 +431,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2LM-g4-32b">
-                                <rect key="frame" x="45" y="119" width="107" height="30"/>
+                                <rect key="frame" x="16" y="119" width="107" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.50196081400000003" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="PROFILE">
@@ -439,6 +439,17 @@
                                 </state>
                                 <connections>
                                     <segue destination="Arr-H5-Uii" kind="show" id="5uq-2W-hF3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5N2-lw-RRa">
+                                <rect key="frame" x="16" y="157" width="75" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="0.80000001190000003" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="SIGN OUT">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="signOutTapped:" destination="z2b-aU-Pla" eventType="touchUpInside" id="YzY-i7-F3O"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1611,7 +1622,7 @@
                                                 <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gBi-9A-mcC" userLabel="language">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gBi-9A-mcC" userLabel="birthdate">
                                                 <rect key="frame" x="18" y="267" width="283" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
@@ -1625,14 +1636,14 @@
                                                 <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9jC-rr-VFM" userLabel="language">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9jC-rr-VFM" userLabel="gender">
                                                 <rect key="frame" x="18" y="316" width="283" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gender" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORp-ND-oN5">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ethnicity" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORp-ND-oN5">
                                                 <rect key="frame" x="18" y="345" width="206" height="23"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="16"/>
@@ -1653,6 +1664,9 @@
                                                 <state key="normal" title="Update Profile" backgroundImage="BlueButton">
                                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="updateProfileBtn:" destination="lNf-Vf-9Gp" eventType="touchUpInside" id="VnC-BN-NrS"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1689,12 +1703,16 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="Close"/>
                                         <connections>
+                                            <action selector="dismissBtnTapped:" destination="lNf-Vf-9Gp" eventType="touchUpInside" id="hOZ-tW-xbF"/>
                                             <segue destination="Arr-H5-Uii" kind="presentation" id="z6f-MG-0uj"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9v-8V-hQe">
                                         <rect key="frame" x="111" y="18" width="99" height="98"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="imageBtnPressed:" destination="lNf-Vf-9Gp" eventType="touchUpInside" id="9RM-MP-vTT"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83x-sg-mSl">
                                         <rect key="frame" x="122" y="115" width="74" height="30"/>
@@ -1702,6 +1720,9 @@
                                         <state key="normal" title="Change">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="changeButtonPressed:" destination="lNf-Vf-9Gp" eventType="touchUpInside" id="yCQ-ud-Iti"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.012425323950000001" green="0.077955298130000003" blue="0.20756524800000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1729,10 +1750,38 @@
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="700"/>
+                    <connections>
+                        <outlet property="birthdateField" destination="gBi-9A-mcC" id="guy-EL-R2q"/>
+                        <outlet property="ethnicityField" destination="Q7e-S8-wm2" id="SAM-Pi-fkb"/>
+                        <outlet property="firstNameField" destination="OAu-VT-TSL" id="yWf-wl-qsk"/>
+                        <outlet property="genderField" destination="9jC-rr-VFM" id="KiC-0g-YdD"/>
+                        <outlet property="languageField" destination="jGi-m1-pNv" id="ris-cL-Ub9"/>
+                        <outlet property="lastNameField" destination="g1y-Tj-1bZ" id="LTL-lJ-lPt"/>
+                        <outlet property="phoneNumberField" destination="I2n-BT-czx" id="dh5-86-H4e"/>
+                        <outlet property="profileImageView" destination="N3n-rN-hh9" id="2Qe-ax-blh"/>
+                        <outlet property="zipcodeField" destination="xGg-qi-Dfj" id="0f2-TR-Wy7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Js-Om-X6c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3697.5" y="1160.9154929577464"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ZlN-xY-8SJ">
+            <objects>
+                <viewController id="yZP-iW-FJV" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="yaO-2t-7SK"/>
+                        <viewControllerLayoutGuide type="bottom" id="OxY-jy-13o"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="IIc-YN-L0S">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xGI-2Y-ldP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
         </scene>
     </scenes>
     <resources>
@@ -1756,7 +1805,7 @@
         <image name="uploadBtn" width="13" height="19"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="n86-kh-Hw8"/>
-        <segue reference="z6f-MG-0uj"/>
+        <segue reference="zfD-y4-Fdx"/>
+        <segue reference="5uq-2W-hF3"/>
     </inferredMetricsTieBreakers>
 </document>
