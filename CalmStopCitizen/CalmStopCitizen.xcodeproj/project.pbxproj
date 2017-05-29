@@ -31,6 +31,7 @@
 		B094EDE81EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B094EDE61EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodeld */; };
 		B09D3FC61EC4E7270011D84C /* InsuranceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D3FC51EC4E7270011D84C /* InsuranceExtension.swift */; };
 		B09D3FC81EC4E8AD0011D84C /* RegistrationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D3FC71EC4E8AD0011D84C /* RegistrationExtension.swift */; };
+		B0AB5C411EDCD80100199CA4 /* ReasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AB5C401EDCD80100199CA4 /* ReasonViewController.swift */; };
 		B0B94C841EAE8176000ABE8F /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B94C831EAE8176000ABE8F /* SurveyViewController.swift */; };
 		B0BDE6981EDB690A00912C34 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BDE6961EDB68AA00912C34 /* ProfileViewController.swift */; };
 		B0BDE69A1EDB794700912C34 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BDE6991EDB794700912C34 /* EditProfileViewController.swift */; };
@@ -84,6 +85,7 @@
 		B094EDE71EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CalmStopCitizen.xcdatamodel; sourceTree = "<group>"; };
 		B09D3FC51EC4E7270011D84C /* InsuranceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsuranceExtension.swift; sourceTree = "<group>"; };
 		B09D3FC71EC4E8AD0011D84C /* RegistrationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationExtension.swift; sourceTree = "<group>"; };
+		B0AB5C401EDCD80100199CA4 /* ReasonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReasonViewController.swift; sourceTree = "<group>"; };
 		B0B94C831EAE8176000ABE8F /* SurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
 		B0BDE6961EDB68AA00912C34 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		B0BDE6991EDB794700912C34 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				B07805121ED79ABE00DB1EF9 /* PopUpViewController.swift */,
 				B0B94C831EAE8176000ABE8F /* SurveyViewController.swift */,
 				B03BD43A1E8030800037E86A /* Main.storyboard */,
+				B0AB5C401EDCD80100199CA4 /* ReasonViewController.swift */,
 				B0BDE69D1EDBA39600912C34 /* StopTableViewController.swift */,
 				B0BDE69F1EDBA3BA00912C34 /* StopDetailsViewController.swift */,
 				B0BDE6991EDB794700912C34 /* EditProfileViewController.swift */,
@@ -457,6 +460,7 @@
 				B03BD4391E8030800037E86A /* SignInViewController.swift in Sources */,
 				B07805131ED79ABE00DB1EF9 /* PopUpViewController.swift in Sources */,
 				B06B9F1E1EDBA93300FE5DD8 /* Stop.swift in Sources */,
+				B0AB5C411EDCD80100199CA4 /* ReasonViewController.swift in Sources */,
 				B0D8E9F91ECB5C3300EC9A7D /* InitialContactViewController.swift in Sources */,
 				B0B94C841EAE8176000ABE8F /* SurveyViewController.swift in Sources */,
 				B0BDE69C1EDB80A400912C34 /* HomeViewController.swift in Sources */,
