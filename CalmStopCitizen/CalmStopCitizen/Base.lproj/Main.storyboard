@@ -1599,7 +1599,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" keyboardType="numberPad"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Preferred Language" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bUo-hU-QJj">
                                                 <rect key="frame" x="19" y="197" width="179" height="23"/>
@@ -1627,7 +1627,10 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation"/>
+                                                <connections>
+                                                    <action selector="birthdateEditing:" destination="lNf-Vf-9Gp" eventType="editingDidBegin" id="i6h-dL-gHK"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Gender" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2l-Z9-P8T">
                                                 <rect key="frame" x="18" y="296" width="206" height="23"/>
@@ -1760,11 +1763,12 @@
                         <outlet property="phoneNumberField" destination="I2n-BT-czx" id="dh5-86-H4e"/>
                         <outlet property="profileImageView" destination="N3n-rN-hh9" id="2Qe-ax-blh"/>
                         <outlet property="zipcodeField" destination="xGg-qi-Dfj" id="0f2-TR-Wy7"/>
+                        <segue destination="Arr-H5-Uii" kind="presentation" identifier="finishedEditing" id="XN1-g1-26v"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Js-Om-X6c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3697.5" y="1160.9154929577464"/>
+            <point key="canvasLocation" x="4618" y="1161"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="ZlN-xY-8SJ">
@@ -1806,6 +1810,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="zfD-y4-Fdx"/>
-        <segue reference="5uq-2W-hF3"/>
+        <segue reference="XN1-g1-26v"/>
     </inferredMetricsTieBreakers>
 </document>

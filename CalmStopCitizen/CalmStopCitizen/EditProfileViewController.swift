@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class EditProfileViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
 
     // MARK: Outlets
     @IBOutlet weak var firstNameField: UITextField!
@@ -22,6 +22,14 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var ethnicityField: UITextField!
     @IBOutlet weak var profileImageView: UIImageView!
     
+    // MARK: Data for drop-down options
+    var genderPickerData = ["---", "Male", "Female", "Prefer not to answer"]
+    var languagePickerData = ["---", "English", "Spanish", "Arabic", "Chinese (Mandarin)", "French", "German", "Italian", "Portuguese", "Russian", "Spanish", "Swedish", "Vietnamese" ]
+    var ethnicityPickerData = ["---", "African American", "American Indian", "Asian", "Hispanic", "Pacific Islander", "White", "Two or more races", "Other ethnicity", "Prefer not to answer" ]
+    
+    // MARK: Text field delegates
+    let phoneNumberDelegate = phoneNumberTextFieldDelegate()
+    let zipCodeDelegate = zipCodeTextFieldDelegate()
     
     // MARK: Actions
     @IBAction func updateProfileBtn(_ sender: Any) {
@@ -47,6 +55,61 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         profileImageView.layer.cornerRadius = profileImageView.frame.size.width/2
         profileImageView.clipsToBounds = true
         downloadProfileImage()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditProfileViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+        
+        // Tag each text field so they can be iterated through with "Next" button
+        firstNameField.delegate = self
+        firstNameField.tag = 0
+        lastNameField.delegate = self
+        lastNameField.tag = 1
+        phoneNumberField.delegate = phoneNumberDelegate
+        phoneNumberField.tag = 5
+        birthdateField.delegate = self
+        birthdateField.tag = 6
+        zipcodeField.delegate = zipCodeDelegate
+        zipcodeField.tag = 7
+        genderField.delegate = self
+        genderField.tag = 8
+        languageField.delegate = self
+        languageField.tag = 9
+        
+        // Set up toolbar for datePicker
+        
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: self.view.frame.size.height/6, width: self.view.frame.size.width, height: 40.0))
+        toolBar.layer.position = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height-20.0)
+        toolBar.barStyle = UIBarStyle.blackTranslucent
+        toolBar.tintColor = UIColor.white
+        toolBar.backgroundColor = UIColor.black
+        
+        let okBarBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(EditProfileViewController.donePressed))
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
+        toolBar.setItems([flexSpace,flexSpace,okBarBtn], animated: true)
+        birthdateField.inputAccessoryView = toolBar
+        
+        
+        // Create gender pickerView
+        let genderPickerView = UIPickerView()
+        genderPickerView.delegate = self
+        genderPickerView.tag = 1
+        genderField.inputView = genderPickerView
+        genderField.inputAccessoryView = toolBar
+        
+        // Create language pickerView
+        let languagePickerView = UIPickerView()
+        languagePickerView.delegate = self
+        languagePickerView.tag = 2
+        languageField.inputView = languagePickerView
+        languageField.inputAccessoryView = toolBar
+        
+        // Create ethnicity pickerView
+        let ethnicityPickerView = UIPickerView()
+        ethnicityPickerView.delegate = self
+        ethnicityPickerView.tag = 3
+        ethnicityField.inputView = ethnicityPickerView
+        ethnicityField.inputAccessoryView = toolBar
+
     }
     
     func checkIfUserIsLoggedIn(){
@@ -175,6 +238,10 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         view.endEditing(true)
     }
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
     
     func updateProfile(){
         let uid = FIRAuth.auth()?.currentUser?.uid
@@ -207,6 +274,8 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                     print(error ?? "")
                     return
                 }
+                
+                self.performSegue(withIdentifier: "finishedEditing", sender: nil)
             }
             
         })
@@ -244,6 +313,64 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         
         //        image.allowsEditing = false
     }
+    
+    @IBAction func birthdateEditing(_ sender: UITextField) {
+        let datePickerView:UIDatePicker = UIDatePicker()
+        datePickerView.datePickerMode = UIDatePickerMode.date
+        sender.inputView = datePickerView
+        
+        // set minimum (16 years old) and maximum (100 years old) birthdates
+        var components = DateComponents()
+        components.year = -100
+        let minDate = Calendar.current.date(byAdding: components, to: Date())
+        datePickerView.minimumDate = minDate
+        
+        components.year = -16
+        let maxDate = Calendar.current.date(byAdding: components, to: Date())
+        datePickerView.maximumDate = maxDate
+        
+        datePickerView.addTarget(self, action: #selector(EditProfileViewController.datePickerValueChanged),for: UIControlEvents.valueChanged)
+    }
+    
+    func datePickerValueChanged(sender:UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        birthdateField.text = dateFormatter.string(from: sender.date)
+    }
+    
+    func numberOfComponents(in: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent: Int) -> Int {
+        if pickerView.tag == 1 {return genderPickerData.count}
+        else if pickerView.tag == 2 {return languagePickerData.count}
+        else if pickerView.tag == 3 {return ethnicityPickerData.count}
+        else {return 1}
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if pickerView.tag == 1 {return genderPickerData[row]}
+        else if pickerView.tag == 2 {return languagePickerData[row]}
+        else if pickerView.tag == 3 {return ethnicityPickerData[row]}
+        else {return ("Error")}
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if pickerView.tag == 1 {genderField.text = genderPickerData[row]}
+        else if pickerView.tag == 2 {languageField.text = languagePickerData[row]}
+        else if pickerView.tag == 3 {ethnicityField.text = ethnicityPickerData[row]}
+    }
+    
+    func donePressed(sender: UIBarButtonItem) {
+        
+        birthdateField.resignFirstResponder()
+        genderField.resignFirstResponder()
+        languageField.resignFirstResponder()
+        ethnicityField.resignFirstResponder()
+    }
+    
     
 
 
