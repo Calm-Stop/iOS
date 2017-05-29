@@ -14,12 +14,14 @@ class StopDetailsViewController: UIViewController {
     
     @IBOutlet weak var detailMap: MKMapView!
     @IBOutlet weak var dateAndTime: UILabel!
-    @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var badgeLabel: UILabel!
+    @IBOutlet weak var deptLabel: UILabel!
     @IBOutlet weak var reasonLabel: UILabel!
     @IBOutlet weak var genderLabel: UILabel!
     @IBOutlet weak var driverZipcodeLabel: UILabel!
     @IBOutlet weak var officerPhoto: UIImageView!
+    @IBOutlet weak var addressLabel: UITextView!
     
     var stopIndex = stopID!
     
@@ -28,6 +30,8 @@ class StopDetailsViewController: UIViewController {
         
         self.officerPhoto.layer.cornerRadius = self.officerPhoto.frame.size.width/2
         self.officerPhoto.clipsToBounds = true
+        
+        adjustContentSize(tv: addressLabel)
 
         
         // Data for map
@@ -69,12 +73,16 @@ class StopDetailsViewController: UIViewController {
         FIRDatabase.database().reference().child("officer").child("14567").child(arrayStopData[stopIndex].officerID!).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject]{
-                let name = dictionary["last_name"] as? String
+                let first_name = dictionary["first_name"] as? String
+                let last_name = dictionary["last_name"] as? String
+                let badge = dictionary["badge_number"] as? String
+                let dept = dictionary["departmentID"] as? String
                 let gender = dictionary["gender"] as? String
-                //let zipcode = dictionary["zip_code"] as? String
                 let photo = dictionary["photo"] as? String
                 
-                self.nameLabel.text = "Officer " + name!
+                self.nameLabel.text = "Officer " + first_name! + " " + last_name!
+                self.badgeLabel.text = "Badge #" + badge!
+                self.deptLabel.text = "Dept. #" + dept!
                 
                 self.downloadProfileImage(photoPath: photo ?? " ")
                 
@@ -135,4 +143,10 @@ class StopDetailsViewController: UIViewController {
         
     }
     
+    func adjustContentSize(tv: UITextView){
+        let deadSpace = tv.bounds.size.height - tv.contentSize.height
+        let inset = max(0, deadSpace/2.0)
+        tv.contentInset = UIEdgeInsetsMake(inset, tv.contentInset.left, inset, tv.contentInset.right)
+    }
+
 }
