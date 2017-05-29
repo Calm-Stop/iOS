@@ -138,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         print("You entered the region")
         
         let notification = UILocalNotification()
-        notification.alertBody = "An Officer is pulling you over, please open CalmStop to reply!"
+        notification.alertBody = "Are you being pulled over? Please open CalmStop to respond!"
         notification.soundName = UILocalNotificationDefaultSoundName
         UIApplication.shared.presentLocalNotificationNow(notification)
         
