@@ -67,7 +67,7 @@ class StopDetailsViewController: UIViewController {
             if let dictionary = snapshot.value as? [String: AnyObject]{
                 let name = dictionary["first_name"] as? String
                 let gender = dictionary["gender"] as? String
-                let zipcode = dictionary["zip_code"] as? String
+                let zipcode = dictionary["zipcode"] as? String
                 let photo = dictionary["photo"] as? String
 
                 self.nameLabel.text = name

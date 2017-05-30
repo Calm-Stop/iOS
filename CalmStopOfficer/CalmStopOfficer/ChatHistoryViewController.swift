@@ -9,10 +9,10 @@
 import UIKit
 import Firebase
 
-class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
+class ChatHistoryViewController: UICollectionViewController, UITextFieldDelegate, UICollectionViewDelegateFlowLayout {
     
     var threadID = "01"
-
+    
     lazy var inputTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Enter message..."
@@ -33,7 +33,7 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
             print (snapshot)
             let messageId = snapshot.key
             let messageRef = FIRDatabase.database().reference().child("threads").child(self.threadID).child("messages").child(messageId)
-        
+            
             messageRef.observe(.value, with: { (snapshot) in
                 
                 guard let dictionary = snapshot.value as? [String: AnyObject] else {
@@ -72,7 +72,7 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
         
         self.getThreadIDDuringStop{ (result) -> () in
             if result{
-
+                
                 self.observeMessages()
             }
             else{
@@ -87,11 +87,13 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
         let containerView = UIView()
         containerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50)
         containerView.backgroundColor = UIColor.white
+        containerView.isHidden = true
         
         // Send Button
         let sendButton = UIButton(type: .system)
         sendButton.setTitle("Send", for: .normal)
         sendButton.translatesAutoresizingMaskIntoConstraints = false
+        sendButton.isEnabled = false
         containerView.addSubview(sendButton)
         //Action
         sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
@@ -103,6 +105,7 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
         
         //Textfield
         containerView.addSubview(self.inputTextField)
+        containerView.isUserInteractionEnabled = false
         // x,y,w,h
         self.inputTextField.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 8).isActive = true
         self.inputTextField.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
@@ -155,16 +158,16 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
         
         // Move the input area up
         containerViewBottomAnchor?.constant = -keyboardFrame!.height
-        UIView.animate(withDuration: keyboardDuration!) { 
+        UIView.animate(withDuration: keyboardDuration!) {
             self.view.layoutIfNeeded()
         }
     }
     
     
     func handleKeyboardWillHide(notification: Notification){
-
+        
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
-
+        
         // Move the input area up
         containerViewBottomAnchor?.constant = 0
         UIView.animate(withDuration: keyboardDuration!) {
@@ -189,7 +192,7 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
         // Check if message belongs to thread
         let message = messages[indexPath.item]
         cell.textView.text = message.content
-
+        
         // Detect who is the sender of the message to determine if it is a grey bubble or a blue bubble
         setupCell(cell: cell, message: message)
         
@@ -202,9 +205,9 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
     private func setupCell(cell: ChatMessageCell, message: Message){
         
         // Load Profile Image
-//        if let profileImageUrl = self.user?.profileImageUrl {
-//            cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
-//        }
+        //        if let profileImageUrl = self.user?.profileImageUrl {
+        //            cell.profileImageView.loadImageUsingCacheWithUrlString(profileImageUrl)
+        //        }
         
         
         // Detect who is the sender of the message to determine if it is a grey bubble or a blue bubble
@@ -243,7 +246,7 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
         
         return NSString(string: text).boundingRect(with: size, options: options, attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 16)], context: nil)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -285,7 +288,7 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
         // x,y,w,h
         inputTextField.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 8).isActive = true
         inputTextField.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
-//        inputTextField.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        //        inputTextField.widthAnchor.constraint(equalToConstant: 100).isActive = true
         inputTextField.rightAnchor.constraint(equalTo: sendButton.leftAnchor).isActive = true
         inputTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor).isActive = true
         
@@ -322,7 +325,7 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
                 self.inputTextField.text = nil
             }
         }
-
+        
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool
@@ -347,47 +350,21 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
     
     func getThreadIDDuringStop(completion: @escaping (_ result: Bool) -> ()) {
         
-        //TODO: Get StopID
-        // 1. Go to officer and grab beacon id
-        let uid = FIRAuth.auth()?.currentUser?.uid
-        FIRDatabase.database().reference().child("officer").child("14567").child(uid!).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
-            if snapshot.hasChild("beacon_id"){
-                if let dictionary = snapshot.value as? [String: AnyObject]{
-                    let beaconId = (dictionary["beacon_id"] as? String)!
-                    print("beacon ID: ", beaconId)
-                    
-                    // 2. Go to beacons and grab stopID
-                    FIRDatabase.database().reference().child("beacons").child(beaconId).observeSingleEvent(of: .value, with: { (snapshot) in
-                        
-                        if let dictionary = snapshot.value as? [String: AnyObject]{
-                            let stopID = (dictionary["stop_id"] as? String)!
-                            print("stop ID: ", stopID)
-
-                            
-                            // TODO: Get ThreadID
-                            // 1. Go under StopID and get threadID
-                            FIRDatabase.database().reference().child("stops").child(stopID).observeSingleEvent(of: .value, with: { (snapshot) in
-                                
-                                if let dictionary = snapshot.value as? [String: AnyObject]{
-                                    let thread_id = dictionary["threadID"] as? String
-                                    
-                                    self.threadID = thread_id ?? stopID
-                                    print("Thread ID: ", self.threadID)
-                                    completion(true)
-                                }
-                            }) //Closes getting ThreadID
-                        }
-                    }) //Closes getting StopID
-                }
-            }
-            else{
-                // Display that beacon is not registered
-                print("Beacon not Registered.")
-            }
-        }) //Closes getting BeaconID
+        // TODO: Get ThreadID
+        // 1. Go under StopID and get threadID
+//        print(threadIDString!)
         
-        print("Thread ID Original: ", self.threadID)
-
+        FIRDatabase.database().reference().child("stops").child(threadIDString!).observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                let thread_id = dictionary["threadID"] as? String
+                
+                self.threadID = thread_id ?? "01"
+                print("Thread ID: ", self.threadID)
+                completion(true)
+            }
+        }) //Closes getting ThreadID
+        
     }
-
+    
 }

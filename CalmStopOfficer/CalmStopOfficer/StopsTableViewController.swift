@@ -11,6 +11,7 @@ import MapKit
 import Firebase
 
 var stopID:Int?
+var threadIDString:String?
 var arrayStopData = [Stop]()
 
 
@@ -143,6 +144,8 @@ class StopsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         stopID = indexPath.row
+        print("Stop_ID ", stopID!)
+        threadIDString = arrayStopData[indexPath.row].threadID
         
         self.performSegue(withIdentifier: "showStop", sender: self)
         

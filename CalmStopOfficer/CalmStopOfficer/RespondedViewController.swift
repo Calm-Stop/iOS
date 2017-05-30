@@ -49,7 +49,7 @@ class RespondedViewController: UIViewController {
         self.getBeaconId{(result) -> () in
             if result{
                 self.checkIfUserIsLoggedIn()
-                self.obeserveDocumentsUploaded()
+                self.observeDocumentsUploaded()
             }
         }
         // Do any additional setup after loading the view.
@@ -73,8 +73,8 @@ class RespondedViewController: UIViewController {
     }
     
     
-    func obeserveDocumentsUploaded(){
-        FIRDatabase.database().reference().child("beacons").child(generalBeaconID).child("citizen").observeSingleEvent(of: .value, with: { (snapshot) in
+    func observeDocumentsUploaded(){
+        FIRDatabase.database().reference().child("beacons").child(generalBeaconID).child("citizen").observe(.value, with: { (snapshot) in
             if snapshot.hasChild("documents"){
                 print("Tem sim!")
                 self.viewDocumentsButton.isEnabled = true

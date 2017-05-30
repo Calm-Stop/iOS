@@ -38,6 +38,7 @@
 		68C2A1D51EA5B51C006DF652 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C2A1D41EA5B51C006DF652 /* ChatViewController.swift */; };
 		68C2A1D71EA5D4F6006DF652 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C2A1D61EA5D4F6006DF652 /* Message.swift */; };
 		68C866E71EC056E2007BA88D /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C866E61EC056E2007BA88D /* EditProfileViewController.swift */; };
+		68C932621EDD296600A872EE /* ChatHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C932611EDD296600A872EE /* ChatHistoryViewController.swift */; };
 		68C9DB0B1EBCFEA2002A37E2 /* StopDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C9DB0A1EBCFEA2002A37E2 /* StopDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +75,7 @@
 		68C2A1D41EA5B51C006DF652 /* ChatViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		68C2A1D61EA5D4F6006DF652 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		68C866E61EC056E2007BA88D /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		68C932611EDD296600A872EE /* ChatHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatHistoryViewController.swift; sourceTree = "<group>"; };
 		68C9DB0A1EBCFEA2002A37E2 /* StopDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopDetailsViewController.swift; sourceTree = "<group>"; };
 		8D7D7355222F98548E42C1CF /* Pods-CalmStopOfficer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalmStopOfficer.release.xcconfig"; path = "Pods/Target Support Files/Pods-CalmStopOfficer/Pods-CalmStopOfficer.release.xcconfig"; sourceTree = "<group>"; };
 		AF1A07AAD817478EB418A812 /* Pods_CalmStopOfficer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CalmStopOfficer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +170,7 @@
 				6898B3EA1EB2F9870012BD24 /* StopsTableViewController.swift */,
 				68C9DB0A1EBCFEA2002A37E2 /* StopDetailsViewController.swift */,
 				687E23051EB81E90005BA967 /* RegisterBeaconViewController.swift */,
+				68C932611EDD296600A872EE /* ChatHistoryViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				68C2A1D51EA5B51C006DF652 /* ChatViewController.swift in Sources */,
 				68C866E71EC056E2007BA88D /* EditProfileViewController.swift in Sources */,
 				683FBE4B1E7890FF0018C6B6 /* RespondedViewController.swift in Sources */,
+				68C932621EDD296600A872EE /* ChatHistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

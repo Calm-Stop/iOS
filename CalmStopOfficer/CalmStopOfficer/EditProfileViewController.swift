@@ -160,7 +160,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
     func downloadProfileImage(){
         let uid = FIRAuth.auth()?.currentUser?.uid
 
-        let database = FIRDatabase.database().reference()
+//        let database = FIRDatabase.database().reference()
         let storage = FIRStorage.storage().reference()
         let profile = storage.child("images/profile/"+uid!)
         
@@ -176,7 +176,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                 
             }
             else {
-                print(error?.localizedDescription)
+                print(error?.localizedDescription ?? "")
             }
         }
     }
@@ -198,7 +198,7 @@ class EditProfileViewController: UIViewController, UINavigationControllerDelegat
                 print("Upload successful")
             }
             else{
-                print(error)
+                print(error ?? "")
             }
             
         }
