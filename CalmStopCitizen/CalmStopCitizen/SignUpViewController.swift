@@ -74,13 +74,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
         
         let okBarBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.done, target: self, action: #selector(SignUpViewController.donePressed))
         let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: self, action: nil)
-        //let label = UILabel(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width/2, height: self.view.frame.size.height))
-        //label.font = UIFont(name: "Helvetica", size: 12)
-        //label.backgroundColor = UIColor.clear
-        //label.textColor = UIColor.white
-        //label.text = "Select your date of birth"
-        //label.textAlignment = NSTextAlignment.center
-        //let textBtn = UIBarButtonItem(customView: label)
+
         toolBar.setItems([flexSpace,flexSpace,okBarBtn], animated: true)
         birthdateInput.inputAccessoryView = toolBar
         

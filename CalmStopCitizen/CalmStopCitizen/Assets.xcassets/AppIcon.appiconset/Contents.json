@@ -3,49 +3,49 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "temp_icon@2x.png",
+      "filename" : "2x notification.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "temp_icon@3x.png",
+      "filename" : "3x notification.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "temp_icon_29@2x-1.png",
+      "filename" : "2x spotlight-1.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "temp_icon_29@3x-1.png",
+      "filename" : "3x spotlight.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "temp_icon_40@2x-1.png",
+      "filename" : "2x spotlight.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "temp_icon_40@3x.png",
+      "filename" : "2x app.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "temp_icon_60@2x.png",
+      "filename" : "2x app-1.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "temp_icon_60@3x.png",
+      "filename" : "3x app.png",
       "scale" : "3x"
     },
     {
@@ -64,9 +64,8 @@
       "scale" : "1x"
     },
     {
-      "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "temp_icon_29@2x.png",
+      "size" : "29x29",
       "scale" : "2x"
     },
     {
@@ -117,14 +116,12 @@
     {
       "size" : "29x29",
       "idiom" : "watch",
-      "filename" : "temp_icon_29@3x.png",
       "role" : "companionSettings",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "watch",
-      "filename" : "temp_icon_40@2x.png",
       "scale" : "2x",
       "role" : "appLauncher",
       "subtype" : "38mm"

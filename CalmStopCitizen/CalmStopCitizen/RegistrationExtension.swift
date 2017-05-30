@@ -113,6 +113,8 @@ extension DocumentsViewController {
     }
     
     @IBAction func viewRegistration(_ sender: Any) {
+        photo = viewRegistrationBtn.backgroundImage(for: .normal)
+        performSegue(withIdentifier: "popUpSegue", sender: self)
     }
     
     func loadRegistration() {
@@ -133,15 +135,15 @@ extension DocumentsViewController {
                     
                     if let imageData = result.value(forKey: "registrationImage") as? NSData {
                         if let image = UIImage(data: imageData as Data) {
-                            registrationImageView.image = image
+                            self.viewRegistrationBtn.setBackgroundImage(image, for: .normal)
                         }
                     }
                 }
                 
             } else {
                 print("Profile : No data found")
-                registrationImageView.image = nil
-            }
+                self.viewRegistrationBtn.setBackgroundImage(nil, for: .normal)
+                }
         } catch {
             
             print ("Error Loading")

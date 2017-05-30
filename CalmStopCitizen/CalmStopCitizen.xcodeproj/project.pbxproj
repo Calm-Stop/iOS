@@ -23,11 +23,21 @@
 		B057834D1E9C57A4001E8F08 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B057834B1E9C57A4001E8F08 /* GoogleService-Info.plist */; };
 		B060BD471EA9388400C62365 /* zipCodeTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060BD461EA9388400C62365 /* zipCodeTextFieldDelegate.swift */; };
 		B060BD491EA938A300C62365 /* phoneNumberTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B060BD481EA938A300C62365 /* phoneNumberTextFieldDelegate.swift */; };
+		B06B9F1E1EDBA93300FE5DD8 /* Stop.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B9F1D1EDBA93300FE5DD8 /* Stop.swift */; };
+		B06B9F221EDBA97800FE5DD8 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06B9F211EDBA97800FE5DD8 /* TableViewCell.swift */; };
+		B06B9F241EDBAA0B00FE5DD8 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B06B9F231EDBAA0B00FE5DD8 /* TableViewCell.xib */; };
 		B06CBD351ECA7F81002F6CA6 /* LicenseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B06CBD341ECA7F81002F6CA6 /* LicenseExtension.swift */; };
+		B07805131ED79ABE00DB1EF9 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B07805121ED79ABE00DB1EF9 /* PopUpViewController.swift */; };
 		B094EDE81EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B094EDE61EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodeld */; };
 		B09D3FC61EC4E7270011D84C /* InsuranceExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D3FC51EC4E7270011D84C /* InsuranceExtension.swift */; };
 		B09D3FC81EC4E8AD0011D84C /* RegistrationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B09D3FC71EC4E8AD0011D84C /* RegistrationExtension.swift */; };
+		B0AB5C411EDCD80100199CA4 /* ReasonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0AB5C401EDCD80100199CA4 /* ReasonViewController.swift */; };
 		B0B94C841EAE8176000ABE8F /* SurveyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B94C831EAE8176000ABE8F /* SurveyViewController.swift */; };
+		B0BDE6981EDB690A00912C34 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BDE6961EDB68AA00912C34 /* ProfileViewController.swift */; };
+		B0BDE69A1EDB794700912C34 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BDE6991EDB794700912C34 /* EditProfileViewController.swift */; };
+		B0BDE69C1EDB80A400912C34 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BDE69B1EDB80A400912C34 /* HomeViewController.swift */; };
+		B0BDE69E1EDBA39600912C34 /* StopTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BDE69D1EDBA39600912C34 /* StopTableViewController.swift */; };
+		B0BDE6A01EDBA3BA00912C34 /* StopDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BDE69F1EDBA3BA00912C34 /* StopDetailsViewController.swift */; };
 		B0D8E9F91ECB5C3300EC9A7D /* InitialContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0D8E9F81ECB5C3300EC9A7D /* InitialContactViewController.swift */; };
 		B0EE2AF11E9F0CB10081B325 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0EE2AF01E9F0CB10081B325 /* SignUpViewController.swift */; };
 		F952F4328A3F64B194A3A80C /* Pods_CalmStopCitizenTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A8169D5C418F6F287D67EB3 /* Pods_CalmStopCitizenTests.framework */; };
@@ -67,11 +77,21 @@
 		B057834B1E9C57A4001E8F08 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B060BD461EA9388400C62365 /* zipCodeTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = zipCodeTextFieldDelegate.swift; sourceTree = "<group>"; };
 		B060BD481EA938A300C62365 /* phoneNumberTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = phoneNumberTextFieldDelegate.swift; sourceTree = "<group>"; };
+		B06B9F1D1EDBA93300FE5DD8 /* Stop.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stop.swift; sourceTree = "<group>"; };
+		B06B9F211EDBA97800FE5DD8 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		B06B9F231EDBAA0B00FE5DD8 /* TableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		B06CBD341ECA7F81002F6CA6 /* LicenseExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicenseExtension.swift; sourceTree = "<group>"; };
+		B07805121ED79ABE00DB1EF9 /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		B094EDE71EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CalmStopCitizen.xcdatamodel; sourceTree = "<group>"; };
 		B09D3FC51EC4E7270011D84C /* InsuranceExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsuranceExtension.swift; sourceTree = "<group>"; };
 		B09D3FC71EC4E8AD0011D84C /* RegistrationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationExtension.swift; sourceTree = "<group>"; };
+		B0AB5C401EDCD80100199CA4 /* ReasonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReasonViewController.swift; sourceTree = "<group>"; };
 		B0B94C831EAE8176000ABE8F /* SurveyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurveyViewController.swift; sourceTree = "<group>"; };
+		B0BDE6961EDB68AA00912C34 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		B0BDE6991EDB794700912C34 /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		B0BDE69B1EDB80A400912C34 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B0BDE69D1EDBA39600912C34 /* StopTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopTableViewController.swift; sourceTree = "<group>"; };
+		B0BDE69F1EDBA3BA00912C34 /* StopDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StopDetailsViewController.swift; sourceTree = "<group>"; };
 		B0D8E9F81ECB5C3300EC9A7D /* InitialContactViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InitialContactViewController.swift; sourceTree = "<group>"; };
 		B0EE2AF01E9F0CB10081B325 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		F7D9879389710FD0992E54BD /* Pods-CalmStopCitizen.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CalmStopCitizen.release.xcconfig"; path = "Pods/Target Support Files/Pods-CalmStopCitizen/Pods-CalmStopCitizen.release.xcconfig"; sourceTree = "<group>"; };
@@ -141,6 +161,10 @@
 		B03BD4351E8030800037E86A /* CalmStopCitizen */ = {
 			isa = PBXGroup;
 			children = (
+				B06B9F201EDBA96D00FE5DD8 /* View */,
+				B06B9F1C1EDBA91200FE5DD8 /* Model */,
+				B0BDE69B1EDB80A400912C34 /* HomeViewController.swift */,
+				B0BDE6961EDB68AA00912C34 /* ProfileViewController.swift */,
 				B09D3FC41EC4E67F0011D84C /* Documents Extensions */,
 				B060BD451EA9386200C62365 /* textFieldDelegates */,
 				B03BD4361E8030800037E86A /* AppDelegate.swift */,
@@ -150,10 +174,14 @@
 				B0EE2AF01E9F0CB10081B325 /* SignUpViewController.swift */,
 				B037D0821EAEF3B0009B6ED1 /* CommentsViewController.swift */,
 				B00C13431EB28557008BEE59 /* ChatViewController.swift */,
-				B00C13451EB28574008BEE59 /* Message.swift */,
 				B00C13471EB28597008BEE59 /* ChatMessageCell.swift */,
+				B07805121ED79ABE00DB1EF9 /* PopUpViewController.swift */,
 				B0B94C831EAE8176000ABE8F /* SurveyViewController.swift */,
 				B03BD43A1E8030800037E86A /* Main.storyboard */,
+				B0AB5C401EDCD80100199CA4 /* ReasonViewController.swift */,
+				B0BDE69D1EDBA39600912C34 /* StopTableViewController.swift */,
+				B0BDE69F1EDBA3BA00912C34 /* StopDetailsViewController.swift */,
+				B0BDE6991EDB794700912C34 /* EditProfileViewController.swift */,
 				B03BD43D1E8030800037E86A /* Assets.xcassets */,
 				B03BD43F1E8030800037E86A /* LaunchScreen.storyboard */,
 				B03BD4421E8030800037E86A /* Info.plist */,
@@ -179,6 +207,24 @@
 			);
 			name = textFieldDelegates;
 			path = ..;
+			sourceTree = "<group>";
+		};
+		B06B9F1C1EDBA91200FE5DD8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B00C13451EB28574008BEE59 /* Message.swift */,
+				B06B9F1D1EDBA93300FE5DD8 /* Stop.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		B06B9F201EDBA96D00FE5DD8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B06B9F211EDBA97800FE5DD8 /* TableViewCell.swift */,
+				B06B9F231EDBAA0B00FE5DD8 /* TableViewCell.xib */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		B09D3FC41EC4E67F0011D84C /* Documents Extensions */ = {
@@ -247,7 +293,7 @@
 				TargetAttributes = {
 					B03BD4321E8030800037E86A = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 6P29MLAXD8;
+						DevelopmentTeam = YJUP7QAXXH;
 						ProvisioningStyle = Automatic;
 					};
 					B03BD4461E8030800037E86A = {
@@ -282,6 +328,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B03BD4411E8030800037E86A /* LaunchScreen.storyboard in Resources */,
+				B06B9F241EDBAA0B00FE5DD8 /* TableViewCell.xib in Resources */,
 				B057834C1E9C57A4001E8F08 /* GoogleService-Info.plist in Resources */,
 				B03BD43E1E8030800037E86A /* Assets.xcassets in Resources */,
 				B03BD43C1E8030800037E86A /* Main.storyboard in Resources */,
@@ -398,16 +445,25 @@
 			files = (
 				B06CBD351ECA7F81002F6CA6 /* LicenseExtension.swift in Sources */,
 				B060BD491EA938A300C62365 /* phoneNumberTextFieldDelegate.swift in Sources */,
+				B0BDE69E1EDBA39600912C34 /* StopTableViewController.swift in Sources */,
 				B00C13481EB28597008BEE59 /* ChatMessageCell.swift in Sources */,
 				B037D0831EAEF3B0009B6ED1 /* CommentsViewController.swift in Sources */,
+				B0BDE6A01EDBA3BA00912C34 /* StopDetailsViewController.swift in Sources */,
 				B00C13441EB28557008BEE59 /* ChatViewController.swift in Sources */,
 				B00C13461EB28574008BEE59 /* Message.swift in Sources */,
+				B0BDE6981EDB690A00912C34 /* ProfileViewController.swift in Sources */,
+				B06B9F221EDBA97800FE5DD8 /* TableViewCell.swift in Sources */,
+				B0BDE69A1EDB794700912C34 /* EditProfileViewController.swift in Sources */,
 				B094EDE81EC0FFBB006D24AC /* CalmStopCitizen.xcdatamodeld in Sources */,
 				B0EE2AF11E9F0CB10081B325 /* SignUpViewController.swift in Sources */,
 				B060BD471EA9388400C62365 /* zipCodeTextFieldDelegate.swift in Sources */,
 				B03BD4391E8030800037E86A /* SignInViewController.swift in Sources */,
+				B07805131ED79ABE00DB1EF9 /* PopUpViewController.swift in Sources */,
+				B06B9F1E1EDBA93300FE5DD8 /* Stop.swift in Sources */,
+				B0AB5C411EDCD80100199CA4 /* ReasonViewController.swift in Sources */,
 				B0D8E9F91ECB5C3300EC9A7D /* InitialContactViewController.swift in Sources */,
 				B0B94C841EAE8176000ABE8F /* SurveyViewController.swift in Sources */,
+				B0BDE69C1EDB80A400912C34 /* HomeViewController.swift in Sources */,
 				B04160A71EBCEDF700E86884 /* DocumentsViewController.swift in Sources */,
 				B09D3FC61EC4E7270011D84C /* InsuranceExtension.swift in Sources */,
 				B09D3FC81EC4E8AD0011D84C /* RegistrationExtension.swift in Sources */,
@@ -551,11 +607,11 @@
 			baseConfigurationReference = 342DF01CC4EAC5B2BEF6CA5C /* Pods-CalmStopCitizen.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6P29MLAXD8;
+				DEVELOPMENT_TEAM = YJUP7QAXXH;
 				INFOPLIST_FILE = CalmStopCitizen/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.CalmStop.CalmStopCitizen1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CalmStop.CalmStopCitizen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -566,11 +622,11 @@
 			baseConfigurationReference = F7D9879389710FD0992E54BD /* Pods-CalmStopCitizen.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 6P29MLAXD8;
+				DEVELOPMENT_TEAM = YJUP7QAXXH;
 				INFOPLIST_FILE = CalmStopCitizen/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.CalmStop.CalmStopCitizen1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CalmStop.CalmStopCitizen;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

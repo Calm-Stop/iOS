@@ -38,6 +38,19 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        FIRAuth.auth()?.addStateDidChangeListener{auth, user in
+            
+            if let user = user {
+                let vc2 = self.storyboard?.instantiateViewController(withIdentifier: "home") as! UIViewController
+                self.present(vc2, animated: true, completion: nil)
+            }
+        }
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
