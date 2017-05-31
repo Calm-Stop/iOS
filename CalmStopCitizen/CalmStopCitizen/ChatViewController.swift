@@ -351,7 +351,7 @@ class ChatViewController: UICollectionViewController, UITextFieldDelegate, UICol
         //beaconIDString = "65535"
                     
         // 2. Go to beacons and grab stopID
-                FIRDatabase.database().reference().child("beacons").child(beaconIDString).observeSingleEvent(of: .value, with: { (snapshot) in
+                FIRDatabase.database().reference().child("beacons").child(saveBeaconId).observeSingleEvent(of: .value, with: { (snapshot) in
                         
                         if let dictionary = snapshot.value as? [String: AnyObject]{
                             let stopID = (dictionary["stop_id"] as? String)!
