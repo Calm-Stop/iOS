@@ -26,6 +26,8 @@ class StopDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = arrayStopData[stopIndex].date! + ", " + arrayStopData[stopIndex].time!
+        
         // Data for map
         let lat = (arrayStopData[stopIndex].lat! as NSString).doubleValue as CLLocationDegrees
         let long = (arrayStopData[stopIndex].long! as NSString).doubleValue as CLLocationDegrees

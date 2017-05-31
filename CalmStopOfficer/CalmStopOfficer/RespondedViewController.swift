@@ -11,6 +11,7 @@ import Firebase
 import MapKit
 
 var generalBeaconID = "116"
+var citizenIDforFeedback = ""
 
 class RespondedViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
@@ -43,6 +44,11 @@ class RespondedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Driver"
+        
+        let endStopbutton = UIBarButtonItem(title: "End Stop", style: UIBarButtonItemStyle.done, target: self, action: "endStop")
+        self.navigationItem.rightBarButtonItem = endStopbutton
+        
+//        self.navigationItem.rightBarButtonItem?.title = "End Stop"
 
         self.viewDocumentsButton.isEnabled = false
         
@@ -59,6 +65,34 @@ class RespondedViewController: UIViewController {
 //        checkIfUserIsLoggedIn()
 //    }
     
+    
+    func endStop(){
+    
+        // TODO: Grab citizen id
+        print(citizenIDforFeedback)
+        
+        // TODO: Under beacons, delete the stopID
+        let deleteStopIDRef = FIRDatabase.database().reference().child("beacons").child(generalBeaconID).child("stop_id")
+        deleteStopIDRef.removeValue()
+        
+        // TODO: Under beacons, delete citizen
+        let deleteCitizenRef = FIRDatabase.database().reference().child("beacons").child(generalBeaconID).child("citizen")
+        deleteCitizenRef.removeValue()
+        
+        // TODO: Under beacons, make isInStop = false
+        let beaconRef = FIRDatabase.database().reference().child("beacons").child(generalBeaconID)
+        let beaconValues = ["isInStop": false] as [String : Any]
+        
+        beaconRef.updateChildValues(beaconValues) { (error, ref) in
+            if  error != nil {
+                print(error ?? "")
+                return
+            }
+        }
+        
+        // TODO: Perform segue
+        self.performSegue(withIdentifier: "endStopSegue", sender: nil)
+    }
     
     func getBeaconId(completion: @escaping (_ result: Bool) -> ()) {
         let uid = FIRAuth.auth()?.currentUser?.uid
@@ -110,6 +144,7 @@ class RespondedViewController: UIViewController {
                 
                 if let dictionary = snapshot.value as? [String: AnyObject]{
                     citizenuid = (dictionary["uid"] as? String)!
+                    citizenIDforFeedback = citizenuid
                     //Check for id
                     FIRDatabase.database().reference().child("citizen").child(citizenuid).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
                         

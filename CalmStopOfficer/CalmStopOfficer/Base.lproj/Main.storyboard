@@ -96,7 +96,7 @@
                         <viewControllerLayoutGuide type="bottom" id="skE-ef-AOY"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="gKO-GN-deO">
-                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome Back, officer " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QF3-ni-0q7">
@@ -116,9 +116,6 @@
                                 <connections>
                                     <action selector="locateDriver:" destination="PtF-Ru-nYr" eventType="touchUpInside" id="SFa-7T-17N"/>
                                     <action selector="manageBeaconButton:" destination="PtF-Ru-nYr" eventType="touchUpInside" id="Zrh-tj-pPh"/>
-                                    <segue destination="Hjq-01-S61" kind="popoverPresentation" popoverAnchorView="m1z-dn-ADy" id="bXS-C9-A32">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yp6-pZ-VT1">
@@ -140,9 +137,6 @@
                                         <rect key="frame" x="17" y="167" width="308" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="RequestInfoBtn"/>
-                                        <connections>
-                                            <segue destination="DBM-Uq-qhB" kind="show" id="emb-nh-Xj4"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -165,12 +159,11 @@
                         <outlet property="locatingLabel" destination="HWr-hk-YRK" id="S3U-9M-UpH"/>
                         <outlet property="requestInformation" destination="eLg-Ga-yeC" id="vIl-2x-en1"/>
                         <outlet property="welcomeLabel" destination="QF3-ni-0q7" id="urL-tU-i5W"/>
-                        <segue destination="9DX-Cx-61I" kind="show" identifier="goToInitialResponseSegue" id="bdn-X2-AaS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aCh-m4-u7Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2684" y="-572.56371814092961"/>
+            <point key="canvasLocation" x="2591" y="-1435"/>
         </scene>
         <!--Ratings-->
         <scene sceneID="o0T-wR-tNS">
@@ -376,7 +369,7 @@
                                 <color key="textColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="★★★★★" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0BT-Cz-JvF">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="★★★★★" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0BT-Cz-JvF">
                                 <rect key="frame" x="203" y="330" width="106" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-UltraLight" family="Avenir Next" pointSize="19"/>
@@ -1546,6 +1539,7 @@
                         <outlet property="viewDocumentsButton" destination="lie-tT-lsx" id="lfb-Vo-wQP"/>
                         <outlet property="warning" destination="Rnn-gK-WjF" id="J4Z-Xj-3qf"/>
                         <outlet property="weapons" destination="hzA-7f-gg8" id="ddc-d4-sHc"/>
+                        <segue destination="oZq-oR-QsC" kind="show" identifier="endStopSegue" id="n7U-RA-ceX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Pm-fy-FXR" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1688,6 +1682,9 @@
                                 <connections>
                                     <action selector="locateDriver:" destination="PtF-Ru-nYr" eventType="touchUpInside" id="sE5-rN-XeZ"/>
                                     <action selector="manageBeaconButton:" destination="PtF-Ru-nYr" eventType="touchUpInside" id="b1G-3J-tw8"/>
+                                    <segue destination="Hjq-01-S61" kind="popoverPresentation" popoverAnchorView="qJn-6j-gx2" id="zrf-kx-vgF">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="After making a stop, press Beacon to locate driver..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hG9-Iy-TQS">
@@ -1711,23 +1708,25 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="G4b-6L-Igq"/>
                     <connections>
                         <outlet property="activityIndicator" destination="JFD-KI-gaH" id="69G-Hs-unr"/>
                         <outlet property="beaconNotRegisteredLabel" destination="law-dI-R6t" id="jQL-on-yjl"/>
                         <outlet property="pressBeaconLabel" destination="hG9-Iy-TQS" id="B1X-0s-Mjy"/>
                         <outlet property="profileImage" destination="JQ0-kd-bLH" id="cXJ-DT-YRs"/>
                         <outlet property="wecomeLabel" destination="o4T-Hf-0Ff" id="ifZ-jW-flK"/>
+                        <segue destination="9DX-Cx-61I" kind="show" identifier="goToInitialResponseSegue" id="aH5-nF-woA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M0U-rM-b9t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3472.8000000000002" y="146.17691154422789"/>
+            <point key="canvasLocation" x="2564" y="-573"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="r6T-PC-wVj">
             <objects>
                 <collectionViewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="3Np-7Z-7a1" customClass="ChatViewController" customModule="CalmStopOfficer" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="oM0-Ly-dTy">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="oM0-Ly-dTy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1756,6 +1755,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hqE-ka-kmX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4297" y="147"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Q7z-O1-yNY">
+            <objects>
+                <viewController id="oZq-oR-QsC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IhK-Fs-yCu"/>
+                        <viewControllerLayoutGuide type="bottom" id="hbu-UL-CF9"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nhO-eL-OWw">
+                        <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bFw-Ib-OEk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5174" y="-1261"/>
         </scene>
         <!--Pop Up View Controller-->
         <scene sceneID="0pd-fJ-6Mb">
@@ -1892,18 +1909,18 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="PtF-Ru-nYr" kind="relationship" relationship="rootViewController" id="prC-BK-qzz"/>
+                        <segue destination="DBM-Uq-qhB" kind="relationship" relationship="rootViewController" id="BOJ-AJ-HpZ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d2W-Va-9Bd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1744.8" y="-572.56371814092961"/>
+            <point key="canvasLocation" x="1671" y="-573"/>
         </scene>
         <!--Chat History View Controller-->
         <scene sceneID="foL-YD-wcu">
             <objects>
                 <collectionViewController extendedLayoutIncludesOpaqueBars="YES" hidesBottomBarWhenPushed="YES" id="9ix-y8-FZc" customClass="ChatHistoryViewController" customModule="CalmStopOfficer" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="Wdn-fU-DCO">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="Wdn-fU-DCO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

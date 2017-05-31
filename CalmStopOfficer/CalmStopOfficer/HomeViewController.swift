@@ -168,7 +168,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, CBPeriphe
                             self.generateStopId {(result) -> () in
                                 if result{
                                     // Go to next view controller
-//                                    self.performSegue(withIdentifier: "goToInitialResponseSegue", sender: nil)
+                                    self.performSegue(withIdentifier: "goToInitialResponseSegue", sender: nil)
                                 }
                             }
                         }
@@ -208,6 +208,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, CBPeriphe
                     }))
                     
                     self.present(alert, animated: true, completion: nil)
+                    self.notSearching()
                 }
             }
         })
