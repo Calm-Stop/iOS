@@ -165,10 +165,15 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
     
     func downloadProfileImage(){
         let uid = FIRAuth.auth()?.currentUser?.uid
+        FIRDatabase.database().reference().child("citizen").child(uid!).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: AnyObject]{
+                let imagePath = dictionary["photo"] as? String
+
         
         let database = FIRDatabase.database().reference()
         let storage = FIRStorage.storage().reference()
-        let profile = storage.child("images/profile/"+uid!)
+        let profile = storage.child(imagePath!)
         
         
         // Download Images
@@ -185,6 +190,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
                 print(error?.localizedDescription)
             }
         }
+            }})
     }
     
     func uploadProfileImage(image: UIImage){
@@ -196,6 +202,7 @@ class EditProfileViewController: UIViewController, UIImagePickerControllerDelega
         if imageSize > 1000000 {
             var resizedImage = resizeImageWith(image: image, newWidth: image.size.width/CGFloat(2))
             uploadProfileImage(image: resizedImage)
+            return
         }
         
         let uid = FIRAuth.auth()?.currentUser?.uid

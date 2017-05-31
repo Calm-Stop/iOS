@@ -9,15 +9,13 @@
 import UIKit
 
 class Message: NSObject {
-    var authorID: String?
+    var author: String?
     var content: String?
-    var threadID: String?
     var timestamp: NSNumber?
     
     init(dictionary: [String: Any]) {
-        self.authorID = dictionary["authorID"] as? String
+        self.author = dictionary["authorID"] as? String
         self.content = dictionary["content"] as? String
-        self.threadID = dictionary["threadID"] as? String
         self.timestamp = dictionary["timestamp"] as? NSNumber
     }
 }
