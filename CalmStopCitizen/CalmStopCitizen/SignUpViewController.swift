@@ -207,7 +207,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
             // successfully authenticate user
             let ref = FIRDatabase.database().reference(fromURL: "https://calm-stop.firebaseio.com/")
             let usersReference = ref.child("citizen").child(uid).child("profile")
-            let values = ["first_name": firstNameTxt, "last_name": lastNameTxt, "email": emailTxt, "ethnicity": ethnicityTxt, "phone_number": phoneTxt, "zipcode": zipCodeTxt, "language": languageTxt, "dob": birthdateTxt, "gender": genderTxt, "license_number": licenseTxt] as [String : Any] as [String : Any]
+            let photoRef = "images/profile/default_driver.png"
+            let values = ["first_name": firstNameTxt, "last_name": lastNameTxt, "email": emailTxt, "ethnicity": ethnicityTxt, "phone_number": phoneTxt, "zipcode": zipCodeTxt, "language": languageTxt, "dob": birthdateTxt, "gender": genderTxt, "license_number": licenseTxt, "photo": photoRef ] as [String : Any] as [String : Any]
             usersReference.updateChildValues(values, withCompletionBlock: { (err,ref) in
                 if err != nil{
                     
@@ -215,9 +216,23 @@ class SignUpViewController: UIViewController, UITextFieldDelegate, UIPickerViewD
                     return
                 }
                 
+
+            })
+            
+            let driverInitialInfo = ref.child("citizen").child(uid).child("info")
+            let initialInfoValues = ["alerts": 0, "arrests": 0, "citations": 0, "intoxicated": 0, "stops": 0, "threats": 0, "warnings": 0, "weapons": 0]
+            
+            driverInitialInfo.updateChildValues(initialInfoValues, withCompletionBlock: { (err,ref) in
+                if err != nil{
+                    
+                    print(err ?? "Error")
+                    return
+                }
+            })
+        
+                
                 self.dismiss(animated: true, completion: nil)
                 print("Saved user successfully into Firebase DB")
-            })
             
         })
     }

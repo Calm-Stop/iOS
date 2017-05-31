@@ -20,6 +20,7 @@ class InitialContactViewController: UIViewController {
     @IBOutlet weak var deptNumberLabel: UILabel!
     @IBOutlet weak var requestText: UITextView!
     @IBOutlet weak var officerImageView: UIImageView!
+    @IBOutlet weak var chatBtn: UIBarButtonItem!
     
     // Document variables
     var insuranceImage: UIImage!
@@ -37,7 +38,8 @@ class InitialContactViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // Get a reference to the storage service using the default Firebase App
-        beaconIDString = "65535"
+        chatBtn.isEnabled = false
+        chatBtn.tintColor = UIColor.clear
         officerImageView.layer.cornerRadius = self.officerImageView.frame.width/2
         officerImageView.clipsToBounds = true
         checkIfUserIsLoggedIn()
@@ -52,6 +54,7 @@ class InitialContactViewController: UIViewController {
             let beaconId = beaconIDString
             var officerUid = "id"
             var officerDept = "dept"
+            var stopId = "id"
             print("BeaconID: ", beaconId)
             
             FIRDatabase.database().reference().child("beacons").child(beaconId).child("officer").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -59,14 +62,17 @@ class InitialContactViewController: UIViewController {
                 if let dictionary = snapshot.value as? [String: AnyObject]{
                     officerUid = (dictionary["uid"] as? String)!
                     officerDept = ( dictionary["department"] as? String)!
+                    print("got officer id \(officerUid) dept \(officerDept)")
+                    
                     //Check for id
                     FIRDatabase.database().reference().child("officer").child(officerDept).child(officerUid).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
-                        
+                        print ("getting info")
                         if let dictionary = snapshot.value as? [String: AnyObject]{
                             let first_name = (dictionary["first_name"] as? String)!
                             let last_name = (dictionary["last_name"] as? String)!
                             let badge_number = (dictionary["badge_number"] as? String)!
                             let photoRef = dictionary["photo"] as? String
+                            print("got officer info")
 
                             
                             // fill out view with info from database
@@ -85,16 +91,35 @@ class InitialContactViewController: UIViewController {
                                 else {
                                     print(error?.localizedDescription)
                                 }
+                            
                             }
-                        }
-                        
-                        print (snapshot)
-                    })
-                }
-                print (snapshot)
+                        }})
+                    
+                    }
+                //print (snapshot)
             })
             
-            print("got officer info")
+//            FIRDatabase.database().reference().child("beacons").child(beaconId).observeSingleEvent(of: .value, with: { (snapshot) in
+//                
+//                if let dictionary = snapshot.value as? [String: AnyObject]{
+//                    let stopId = (dictionary["stop_id"] as? String)!
+//                    
+//                    
+//                    //let thread_id = stopId
+//                    let messagesRef = FIRDatabase.database().reference().child("threads")
+//                    
+//                    messagesRef.observe(.childAdded, with: { (snapshot) in
+//                        print (snapshot.key)
+//                        if (snapshot.key) == stopId {
+//                            self.chatBtn.isEnabled = true
+//                            self.chatBtn.tintColor  = nil
+//                            self.performSegue(withIdentifier: "startChat", sender: nil)}
+//                    })
+//                    
+//                    // print (snapshot)
+//                    
+//                }})
+            
         }
     }
     
@@ -179,12 +204,24 @@ class InitialContactViewController: UIViewController {
     }
     
     @IBAction func sendDocuments(_ sender: UIButton) {
+        // load images from coreData
         loadInsurance()
-        uploadInsurance()
         loadRegistration()
-        uploadRegistration()
         loadLicense()
-        uploadLicense()
+        // check if all images are in coreData
+        if (insuranceImage != nil && registrationImage != nil && licenseImage != nil){
+            uploadInsurance(image: insuranceImage)
+            uploadRegistration(image: registrationImage)
+            uploadLicense(image: licenseImage)
+        } else {
+            var alert = UIAlertView()
+            alert.delegate = self
+            alert.title = "Missing documents"
+            alert.message = "Sorry, you haven't uploaded all of your documents yet"
+            alert.addButton(withTitle: "OK")
+            alert.show()
+
+        }
         updateImagePaths()
     }
     
@@ -222,8 +259,19 @@ class InitialContactViewController: UIViewController {
         }
     }
     
-    func uploadInsurance() {
+    func uploadInsurance(image: UIImage) {
+        let imgData: NSData = NSData(data: UIImagePNGRepresentation(image)!)
+        var imageSize: Int = imgData.length
+        
+        if imageSize > 1000000 {
+            var resizedImage = resizeImageWith(image: image, newWidth: image.size.width/CGFloat(2))
+            print ("Resized insurance")
+            uploadInsurance(image: resizedImage)
+            return
+        }
+
         // Upload
+        print ("uploading insurance \(imageSize)")
         
         FIRDatabase.database().reference().child("beacons").child(beaconIDString).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject]{
@@ -239,7 +287,7 @@ class InitialContactViewController: UIViewController {
                 let metaData = FIRStorageMetadata()
                 metaData.contentType = "image/png"
                 
-                tempImageRef.put(UIImagePNGRepresentation(self.insuranceImage)!, metadata: metaData) { (data, error) in
+                tempImageRef.put(UIImagePNGRepresentation(image)!, metadata: metaData) { (data, error) in
                     if error == nil {
                         print("Upload successful")
                     }
@@ -288,7 +336,17 @@ class InitialContactViewController: UIViewController {
 
     }
     
-    func uploadRegistration() {
+    func uploadRegistration(image: UIImage) {
+        
+        let imgData: NSData = NSData(data: UIImagePNGRepresentation(image)!)
+        var imageSize: Int = imgData.length
+        
+        if imageSize > 1000000 {
+            var resizedImage = resizeImageWith(image: image, newWidth: image.size.width/CGFloat(2))
+            uploadRegistration(image: resizedImage)
+            return
+        }
+        
         // Upload
         
         FIRDatabase.database().reference().child("beacons").child(beaconIDString).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -304,7 +362,7 @@ class InitialContactViewController: UIViewController {
                 let metaData = FIRStorageMetadata()
                 metaData.contentType = "image/png"
                 
-                tempImageRef.put(UIImagePNGRepresentation(self.registrationImage)!, metadata: metaData) { (data, error) in
+                tempImageRef.put(UIImagePNGRepresentation(image)!, metadata: metaData) { (data, error) in
                     if error == nil {
                         print("Upload successful")
                     }
@@ -352,7 +410,16 @@ class InitialContactViewController: UIViewController {
         }
     }
     
-    func uploadLicense() {
+    func uploadLicense(image: UIImage) {
+        let imgData: NSData = NSData(data: UIImagePNGRepresentation(image)!)
+        var imageSize: Int = imgData.length
+        
+        if imageSize > 1000000 {
+            var resizedImage = resizeImageWith(image: image, newWidth: image.size.width/CGFloat(2))
+            uploadLicense(image: resizedImage)
+            return
+        }
+        
         // Upload
         
         FIRDatabase.database().reference().child("beacons").child(beaconIDString).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -368,7 +435,7 @@ class InitialContactViewController: UIViewController {
                 let metaData = FIRStorageMetadata()
                 metaData.contentType = "image/png"
                 
-                tempImageRef.put(UIImagePNGRepresentation(self.licenseImage)!, metadata: metaData) { (data, error) in
+                tempImageRef.put(UIImagePNGRepresentation(image)!, metadata: metaData) { (data, error) in
                     if error == nil {
                         print("Upload successful")
                     }
@@ -409,7 +476,22 @@ class InitialContactViewController: UIViewController {
         })
     }
     
-    
+    func resizeImageWith(image: UIImage, newWidth: CGFloat) -> UIImage {
+        
+        let floatNewWidth = Float(newWidth)
+        let floatOldWidth = Float(image.size.width)
+        let scale = floatNewWidth/floatOldWidth
+        let newHeight = image.size.height * CGFloat(scale)
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        image.draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+        
+    }
+        
 }
 
 
