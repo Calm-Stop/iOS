@@ -11,9 +11,7 @@ import Firebase
 import CoreData
 
 class InitialContactViewController: UIViewController {
-    
-    
-    
+        
     // MARK: Outlets
     @IBOutlet weak var officerNameLabel: UILabel!
     @IBOutlet weak var badgeNumberLabel: UILabel!
@@ -38,6 +36,7 @@ class InitialContactViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         // Get a reference to the storage service using the default Firebase App
+        saveBeaconId = beaconIDString
         chatBtn.isEnabled = false
         chatBtn.tintColor = UIColor.clear
         officerImageView.layer.cornerRadius = self.officerImageView.frame.width/2
@@ -57,7 +56,7 @@ class InitialContactViewController: UIViewController {
             var stopId = "id"
             print("BeaconID: ", beaconId)
             
-            FIRDatabase.database().reference().child("beacons").child(beaconId).child("officer").observeSingleEvent(of: .value, with: { (snapshot) in
+            FIRDatabase.database().reference().child("beacons").child(saveBeaconId).child("officer").observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if let dictionary = snapshot.value as? [String: AnyObject]{
                     officerUid = (dictionary["uid"] as? String)!
@@ -69,6 +68,7 @@ class InitialContactViewController: UIViewController {
                         print ("getting info")
                         if let dictionary = snapshot.value as? [String: AnyObject]{
                             let first_name = (dictionary["first_name"] as? String)!
+                            print(first_name)
                             let last_name = (dictionary["last_name"] as? String)!
                             let badge_number = (dictionary["badge_number"] as? String)!
                             let photoRef = dictionary["photo"] as? String
@@ -91,7 +91,6 @@ class InitialContactViewController: UIViewController {
                                 else {
                                     print(error?.localizedDescription)
                                 }
-                            
                             }
                         }})
                     
@@ -99,28 +98,40 @@ class InitialContactViewController: UIViewController {
                 //print (snapshot)
             })
             
-//            FIRDatabase.database().reference().child("beacons").child(beaconId).observeSingleEvent(of: .value, with: { (snapshot) in
-//                
-//                if let dictionary = snapshot.value as? [String: AnyObject]{
-//                    let stopId = (dictionary["stop_id"] as? String)!
-//                    
-//                    
-//                    //let thread_id = stopId
-//                    let messagesRef = FIRDatabase.database().reference().child("threads")
-//                    
-//                    messagesRef.observe(.childAdded, with: { (snapshot) in
-//                        print (snapshot.key)
-//                        if (snapshot.key) == stopId {
-//                            self.chatBtn.isEnabled = true
-//                            self.chatBtn.tintColor  = nil
-//                            self.performSegue(withIdentifier: "startChat", sender: nil)}
-//                    })
-//                    
-//                    // print (snapshot)
-//                    
-//                }})
+            // observe to see when thread is created
+            FIRDatabase.database().reference().child("beacons").child(saveBeaconId).observe(.value, with: { (snapshot) in
+                if snapshot.hasChild("stop_id"){
+                if let dictionary = snapshot.value as? [String: AnyObject]{
+                    let stopId = (dictionary["stop_id"] as? String)!
+                    stopIDString = stopId
+                    print("stop id \(stopId)")
+                    
+                    //let thread_id = stopId
+                    let messagesRef = FIRDatabase.database().reference().child("threads")
+                    
+                    messagesRef.observe(.childAdded, with: { (snapshot) in
+                        print (snapshot.key)
+                        if (snapshot.key) == stopId {
+                            self.chatBtn.isEnabled = true
+                            self.chatBtn.tintColor  = nil
+                            self.performSegue(withIdentifier: "startChat", sender: nil)}
+                    })
+                    
+                    // print (snapshot)
+                    
+                    }}})
             
-        }
+            
+            // observe to see when isInStop becomes false
+            let inStopRef = FIRDatabase.database().reference().child("beacons").child(saveBeaconId).child("isInStop")
+            inStopRef.observe(.value, with: { (snapshot) in
+                print ("snapshot.value \(String(describing: snapshot.value))")
+                print ("isInStop changed")
+                if String(describing: snapshot.value) == "Optional(0)" {
+                    self.performSegue(withIdentifier: "showSurvey", sender: nil)
+                }
+            }
+            )}
     }
     
 

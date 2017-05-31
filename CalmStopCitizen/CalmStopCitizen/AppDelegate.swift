@@ -12,6 +12,8 @@ import CoreData
 import CoreLocation
 
 var beaconIDString = ""
+var stopIDString = ""
+var saveBeaconId = ""
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate {

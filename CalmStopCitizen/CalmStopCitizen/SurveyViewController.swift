@@ -35,7 +35,8 @@ class SurveyViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        beaconIDString = "65535"
+        beaconIDString = ""
+        print("beaconIDString = \(beaconIDString)")
         
         submitFeedbackButton.isEnabled = false
         officerImageView.layer.cornerRadius = self.officerImageView.frame.width/2
@@ -52,18 +53,16 @@ class SurveyViewController: UIViewController {
             print("Not logged in!")
         } else {
             let uid = FIRAuth.auth()?.currentUser?.uid
-            let beaconId = beaconIDString
+            let stopId = stopIDString
             var officerUid = "id"
             var officerDept = "dept"
-            print("BeaconID: ", beaconId)
             
-            FIRDatabase.database().reference().child("beacons").child(beaconId).child("officer").observeSingleEvent(of: .value, with: { (snapshot) in
+            FIRDatabase.database().reference().child("stops").child(stopId).observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if let dictionary = snapshot.value as? [String: AnyObject]{
-                    officerUid = (dictionary["uid"] as? String)!
-                    officerDept = ( dictionary["department"] as? String)!
+                    officerUid = (dictionary["officerID"] as? String)!
                     //Check for id
-                    FIRDatabase.database().reference().child("officer").child(officerDept).child(officerUid).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
+                    FIRDatabase.database().reference().child("officer").child("14567").child(officerUid).child("profile").observeSingleEvent(of: .value, with: { (snapshot) in
                         
                         if let dictionary = snapshot.value as? [String: AnyObject]{
                             let first_name = (dictionary["first_name"] as? String)!
