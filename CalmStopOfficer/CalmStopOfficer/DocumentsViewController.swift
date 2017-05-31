@@ -57,7 +57,7 @@ class DocumentsViewController: UIViewController {
                 let insurance = storage.child(self.insurancePath)
                 
                 // Download Images
-                insurance.data(withMaxSize: 1*1000*1000) { (data, error) in
+                insurance.data(withMaxSize: 1*1000*100000) { (data, error) in
                     if error == nil {
                         self.insurancePhoto = UIImage(data: data!)
                         self.insuranceButton.setBackgroundImage(self.insurancePhoto, for: .normal)
@@ -67,7 +67,7 @@ class DocumentsViewController: UIViewController {
                     }
                 }
                 
-                registration.data(withMaxSize: 1*1000*1000) { (data, error) in
+                registration.data(withMaxSize: 1*1000*100000) { (data, error) in
                     if error == nil {
                         self.registrationPhoto = UIImage(data: data!)
                         //                self.registrationButton.setImage(image, for: .normal)
@@ -79,7 +79,7 @@ class DocumentsViewController: UIViewController {
                 }
                 
                 
-                tempImageRef.data(withMaxSize: 1*1000*1000) { (data, error) in
+                tempImageRef.data(withMaxSize: 1*1000*100000) { (data, error) in
                     if error == nil {
                         self.driverLicensePhoto = UIImage(data: data!)
                         self.licenseButton.setBackgroundImage(self.driverLicensePhoto, for: .normal)
@@ -105,7 +105,8 @@ class DocumentsViewController: UIViewController {
         FIRDatabase.database().reference().child("beacons").child(generalBeaconID).child("citizen").child("documents").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject]{
                 
-                self.licensePath = (dictionary["drivers_license"] as? String) ?? ""
+                self.licensePath = (dictionary["license"] as? String) ?? ""
+                print(self.licensePath)
                 self.registrationPath = (dictionary["insurance"] as? String) ?? ""
                 self.insurancePath = (dictionary["registration"] as? String) ?? ""
                 

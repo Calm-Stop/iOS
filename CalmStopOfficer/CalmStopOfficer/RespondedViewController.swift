@@ -118,17 +118,17 @@ class RespondedViewController: UIViewController {
                             let last_name = (dictionary["last_name"] as? String)!
 //                            let gender = (dictionary["gender"] as? String)!
                             let gender = "Female"
-                            let age = (dictionary["license_number"] as? String)!
+//                            let age = (dictionary["license_number"] as? String)!
 //                            let language = (dictionary["language"] as? String)!
                             let language = "English"
-                            let zipcode = dictionary["zip_code"] as? String
+                            let zipcode = dictionary["zipcode"] as? String
                             self.phoneNumber = (dictionary["phone_number"] as? String)!
                             let photoPath = (dictionary["photo"] as? String)!
                             
                             self.downloadProfileImage(path: photoPath)
                             
                             self.nameLabel.text = name + " " + last_name
-                            self.genderLabel.text = gender + " - " + age
+                            self.genderLabel.text = gender + " - " + "25"
                             self.languageLabel.text = language
                             
                             // Get City and state from zipcode

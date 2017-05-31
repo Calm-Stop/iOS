@@ -53,7 +53,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate  {
             
             // Create ratings child
             usersReference = ref.child("officer").child("14567").child(uid).child("ratings")
-            let ratingvalues = ["average_rating": 5.0, "number_of_ratings": 1]
+            let ratingvalues = ["average_rating": 0.0, "number_of_ratings": 0, "no_opinion_count": 0]
             
             usersReference.updateChildValues(ratingvalues, withCompletionBlock: { (err,ref) in
                 if err != nil{

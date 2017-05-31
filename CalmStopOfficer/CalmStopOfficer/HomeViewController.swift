@@ -242,7 +242,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, CBPeriphe
         FIRDatabase.database().reference().child("beacons").child(myBeaconId).observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: AnyObject]{
-                self.active = (dictionary["active"] as? Bool)!
+                self.active = (dictionary["isInStop"] as? Bool)!
             }
         })
      
@@ -254,7 +254,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, CBPeriphe
         self.active = true
         let uid = FIRAuth.auth()?.currentUser?.uid
         let beaconRef = FIRDatabase.database().reference().child("beacons").child(myBeaconId)
-        let beaconValues = ["active": active] as [String : Any]
+        let beaconValues = ["isInStop": active] as [String : Any]
         
         beaconRef.updateChildValues(beaconValues) { (error, ref) in
             if  error != nil {

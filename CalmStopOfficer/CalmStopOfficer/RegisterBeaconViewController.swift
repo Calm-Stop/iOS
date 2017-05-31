@@ -195,7 +195,7 @@ class RegisterBeaconViewController: UIViewController, CLLocationManagerDelegate,
                     
                     // Beacon Active
                     beaconRef = FIRDatabase.database().reference().child("beacons").child(beaconId)
-                    beaconValues = ["active": false] as [String : Any]
+                    beaconValues = ["isInStop": false] as [String : Any]
                     
                     beaconRef.updateChildValues(beaconValues) { (error, ref) in
                         if  error != nil {
