@@ -11,6 +11,8 @@ import Firebase
 import CoreLocation
 import CoreBluetooth
 
+var stopIDforEndStop = ""
+
 class HomeViewController: UIViewController, CLLocationManagerDelegate, CBPeripheralManagerDelegate {
     
     @IBOutlet weak var profileImage: UIImageView!
@@ -226,10 +228,11 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, CBPeriphe
                 
                 if let dictionary = snapshot.value as? [String: AnyObject]{
                     let beaconId = (dictionary["beacon_id"] as? String)!
-                    FIRDatabase.database().reference().child("beacons").child(beaconId).observeSingleEvent(of: .value, with: { (snapshot) in
+                    FIRDatabase.database().reference().child("beacons").child(beaconId).observe(.value, with: { (snapshot) in
                         if snapshot.hasChild("citizen"){
                             completion(true)
                             print("Tem sim!")
+//                            snapshot.removeObserver(self, forKeyPath: "citizen")
                         }
                     })
                 }
@@ -313,6 +316,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, CBPeriphe
                 ref = FIRDatabase.database().reference().child("beacons").child(self.myBeaconId)
                 values = ["stop_id": childRef.key, ] as [String : Any]
                 
+                
                 ref.updateChildValues(values) { (error, ref) in
                     if  error != nil {
                         print(error ?? "")
@@ -323,6 +327,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate, CBPeriphe
                 //Add stopID to citizen
                 ref = FIRDatabase.database().reference().child("citizen").child(self.citizenID).child("stops").child(childRef.key)
                 values = ["stop_id": childRef.key, ] as [String : Any]
+                stopIDforEndStop = childRef.key
                 
                 ref.updateChildValues(values) { (error, ref) in
                     if  error != nil {

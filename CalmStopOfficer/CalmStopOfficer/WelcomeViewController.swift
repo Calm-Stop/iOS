@@ -148,7 +148,7 @@ class WelcomeViewController: UIViewController, CLLocationManagerDelegate {
                 if let dictionary = snapshot.value as? [String: AnyObject]{
                     let beaconId = (dictionary["beacon_id"] as? String)!
                     
-                    FIRDatabase.database().reference().child("beacons").child(beaconId).observeSingleEvent(of: .value, with: { (snapshot) in
+                    FIRDatabase.database().reference().child("beacons").child(beaconId).observe(.value, with: { (snapshot) in
                         if snapshot.hasChild("citizen"){
                             completion(true)
                             print("Tem sim!")

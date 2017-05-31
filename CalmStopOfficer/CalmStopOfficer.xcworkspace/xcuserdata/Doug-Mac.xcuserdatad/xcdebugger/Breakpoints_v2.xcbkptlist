@@ -184,13 +184,106 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CalmStopOfficer/HomeViewController.swift"
-            timestampString = "517393438.584963"
+            timestampString = "517891814.399424"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "checkIfOfficerBeaconIsTheSameAsBeaconBeingPressed(beacons:completion:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CalmStopOfficer/EditProfileViewController.swift"
+            timestampString = "517891363.236654"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "EditProfileViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CalmStopOfficer.EditProfileViewController.__deallocating_deinit"
+                  moduleName = "CalmStopOfficer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Doug-Mac/Desktop/iOS/CalmStopOfficer/CalmStopOfficer/EditProfileViewController.swift"
+                  timestampString = "517891364.144653"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CalmStopOfficer.EditProfileViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; CalmStopOfficer.EditProfileViewController"
+                  moduleName = "CalmStopOfficer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Doug-Mac/Desktop/iOS/CalmStopOfficer/CalmStopOfficer/EditProfileViewController.swift"
+                  timestampString = "517891364.1466"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "80">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CalmStopOfficer.EditProfileViewController.__allocating_init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; CalmStopOfficer.EditProfileViewController"
+                  moduleName = "CalmStopOfficer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Doug-Mac/Desktop/iOS/CalmStopOfficer/CalmStopOfficer/EditProfileViewController.swift"
+                  timestampString = "517891364.148518"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CalmStopOfficer.EditProfileViewController.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;CalmStopOfficer.EditProfileViewController&gt;"
+                  moduleName = "CalmStopOfficer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Doug-Mac/Desktop/iOS/CalmStopOfficer/CalmStopOfficer/EditProfileViewController.swift"
+                  timestampString = "517891364.150018"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CalmStopOfficer.EditProfileViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;CalmStopOfficer.EditProfileViewController&gt;"
+                  moduleName = "CalmStopOfficer"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Doug-Mac/Desktop/iOS/CalmStopOfficer/CalmStopOfficer/EditProfileViewController.swift"
+                  timestampString = "517891364.1515"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
