@@ -41,8 +41,8 @@ class InitialContactViewController: UIViewController {
         chatBtn.tintColor = UIColor.clear
         officerImageView.layer.cornerRadius = self.officerImageView.frame.width/2
         officerImageView.clipsToBounds = true
-        checkIfUserIsLoggedIn()
         updateCitizenChild()
+        checkIfUserIsLoggedIn()
     }
     
     func checkIfUserIsLoggedIn(){
@@ -50,7 +50,7 @@ class InitialContactViewController: UIViewController {
             print("Not logged in!")
         } else {
             let uid = FIRAuth.auth()?.currentUser?.uid
-            let beaconId = beaconIDString
+            let beaconId = saveBeaconId
             var officerUid = "id"
             var officerDept = "dept"
             var stopId = "id"
@@ -84,7 +84,7 @@ class InitialContactViewController: UIViewController {
                             //download image from firebase
                             let storage = FIRStorage.storage().reference()
                             let officerPhoto = storage.child(photoRef!)
-                            officerPhoto.data(withMaxSize: 1*1000*1000) { (data, error) in
+                            officerPhoto.data(withMaxSize: 1*1000*1000000) { (data, error) in
                                 if error == nil {
                                     self.officerImageView.image = UIImage(data: data!)
                                 }
@@ -98,6 +98,13 @@ class InitialContactViewController: UIViewController {
                 //print (snapshot)
             })
             
+            let isInStopObserve = FIRDatabase.database().reference().child("beacons").child(saveBeaconId)
+            isInStopObserve.observe(.value, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: AnyObject]{
+                    let isInStop = (dictionary["isInStop"] as? Bool)!
+                    
+                    if (isInStop == true){
+                        
             // observe to see when thread is created
             FIRDatabase.database().reference().child("beacons").child(saveBeaconId).observe(.value, with: { (snapshot) in
                 if snapshot.hasChild("stop_id"){
@@ -117,21 +124,35 @@ class InitialContactViewController: UIViewController {
                             self.performSegue(withIdentifier: "startChat", sender: nil)}
                     })
                     
+                    
+                    // observe to see when isInStop becomes false
+                    let inStopRef = FIRDatabase.database().reference().child("beacons").child(saveBeaconId).child("isInStop")
+                    inStopRef.observe(.value, with: { (snapshot) in
+                        print ("snapshot.value \(String(describing: snapshot.value))")
+                        print ("isInStop changed")
+                        if String(describing: snapshot.value) == "Optional(0)" {
+                            self.performSegue(withIdentifier: "showSurvey", sender: nil)
+                            inStopRef.removeAllObservers()
+                            
+                        }
+                    }
+                    )
+                    
+                    
                     // print (snapshot)
                     
                     }}})
+                    isInStopObserve.removeAllObservers()
+                    } else {
+                    
+                    }
+                }})
+                
             
             
-            // observe to see when isInStop becomes false
-            let inStopRef = FIRDatabase.database().reference().child("beacons").child(saveBeaconId).child("isInStop")
-            inStopRef.observe(.value, with: { (snapshot) in
-                print ("snapshot.value \(String(describing: snapshot.value))")
-                print ("isInStop changed")
-                if String(describing: snapshot.value) == "Optional(0)" {
-                    self.performSegue(withIdentifier: "showSurvey", sender: nil)
-                }
-            }
-            )}
+
+        
+        }
     }
     
 
@@ -144,7 +165,7 @@ class InitialContactViewController: UIViewController {
 
         // send new values to firebase
         let post = ["uid": uid] as [String : Any]
-        let childUpdates = ["/beacons/"+beaconIDString+"/citizen": post]
+        let childUpdates = ["/beacons/"+saveBeaconId+"/citizen": post]
         ref.updateChildValues(childUpdates)
         
     }
@@ -152,7 +173,7 @@ class InitialContactViewController: UIViewController {
     func loadOfficerUid() -> String {
         var id = String()
         // load officer Id using beacon id
-        FIRDatabase.database().reference().child("beacons").child(beaconIDString).child("officer").observeSingleEvent(of: .value, with: { (snapshot) in
+        FIRDatabase.database().reference().child("beacons").child(saveBeaconId).child("officer").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject]{
                 // print(dictionary)
                 id = (dictionary["uid"] as? String)!
@@ -165,7 +186,7 @@ class InitialContactViewController: UIViewController {
     func loadOfficerDept() -> String {
         var dept = String()
         // load officer Id using beacon id
-        FIRDatabase.database().reference().child("beacons").child(beaconIDString).child("officer").observeSingleEvent(of: .value, with: { (snapshot) in
+        FIRDatabase.database().reference().child("beacons").child(saveBeaconId).child("officer").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject]{
                 // print(dictionary)
                 dept = (dictionary["department"] as? String)!
@@ -199,7 +220,7 @@ class InitialContactViewController: UIViewController {
                 //download image from firebase
                 let storage = FIRStorage.storage().reference()
                 let officerPhoto = storage.child(photoRef!)
-                officerPhoto.data(withMaxSize: 1*1000*1000) { (data, error) in
+                officerPhoto.data(withMaxSize: 1*1000*1000000) { (data, error) in
                     if error == nil {
                         self.officerImageView.image = UIImage(data: data!)
                         // self.insuranceButton.setBackgroundImage(self.insurancePhoto, for: .normal)
@@ -284,7 +305,7 @@ class InitialContactViewController: UIViewController {
         // Upload
         print ("uploading insurance \(imageSize)")
         
-        FIRDatabase.database().reference().child("beacons").child(beaconIDString).observeSingleEvent(of: .value, with: { (snapshot) in
+        FIRDatabase.database().reference().child("beacons").child(saveBeaconId).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject]{
                 let stop_id = (dictionary["stop_id"] as? String)!
                 print(stop_id)
@@ -360,7 +381,7 @@ class InitialContactViewController: UIViewController {
         
         // Upload
         
-        FIRDatabase.database().reference().child("beacons").child(beaconIDString).observeSingleEvent(of: .value, with: { (snapshot) in
+        FIRDatabase.database().reference().child("beacons").child(saveBeaconId).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject]{
                 let stop_id = (dictionary["stop_id"] as? String)!
                 
@@ -433,7 +454,7 @@ class InitialContactViewController: UIViewController {
         
         // Upload
         
-        FIRDatabase.database().reference().child("beacons").child(beaconIDString).observeSingleEvent(of: .value, with: { (snapshot) in
+        FIRDatabase.database().reference().child("beacons").child(saveBeaconId).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject]{
                 let stop_id = (dictionary["stop_id"] as? String)!
                 
@@ -462,20 +483,20 @@ class InitialContactViewController: UIViewController {
     }
         
     func updateImagePaths(){
-        FIRDatabase.database().reference().child("beacons").child(beaconIDString).observeSingleEvent(of: .value, with: { (snapshot) in
+        FIRDatabase.database().reference().child("beacons").child(saveBeaconId).observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: AnyObject]{
                 let stop_id = (dictionary["stop_id"] as? String)!
                 let uid = FIRAuth.auth()?.currentUser?.uid
         
                 var ref: FIRDatabaseReference!
                 ref = FIRDatabase.database().reference()
-                FIRDatabase.database().reference().child("beacons").child(beaconIDString).child("citizen").child("documents").observeSingleEvent(of: .value, with: { (snapshot) in
+                FIRDatabase.database().reference().child("beacons").child(saveBeaconId).child("citizen").child("documents").observeSingleEvent(of: .value, with: { (snapshot) in
             
                     // send new values to firebase
                     let post = ["insurance": stop_id+"/insurance",
                                 "license": stop_id+"/license",
                                 "registration": stop_id+"/registration"] as [String : Any]
-                    let childUpdates = ["/beacons/"+beaconIDString+"/citizen/documents": post]
+                    let childUpdates = ["/beacons/"+saveBeaconId+"/citizen/documents": post]
                     ref.updateChildValues(childUpdates)
             
             

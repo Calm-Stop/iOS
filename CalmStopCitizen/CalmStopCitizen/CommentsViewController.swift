@@ -21,6 +21,9 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
         //beaconIDString = "65535"
         submitCommentsButton.isEnabled = false
         commentsBox.delegate = self
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CommentsViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
@@ -59,6 +62,10 @@ class CommentsViewController: UIViewController, UITextViewDelegate {
         UIApplication.shared.openURL(URL(string: "http://www.cityofsantacruz.com/departments/police/how-do-i/obtain-a-citizen-comment-form")!)
     }
     
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
+    }
 
 
 }
